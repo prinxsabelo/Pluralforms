@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useRef, useState, useContext } from "react";
+import { Fragment, useRef, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationIcon } from "@heroicons/react/outline";
 import { Context } from "../context/context";
@@ -7,10 +7,8 @@ import { Context } from "../context/context";
 export default function DeleteModal(props) {
   const {
     closeModal,
-    setOpen,
     open,
-    confirmMessage,
-    handleDelete,
+
   } = useContext(Context);
 
   const cancelButtonRef = useRef();

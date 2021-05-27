@@ -126,12 +126,14 @@ const Responses = () => {
         let resp = formResponses.respondents;
         if (resp) {
           setRespondents(resp);
-          if (arr.length == 0) {
+          if (arr.length === 0) {
             const newArr = [];
             resp.map((r) => {
               if (r.isChecked) {
                 newArr.push(r.token);
+
               }
+              return r.token
             });
             setArr(newArr);
             //If Respondent is greater than zero and  exist and selected = total respondents.
@@ -144,7 +146,7 @@ const Responses = () => {
         }
       }
     }
-  }, [getFormResponses, form_id, formResponses, setQuestions, setRespondents]);
+  }, [getFormResponses, form_id, formResponses, setQuestions, setRespondents, arr.length]);
 
   return (
     <>
@@ -295,7 +297,7 @@ const Responses = () => {
       ) : (
         <DeleteModal
           onDelete={handleDelete}
-          message={`You are about deleting your ${arr.length == 1 ? "response" : "responses"
+          message={`You are about deleting your ${arr.length === 1 ? "response" : "responses"
             } `}
         />
       )}

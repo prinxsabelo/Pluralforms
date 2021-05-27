@@ -1,32 +1,38 @@
 import { useEffect } from "react/cjs/react.development";
 import { useHttpClient } from "../../shared/hooks/http-hook";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import AuthContext from "../../shared/context/auth-context";
 
 const AuthComponent = ({ children }) => {
     const { isLoading, sendRequest } = useHttpClient();
     const [googleUrl, setGoogleUrl] = useState("");
     const [facebookUrl, setFacebookUrl] = useState("");
-    useEffect(() => {
+    const Auth = useContext(AuthContext);
+    console.log(Auth);
 
-        const fetchForGoogle = async () => {
-            const googleUrl = await sendRequest(
-                'http://localhost:8000/api/auth/google',
-            );
-            console.log(googleUrl);
-            const { url } = googleUrl;
-            setGoogleUrl(url);
+    useEffect(() => {
+        if (!Auth.token) {
+            const fetchForGoogle = async () => {
+                const googleUrl = await sendRequest(
+                    'http://localhost:8000/api/auth/google',
+                );
+                console.log(googleUrl);
+                const { url } = googleUrl;
+                setGoogleUrl(url);
+            }
+            const fetchForFacebook = async () => {
+                const facebookUrl = await sendRequest(
+                    'http://localhost:8000/api/auth/facebook',
+                )
+                console.log(facebookUrl);
+                const { url } = facebookUrl;
+                setFacebookUrl(url);
+            }
+            fetchForGoogle();
+            fetchForFacebook();
         }
-        const fetchForFacebook = async () => {
-            const facebookUrl = await sendRequest(
-                'http://localhost:8000/api/auth/facebook',
-            )
-            console.log(facebookUrl);
-            const { url } = facebookUrl;
-            setFacebookUrl(url);
-        }
-        fetchForGoogle();
-        fetchForFacebook();
-    }, [sendRequest]);
+
+    }, [sendRequest, Auth.token]);
     return (
         <div className="flex w-full justify-center md:mt-8">
 

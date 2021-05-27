@@ -30,7 +30,7 @@ const ContextProvider = (props) => {
     };
 
     const [open, setOpen] = useState(false);
-    const [confirmMessage, setConfirmMessage] = useState("");
+
     const closeModal = () => {
         setOpen(false);
     }
@@ -60,7 +60,7 @@ const ContextProvider = (props) => {
                 open,
                 closeModal,
                 openDeleteModal,
-                confirmMessage,
+
                 handleDelete
             }}
         >

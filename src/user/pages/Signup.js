@@ -19,9 +19,10 @@ const Signup = () => {
             if (response.ok) {
                 const { id, email } = response.user;
                 const { token } = response;
+                Cookies.set("userData", JSON.stringify({ id, token, email }));
                 Auth.setToken(token);
                 Auth.setEmail(email);
-                Cookies.set("userData", JSON.stringify({ id, token, email }));
+
                 history.push("/user");
             }
 

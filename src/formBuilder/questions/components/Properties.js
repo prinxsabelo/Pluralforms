@@ -14,7 +14,8 @@ const Properties = (props) => {
   const { developQuestion } = useContext(QuestionContext);
   useEffect(() => {
     setProperties(props.properties);
-  });
+  }, [setProperties, props.properties]);
+
   let { title, q_id, type } = props;
   const onToggleChange = (index, isChecked) => {
     // console.log(arr[index]);

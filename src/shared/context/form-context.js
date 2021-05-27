@@ -5,7 +5,7 @@ import { v4 as uuid } from "uuid";
 export const FormContext = createContext();
 const FormContextProvider = (props) => {
     // const { setShowDialog, setDialogContent } = useContext(Context);
-    const { Dialog, showDialog, setDialogContent } = useContext(Context);
+    const { showDialog, setDialogContent } = useContext(Context);
 
     const [title, setTitle] = useState("");
     const submitForm = (form) => {
@@ -26,7 +26,7 @@ const FormContextProvider = (props) => {
         //Update Forms here..
         else {
             let index = forms.findIndex(({ form_id }) => form_id === form.form_id);
-            if (index != -1) {
+            if (index !== -1) {
                 forms[index].title = form.title;
                 setForms(forms);
             }

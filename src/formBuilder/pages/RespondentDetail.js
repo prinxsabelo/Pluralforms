@@ -22,7 +22,7 @@ const RespondentDetail = () => {
                 }
             }
         }
-    }, [getFormResponses, form_id])
+    }, [getFormResponses, formResponses, token, form_id])
 
 
     return (

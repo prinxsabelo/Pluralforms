@@ -70,7 +70,7 @@ const QuestionProvider = (props) => {
   };
 
   const addQuestion = (type) => {
-    const id = form.questions.length + 1;
+
     const qn = {
       title: "",
 

@@ -20,7 +20,6 @@ const QTypeIcon = ({ type, shape, className, color }) => (
       <MenuAlt4Icon
         className={`${className} stroke-current stroke-0`}
         aria-hidden="true"
-        aria-hidden="true"
         fill="none"
         stroke="currentColor"
       />

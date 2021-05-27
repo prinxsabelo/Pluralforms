@@ -6,7 +6,6 @@ import Button from "../../shared/collection/Button";
 import QuestionType from "../questions/components/QuestionType";
 import Properties from "../questions/components/Properties";
 import { QuestionContext } from "../../shared/context/question-context";
-import RespondentDetail from "./RespondentDetail";
 
 const MobileBuild = () => {
   const history = useHistory();
@@ -58,11 +57,13 @@ const MobileBuild = () => {
     setCurrentType,
     developQuestion,
     setTypeAction,
+    typeAction,
+
   ]);
 
   const changeHandler = (e) => {
     //  console.log(e);
-    const { q_id, properties, type, title } = question;
+    const { q_id, properties, type } = question;
     // console.log(q_id);
     // Check locally.. until save..
     if (e.target.name === "title") {

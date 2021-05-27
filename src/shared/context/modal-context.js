@@ -1,4 +1,4 @@
-import { useState, createContext, useEffect, useContext } from "react";
+import { useState, createContext } from "react";
 
 const QUESTION = "QUESTION";
 export const ModalContext = createContext();
@@ -15,7 +15,7 @@ const ModalContextProvider = (props) => {
     };
     const handleDelete = () => {
         console.log("xxx");
-        if (confirmMessage.type == QUESTION) {
+        if (confirmMessage.type === QUESTION) {
             setIsOpen(false);
             setConfirmDelete({ type: QUESTION, q_id: confirmMessage.id });
         }

@@ -1,8 +1,6 @@
-import { createContext, useContext, useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { createContext, useState } from "react";
 import ResponseApi from "../api/response-api";
 import ReportApi from "./../api/report-api";
-import { ViewportContext } from "./viewport-context";
 
 export const ResultContext = createContext();
 

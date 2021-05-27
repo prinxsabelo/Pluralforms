@@ -6,12 +6,16 @@ import { useHttpClient } from "../../shared/hooks/http-hook";
 
 const ConfirmAuth = () => {
 
+
     const { sendRequest } = useHttpClient();
     const location = useLocation();
     const Auth = useContext(AuthContext);
     let history = useHistory();
+    console.log(Auth);
     const fetchApi = useCallback(async () => {
-        if (!Auth.email && !Auth.token) {
+        const userData = Cookies.get("userData");
+        if (!userData && !Auth.authProceed) {
+            // if (!Auth.email && !Auth.token) {
             let response;
             if (window.location.pathname.search("google") !== -1) {
                 response = await sendRequest(`http://localhost:8000/api/auth/google/callback${location.search}`);
@@ -21,13 +25,15 @@ const ConfirmAuth = () => {
             if (response && response.ok) {
                 const { id, email } = response.user;
                 const { token } = response;
+                Cookies.set("userData", JSON.stringify({ id, token, email }));
                 Auth.setToken(token);
                 Auth.setEmail(email);
-                Cookies.set("userData", JSON.stringify({ id, token, email }));
+
                 history.push("/user");
             }
-
         }
+
+        // }
     }, [Auth, history, location.search, sendRequest])
     useEffect(() => {
         fetchApi()

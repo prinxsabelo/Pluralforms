@@ -1,16 +1,14 @@
 
 import { Route, useRouteMatch } from "react-router-dom";
-import DeleteModal from "../../../shared/collection/DeleteModal";
 import DesktopBuild from "../../pages/DesktopBuild";
 import Questions from "../../pages/Questions";
 import Results from "../../pages/Results";
 import Settings from "../../pages/Settings";
 import Share from "../../pages/Share";
-import RespondentDetail from '../../pages/RespondentDetail'
 
 const TabContent = (props) => {
 
-    const { path, url } = useRouteMatch();
+    const { url } = useRouteMatch();
 
     return (
         <>

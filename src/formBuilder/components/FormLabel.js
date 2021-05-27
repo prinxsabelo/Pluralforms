@@ -78,7 +78,7 @@ const FormLabel = (props) => {
           <div className="hidden md:flex items-center mt-1 space-x-1 px-3">
             <div className="flex justify-center items-center space-x-2">
               <NavLink
-                to="/forms"
+                to="/user/forms"
                 className="px-4 py-2 bg-gray-900 rounded text-white"
               >
                 <HomeIcon className="w-7" />

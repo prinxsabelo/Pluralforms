@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Route,
   BrowserRouter as Router,
@@ -14,72 +14,80 @@ import Login from "./user/pages/Login";
 import Signup from "./user/pages/Signup";
 import { User } from "./user/pages/User";
 
-const Routes = () => {
-  const Auth = useContext(AuthContext);
-  // console.log(Auth);
+const Routes = ({ authProceed }) => {
+  console.log(authProceed)
+
   return (
     <Switch>
       <Route exact path="/">
-        {Auth.token ? <Redirect to="/user" /> : <PublicHomePage />}
+        {authProceed ? <Redirect to="/user" /> : <PublicHomePage />}
       </Route>
-      <ProtectedLogin path="/login" auth={Auth.token} component={Login} />
-      <ProtectedLogin path="/signup" auth={Auth.token} component={Signup} />
+      <ProtectedLogin path="/login" authProceed={authProceed} component={Login} />
+      <ProtectedLogin path="/signup" authProceed={authProceed} component={Signup} />
       <Route path="/auth/google" component={ConfirmAuth} />
       <Route path="/auth/facebook" component={ConfirmAuth} />
       <ProtectedRoute
         path="/user"
-        auth={Auth.token}
+        authProceed={authProceed}
         component={User}
       />
     </Switch>
   );
 };
-const ProtectedRoute = ({ auth, component: Component, ...rest }) => {
+const ProtectedRoute = ({ authProceed, component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={() => (auth ? <Component /> : <Redirect to="/login" />)}
+      render={() => (authProceed ? <Component /> : <Redirect to="/login" />)}
     />
   );
 };
-const ProtectedLogin = ({ auth, component: Component, ...rest }) => {
-  // alert(window.location.pathname)
+const ProtectedLogin = ({ authProceed, component: Component, ...rest }) => {
+
   return (
     <Route
       {...rest}
       render={() =>
-        !auth ? <Component /> : <Redirect to="/user" />
+        !authProceed ? <Component /> : <Redirect to="/user" />
       }
     />
   );
 };
 function App() {
-
+  const [authProceed, setAuthProceed] = useState(true);
   const [token, setToken] = useState(false);
   const [email, setEmail] = useState();
   const [id, setId] = useState();
-  const readCookie = () => {
-    const userData = Cookies.get("userData");
-    if (userData) {
-      const { token, id, email } = JSON.parse(userData);
 
-      if (token && id) {
-        setToken(token);
-        setEmail(email);
-        setId(id)
-      }
-    }
-
-  };
   useEffect(() => {
+    const readCookie = () => {
+      const userData = Cookies.get("userData");
+      if (userData) {
+        const { token, id, email } = JSON.parse(userData);
+
+        if (token && id) {
+          setToken(token);
+          setEmail(email);
+          setId(id)
+          setAuthProceed(true);
+        }
+      } else {
+        setToken(false);
+        setEmail(false);
+        setId(false);
+        setAuthProceed(false);
+      }
+
+    };
     readCookie();
-  });
+
+  }, [setAuthProceed, token]);
 
   return (
     <>
-      <AuthContext.Provider value={{ token, setToken, email, setEmail, id, setId }}>
+      <AuthContext.Provider value={{ token, setToken, email, setEmail, id, setId, authProceed }}>
         <Router>
-          <Routes />
+          <Routes authProceed={authProceed} />
         </Router>
       </AuthContext.Provider>
     </>

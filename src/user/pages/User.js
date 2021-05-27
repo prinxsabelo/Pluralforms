@@ -1,6 +1,4 @@
-import { useContext } from "react";
-import Cookies from "js-cookie";
-import AuthContext from "../../shared/context/auth-context";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ContextProvider from "../../shared/context/context";
 import FormContextProvider from "../../shared/context/form-context";
@@ -16,14 +14,7 @@ import Header from "../../shared/header/Header";
 import Wrapper from "../../shared/wrapper/Wrapper";
 
 export const User = () => {
-    const Auth = useContext(AuthContext);
-    const handleLogout = () => {
-        Auth.setId(null);
-        Auth.setEmail(null);
-        Auth.setToken(null);
-        Cookies.remove("userData");
 
-    };
     return (
         <Router>
             <ContextProvider>

@@ -3,7 +3,7 @@ import './Tabs.css';
 import Tab from './Tab';
 const Tabs = (props) => {
 
-    const { tabs, child } = props;
+    const { tabs } = props;
 
     return (
         <div>

@@ -21,7 +21,7 @@ const Choice = (props) => {
         <>
 
             <div className=" flex space-x-1 items-center">
-                <input autoFocus={props.index === 0 || props.index + 1 == props.choicesLength} autoComplete="off" placeholder={`Choice ${props.index + 1}`}
+                <input autoFocus={props.index === 0 || props.index + 1 === props.choicesLength} autoComplete="off" placeholder={`Choice ${props.index + 1}`}
                     className="border w-full p-3  outline-none rounded focus:border-black"
                     onChange={(event) => handleChoice(event, props.index)}
                     onKeyDown={handleKeyDown}

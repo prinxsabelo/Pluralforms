@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
 import { Context } from '../context/context';
 import { FormContext } from '../context/form-context';
 
@@ -7,10 +6,9 @@ import Backdrop from './Backdrop';
 import Button from './Button';
 
 const Dialog = (props) => {
-    const { dialog, showDialog, closeDialog, DialogContent, } = useContext(Context);
+    const { dialog, closeDialog, DialogContent, } = useContext(Context);
     const { submitForm } = useContext(FormContext);
     const { header, placeholder } = DialogContent;
-    const [title, setTitle] = useState("");
     const [form, setForm] = useState({
         form_id: "",
         title: ""
