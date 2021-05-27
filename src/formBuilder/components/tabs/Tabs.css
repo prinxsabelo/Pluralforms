@@ -1,0 +1,93 @@
+.nav {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    display: flex;
+ 
+}
+
+.nav > .nav-item {
+    position: relative;
+    display: block;
+}
+.nav > .nav-item > .nav-link {
+    margin-top: 10px;
+    position: relative;
+    display: block;
+    padding: 5px 15px;
+    border: none;
+ 
+}
+@media only screen and (max-width: 600px) {
+    .nav{
+        justify-content: space-around;
+    }
+    .nav > .nav-item > .nav-link {
+        margin-top: 0;
+        position: relative;
+        display: block;
+        padding: 8px;
+        border: none;
+     
+    }
+}
+.nav-tabs{
+    border: none;
+}
+
+.nav-tabs .nav-item .nav-link{
+    border: none;
+    position: relative;
+}
+  
+.nav-tabs .nav-item .nav-link::before{
+    content: '';
+    position: absolute;
+    width:0;
+    height:3px;
+    /* background:#E40046; */
+    background-color: red !important;
+    position:absolute;
+    left: 50%;
+    bottom: -3px;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+  
+.nav-tabs .nav-item a.active{
+    /* background-color: yellow; */
+    border-bottom: 3px solid rgb(14, 13, 13) !important;
+    font-weight:  500;
+
+}
+  
+.nav-tabs .nav-item .nav-link:hover::before{
+    left: 0;
+    width: 100%;
+}
+  
+.nav-tabs .nav-item .nav-link.active::before{
+    width: 0;
+}
+  
+.tab-content{
+    padding: 10px;
+}
+@media only screen and (max-width: 600px) {
+    .tab-content{
+        padding: 0px;
+        margin-top: 4px;
+    }
+}
+.tab-pane{
+    display: block;
+    position: relative;
+    left: 100%;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+   
+}
+  
+.tab-pane.active{
+    left: 0;
+}

@@ -43,16 +43,18 @@ const ProtectedRoute = ({ auth, component: Component, ...rest }) => {
   );
 };
 const ProtectedLogin = ({ auth, component: Component, ...rest }) => {
+  // alert(window.location.pathname)
   return (
     <Route
       {...rest}
       render={() =>
-        !auth ? <Component /> : <Redirect to="/User" />
+        !auth ? <Component /> : <Redirect to="/user" />
       }
     />
   );
 };
 function App() {
+
   const [token, setToken] = useState(false);
   const [email, setEmail] = useState();
   const [id, setId] = useState();

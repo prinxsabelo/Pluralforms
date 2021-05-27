@@ -1,0 +1,47 @@
+.q-left-drawer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    height: 100vh;
+    width: 20%;
+     /* background: white; */
+     background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.36);
+}
+.q-right-drawer {
+    position: fixed;
+    right: 0;
+    top: 25%;
+    z-index: 100;
+    height: 100vh;
+    width: 20%;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.36);
+}
+@media only screen and (max-width: 600px) {
+    .q-left-drawer {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 100;
+        height: 100vh;
+        width: 80%;
+        background: white;
+      
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.36);
+    }
+    .q-right-drawer {
+        position: fixed;
+        right: 0;
+        top: 25%;
+        z-index: 100;
+        height: 100vh;
+        width: 80%;
+        background: white;
+       
+    
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.36);
+    }
+      
+}

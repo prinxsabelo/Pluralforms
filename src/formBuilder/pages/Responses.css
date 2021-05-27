@@ -1,0 +1,101 @@
+.main-container{
+  
+    width: 98vw;
+}
+.cont{
+    max-height: 70vh;
+}
+
+
+table {
+    border-collapse: collapse;
+    width:200%;
+  }
+  
+  thead tr > th {
+
+    position: sticky;
+    padding:.5rem;
+    z-index:2;
+    top: 0;
+  }
+  
+  thead tr > :first-child {
+    z-index:3;
+    left:0;
+    top:0;
+  }
+  
+  td {
+    text-align:center;
+  }
+  
+  tbody tr > :first-child {
+   
+    position: sticky;
+    z-index:1;
+    left:0;
+  }
+
+table tr > th, td{
+    min-width: 20rem;
+    max-width: 20rem;
+}
+
+table tr > th:nth-child(1), td:nth-child(1){
+  min-width: 4rem;
+  max-width: 4rem;
+}
+table tr >  th:nth-child(2), td:nth-child(2), th:nth-child(3), td:nth-child(3){
+    min-width: 12rem;
+    max-width: 12rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* table{
+    overflow-x: scroll;
+    position: relative;
+}
+
+table tr > th,td {
+    min-width: 20rem;
+    max-width: 20rem;
+    
+}
+table tr > th:nth-child(1), td:nth-child(1){
+    min-width: 3rem;
+    max-width: 5rem;
+    background-color: rebeccapurple;
+    position: absolute;
+    left: 0;
+    
+}
+table tr > th:nth-child(2), td:nth-child(2), th:nth-child(3), td:nth-child(3){
+    min-width: 15rem;
+    max-width: 15rem;
+}
+   */
