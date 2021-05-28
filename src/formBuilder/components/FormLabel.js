@@ -61,12 +61,12 @@ const FormLabel = (props) => {
     buildCheck = false;
   }
   const goto = () => {
-    if (window.location.pathname === `/form/${form_id}/questions`) {
-      history.push(`/forms`);
+    if (window.location.pathname === `/user/form/${form_id}/questions`) {
+      history.push(`/user/forms`);
     } else if (
-      window.location.pathname === `/form/${form_id}/questions/${q_id}`
+      window.location.pathname === `/user/form/${form_id}/questions/${q_id}`
     ) {
-      history.push(`/form/${form_id}/questions`);
+      history.push(`/user/form/${form_id}/questions`);
     } else {
       history.goBack();
     }

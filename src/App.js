@@ -56,25 +56,22 @@ const ProtectedLogin = ({ authProceed, component: Component, ...rest }) => {
 function App() {
   const [authProceed, setAuthProceed] = useState(true);
   const [token, setToken] = useState(false);
-  const [email, setEmail] = useState();
-  const [id, setId] = useState();
+  const [user, setUser] = useState();
 
   useEffect(() => {
     const readCookie = () => {
       const userData = Cookies.get("userData");
       if (userData) {
-        const { token, id, email } = JSON.parse(userData);
+        const { token, user } = JSON.parse(userData);
 
-        if (token && id) {
+        if (token && user) {
           setToken(token);
-          setEmail(email);
-          setId(id)
+          setUser(user);
           setAuthProceed(true);
         }
       } else {
         setToken(false);
-        setEmail(false);
-        setId(false);
+        setUser(false);
         setAuthProceed(false);
       }
 
@@ -85,7 +82,7 @@ function App() {
 
   return (
     <>
-      <AuthContext.Provider value={{ token, setToken, email, setEmail, id, setId, authProceed }}>
+      <AuthContext.Provider value={{ token, setToken, user, setUser, authProceed }}>
         <Router>
           <Routes authProceed={authProceed} />
         </Router>

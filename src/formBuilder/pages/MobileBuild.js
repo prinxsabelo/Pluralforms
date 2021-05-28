@@ -73,7 +73,7 @@ const MobileBuild = () => {
   const saveQuestion = (q) => {
     //  console.log(q);
     developQuestion(q);
-    history.push(`/form/${form.form_id}/questions`);
+    history.push(`/user/form/${form.form_id}/questions`);
   };
   return (
     <>

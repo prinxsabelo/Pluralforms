@@ -3,15 +3,15 @@ import { useState, createContext } from "react";
 export const Context = createContext();
 const ContextProvider = (props) => {
     const sideBarItems = [
-        { index: 0, item: "Home", link: "/user/home" },
+        { index: 0, item: "Home", link: "/user/" },
         { index: 1, item: "All Forms", link: "/user/forms" },
-        { index: 2, item: "Profile", link: "/user/profile" }
+
     ];
 
     const navItems = [
-        { index: 0, item: "Home", link: "/user/home" },
+        { index: 0, item: "Home", link: "/user/" },
         { index: 1, item: "Forms", link: "/user/forms" },
-        { index: 2, item: "Profile", link: "/user/profile" },
+
     ];
 
     const [headerContent, setHeaderContent] = useState(null);

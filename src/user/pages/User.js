@@ -10,7 +10,6 @@ import QuestionProvider from "../../shared/context/question-context";
 import MobileBuild from "../../formBuilder/pages/MobileBuild";
 import RespondentDetail from "../../formBuilder/pages/RespondentDetail";
 import FormBuilder from "../../formBuilder/pages/FormBuilder";
-import Header from "../../shared/header/Header";
 import Wrapper from "../../shared/wrapper/Wrapper";
 
 export const User = () => {
@@ -39,7 +38,6 @@ export const User = () => {
 
                                         <Route path={["/user/", "/user/home", "/user/forms", "/user/profile",]} t>
                                             <div className=" bg-white text-black w-full text-white flex flex-col h-screen">
-                                                <Header />
                                                 <Wrapper />
                                                 <Dialog />
                                             </div>

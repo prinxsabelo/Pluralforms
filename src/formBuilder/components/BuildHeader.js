@@ -63,7 +63,7 @@ const BuildHeader = ({ q_id, properties, type, children }) => {
       }
     }
     setTypeAction("..");
-    history.push(`/form/${form.form_id}/questions/${new_q_id}`);
+    history.push(`/user/form/${form.form_id}/questions/${new_q_id}`);
   };
   return (
     <div className="flex  justify-between justify-end  p-1 bg-gray-100 w-full md:w-3/4 text-right">

@@ -37,10 +37,10 @@ const FormBuilder = () => {
         <>
             {/* Redirect to fit in for mobile phones.. */}
             {window.location.pathname === `/user/form/${form_id}/build` &&
-                width <= breakpoint && <Redirect to={`/form/${form_id}/questions`} />}
+                width <= breakpoint && <Redirect to={`/user/form/${form_id}/questions`} />}
             {/* Redirect to fit in for large devices.. */}
             {window.location.pathname === `/user/form/${form_id}/questions` &&
-                width > breakpoint && <Redirect to={`/form/${form_id}/build`} />}
+                width > breakpoint && <Redirect to={`/user/form/${form_id}/build`} />}
 
             {width > breakpoint && (
                 <div className="hidden md:block builder-block hidden overflow-none h-24">

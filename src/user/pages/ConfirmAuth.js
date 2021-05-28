@@ -23,11 +23,13 @@ const ConfirmAuth = () => {
                 response = await sendRequest(`http://localhost:8000/api/auth/facebook/callback${location.search}`);
             }
             if (response && response.ok) {
-                const { id, email } = response.user;
+                const { id, email, name, avatar } = response.user;
                 const { token } = response;
-                Cookies.set("userData", JSON.stringify({ id, token, email }));
+                let user = { email, name, avatar };
+
+                Cookies.set("userData", JSON.stringify({ id, token, user }));
                 Auth.setToken(token);
-                Auth.setEmail(email);
+                Auth.setUser(user);
 
                 history.push("/user");
             }

@@ -16,17 +16,22 @@ const AuthComponent = ({ children }) => {
                 const googleUrl = await sendRequest(
                     'http://localhost:8000/api/auth/google',
                 );
-                console.log(googleUrl);
-                const { url } = googleUrl;
-                setGoogleUrl(url);
+                if (googleUrl) {
+                    const { url } = googleUrl;
+                    setGoogleUrl(url);
+                }
+
             }
             const fetchForFacebook = async () => {
                 const facebookUrl = await sendRequest(
                     'http://localhost:8000/api/auth/facebook',
                 )
-                console.log(facebookUrl);
-                const { url } = facebookUrl;
-                setFacebookUrl(url);
+                if (facebookUrl) {
+                    console.log(facebookUrl);
+                    const { url } = facebookUrl;
+                    setFacebookUrl(url);
+                }
+
             }
             fetchForGoogle();
             fetchForFacebook();

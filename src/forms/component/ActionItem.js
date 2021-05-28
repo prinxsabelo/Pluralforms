@@ -15,14 +15,14 @@ const ActionItem = (props) => {
       {props.link ? (
         <NavLink
           className="hidden md:flex items-center justify-center space-x-1 bg-gray-800 text-gray-100 my-2 px-2 h-10 rounded-lg truncate"
-          to={`/form/${props.form_id}/${props.action}`}
+          to={`/user/form/${props.form_id}/${props.action}`}
         >
           {props.action === "share" && <ShareIcon className="w-4" />}
           {props.action === "results" && (
             <PresentationChartBarIcon className="w-4" />
           )}
           {props.action === "build" && <PencilAltIcon className="w-4" />}
-         
+
           <span className="text-sm"> {props.name}</span>
         </NavLink>
       ) : (

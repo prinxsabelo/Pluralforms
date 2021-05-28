@@ -64,7 +64,7 @@ const QuestionProvider = (props) => {
     if (typeAction === "new") {
       setTypeAction("edit");
       if (width <= breakpoint) {
-        history.push(`/form/${form.form_id}/questions/${q_id}`);
+        history.push(`/user/form/${form.form_id}/questions/${q_id}`);
       }
     }
   };

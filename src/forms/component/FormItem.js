@@ -87,7 +87,7 @@ const FormItem = ({ form, checkDelete }) => {
   return (
     <>
       <div
-        className=" md:border-2  md:rounded-lg md:flex-row  md:m-3 hover:shadow-md
+        className=" md:border-2  md:rounded-lg md:flex-row  md:m-2 hover:shadow-md
                                 shadow-sm   border   md:flex flex-col w-full mb-1    
                         "
       >
@@ -95,10 +95,10 @@ const FormItem = ({ form, checkDelete }) => {
         <div className="md:hidden flex items-center border-b  flex">
           <div className="w-10/12 flex">
             <NavLink
-              to={`/form/${form_id}/questions`}
+              to={`/user/form/${form_id}/questions`}
               className="flex w-full py-2 px-2 space-x-2 items-center"
             >
-              <div className="flex-auto h-12 border flex items-center justify-center">
+              <div className="flex-auto w-12 h-12 border flex items-center justify-center">
                 xxx
               </div>
               <div className="truncate w-10/12">

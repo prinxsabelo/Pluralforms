@@ -1,3 +1,201 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+.Dialog {
+  transition: opacity 0.25s ease;
+}
+body.Dialog-active {
+  overflow-x: hidden;
+  overflow-y: hidden !important;
+}
+
+.slide-in-left-enter {
+  transform: translateX(-100%);
+}
+
+.slide-in-left-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 400ms;
+}
+
+.slide-in-left-exit {
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+.slide-in-left-exit-active {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: all 400ms;
+}
+
+.slide-in-right-enter {
+  transform: translateX(100%);
+}
+
+.slide-in-right-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 400ms;
+}
+
+.slide-in-right-exit {
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+.slide-in-right-exit-active {
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 400ms;
+}
+
+.slide-in-bottom-enter {
+  transform: translateY(-100%);
+}
+
+.slide-in-bottom-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 400ms;
+}
+
+.slide-in-bottom-exit {
+  transform: translateY(0%);
+  opacity: 1;
+}
+
+.slide-in-bottom-exit-active {
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: all 400ms;
+}
+
+.builder-block {
+  height: 95vh;
+  overflow: hidden;
+  /* height: 99vh;
+  overflow-y: auto;
+  position: relative; */
+}
+.form-list {
+  max-height: 75vh;
+  overflow-y: auto;
+}
+
+.build {
+  height: 85vh;
+  overflow-y: auto;
+}
+.mobile-build {
+  max-height: 73vh;
+  overflow-y: scroll;
+}
+.q-item:hover .q-actions {
+  transition: opacity 0.3s;
+  -webkit-transition: opacity 0.3s;
+  opacity: 1;
+}
+.question-textarea {
+  min-height: 12vh;
+}
+.min-h-12 {
+  min-height: 3rem;
+  overflow: auto;
+}
+
+textarea {
+  height: 10vh;
+}
+
+.toggle__dot {
+  top: -0.25rem;
+  left: -0.25rem;
+  transition: all 0.3s ease-in-out;
+}
+
+input:checked ~ .toggle__dot {
+  transform: translateX(100%);
+  background-color: #48bb78;
+}
+
+.q-list {
+  height: 71vh;
+  overflow-y: auto;
+  padding-bottom: 3rem;
+}
+/* @media only screen and (max-width: 413px) {
+  .q-list{
+    height: 71vh;  
+  }
+} */
+
+@media only screen and (max-width: 413px) and (height: 732px) {
+  .q-list {
+    height: 74vh;
+  }
+  .result-main {
+    height: 70vh;
+    overflow-y: scroll;
+  }
+}
+
+@media only screen and (max-width: 414px) and (height: 736px) {
+  .q-list {
+    height: 74.5vh;
+  }
+}
+/* 
+@media only screen and (max-width: 375px) and (height : 667px){
+  .q-list{
+    height: 70vh;  
+  }
+} 
+*/
+@media only screen and (max-width: 460px) {
+  .main {
+    height: 70vh;
+    overflow-y: scroll;
+  }
+}
+@media only screen and (max-width: 375px) and (height: 812px) {
+  .q-list {
+    height: 77vh;
+  }
+}
+
+@media only screen and (max-width: 320px) and (height: 533px) {
+  .q-list {
+    height: 65vh;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .q-list {
+    height: 85vh;
+  }
+}
+
+.h-summary {
+  height: 80vh;
+}
+.ra-list {
+  height: 75vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+button {
+  outline: none !important;
+}
+button:focus {
+  outline: none !important;
+}
+.form-checkbox {
+  padding: 2rem;
+}
