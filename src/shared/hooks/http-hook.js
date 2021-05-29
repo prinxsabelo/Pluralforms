@@ -1,18 +1,52 @@
-import axios from "axios";
 import { useEffect, useState, useRef, useCallback } from "react";
+import { useContext } from "react/cjs/react.development";
+import jwt from 'jsonwebtoken';
+
+import axios from "axios";
+import AuthContext from "../context/auth-context";
+
+import cookie from 'js-cookie';
+const userData = cookie.get("userData");
+
+
+//PICKING JWT FROM API FROM .env IN BACKEND...
 
 export const useHttpClient = () => {
+    const jwt_token = "KVCQFJI7zBWSq8TDIpUD5wzHLkSAJnK0X496Y8aKoCff0Wgemf6eqxpNWb5xY8bO";
+    const Auth = useContext(AuthContext);
+    // console.log(Auth);
+    if (Auth.token) {
+        const token = Auth.token;
+        jwt.verify(token, jwt_token, function (err, decoded) {
+
+            if (err) {
+                cookie.remove("userData");
+                alert('Unauthenicated..');
+            } else {
+
+                if (decoded.iss !== "http://localhost:8000/api/login/google/callback"
+                    && decoded.iss !== "http://localhost:8000/api/login/facebook/callback") {
+                    cookie.remove("userData");
+                    alert('Unauthenicated..');
+                }
+            }
+
+            // console.log(decoded);
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        })
+    }
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
     const activeHttpRequests = useRef([]);
 
     const sendRequest = useCallback(
+
         async (url, method = 'GET', data = null, headers = { 'Content-Type': 'application/json' }) => {
             setIsLoading(true);
+
             const httpAbortCtrl = new AbortController();
             activeHttpRequests.current.push(httpAbortCtrl);
             console.log(data);
-            console.log(method);
             try {
                 let response = await axios({
                     method,
@@ -26,6 +60,7 @@ export const useHttpClient = () => {
                 activeHttpRequests.current = activeHttpRequests.current.filter(
                     reqCtrl => reqCtrl !== httpAbortCtrl
                 );
+                console.log(responseData);
                 setIsLoading(false);
                 return responseData;
 

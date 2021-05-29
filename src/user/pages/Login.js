@@ -1,75 +1,68 @@
-import { NavLink, useHistory } from "react-router-dom";
-import AuthFormHook from "../../shared/hooks/auth-form-hook";
+import { useEffect } from "react/cjs/react.development";
 import { useHttpClient } from "../../shared/hooks/http-hook";
-
-import Cookies from 'js-cookie';
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import AuthContext from "../../shared/context/auth-context";
-import AuthComponent from "../components/Auth.component";
 
 const Login = () => {
-    const history = useHistory();
-    const { inputs, handleInputChange } = AuthFormHook();
     const { isLoading, sendRequest } = useHttpClient();
+    const [googleUrl, setGoogleUrl] = useState("");
+    const [facebookUrl, setFacebookUrl] = useState("");
     const Auth = useContext(AuthContext);
+    console.log(Auth);
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        const { email, password } = inputs;
-        try {
-            const response = await sendRequest('http://localhost:8000/api/login', 'POST', JSON.stringify({ email, password }));
-            if (response.ok) {
-                const { id, email } = response.user;
-                const { token } = response;
-                Cookies.set("userData", JSON.stringify({ id, token, email }));
-                Auth.setToken(token);
-                Auth.setEmail(email);
+    useEffect(() => {
+        if (!Auth.token) {
+            const fetchForGoogle = async () => {
+                const googleUrl = await sendRequest(
+                    'http://localhost:8000/api/login/google',
+                );
+                if (googleUrl) {
+                    const { url } = googleUrl;
+                    setGoogleUrl(url);
+                }
 
-                history.push("/user");
             }
+            const fetchForFacebook = async () => {
+                const facebookUrl = await sendRequest(
+                    'http://localhost:8000/api/login/facebook',
+                )
+                if (facebookUrl) {
+                    console.log(facebookUrl);
+                    const { url } = facebookUrl;
+                    setFacebookUrl(url);
+                }
 
-        } catch { }
-    }
+            }
+            fetchForGoogle();
+            fetchForFacebook();
+        }
+
+    }, [sendRequest, Auth.token]);
     return (
-        <AuthComponent>
-            {isLoading && <div>Loading..</div>}
-            <form className="flex flex-col w-full space-y-3" onSubmit={handleLogin}>
+        <div className="flex w-full justify-center md:mt-8">
 
-                <div className="flex flex-col space-y-1">
-                    <label className="font-medium tracking-wider">
-                        Email address
-                    </label>
-                    <input placeholder="Enter your email"
-                        className="p-2 md:p-3  border-2 border-gray-500 rounded"
-                        required
-                        name="email"
-                        value={inputs.email}
-                        onChange={handleInputChange}
-                        type="email"
-                    />
+            <div className="w-full md:w-1/3  flex flex-col p-4">
+                <div className="flex justify-center text-2xl pb-2">
+                    PLURALFORMS {isLoading && <span></span>}
                 </div>
-                <div className="flex flex-col space-y-1">
-                    <label className="font-medium tracking-wider">
-                        Password
-                    </label>
-                    <input placeholder="Enter your password"
-                        className="p-2 md:p-3  border-2 border-gray-500 rounded"
-                        required
-                        name="password"
-                        value={inputs.password}
-                        onChange={handleInputChange}
-                        type="password"
-                    />
-                </div>
-                <div className="flex flex-col ">
-                    <button className="bg-yellow-600 text-white px-4 py-3 rounded font-medium w-full uppercase">Log In</button>
-                    <div className="flex space-x-2 mt-1 text-lg  font-bold">
-                        <span>Don't have an account?</span>
-                        <NavLink className="text-red-400 font-bold underline" to="/signup">Sign up</NavLink>
+                <div className="flex flex-col justify-center space-y-2  border-t-4 py-2 md:py-4">
+                    <div className="flex flex-col w-full space-y-4 ">
+                        {googleUrl && (
+                            <a className="border-2 shadow-md p-4" href={googleUrl} >
+                                Continue with Google
+                            </a>
+                        )}
+                        {facebookUrl && (
+                            <a className="border-2 shadow-md p-4" href={facebookUrl} >
+                                Continue with Facebook
+                            </a>
+                        )}
+
                     </div>
+
                 </div>
-            </form>
-        </AuthComponent>
+            </div>
+        </div>
     )
 }
 export default Login;

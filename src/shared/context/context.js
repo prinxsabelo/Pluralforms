@@ -4,13 +4,13 @@ export const Context = createContext();
 const ContextProvider = (props) => {
     const sideBarItems = [
         { index: 0, item: "Home", link: "/user/" },
-        { index: 1, item: "All Forms", link: "/user/forms" },
+        { index: 1, item: "My Forms", link: "/user/forms" },
 
     ];
 
     const navItems = [
         { index: 0, item: "Home", link: "/user/" },
-        { index: 1, item: "Forms", link: "/user/forms" },
+        { index: 1, item: "My Forms", link: "/user/forms" },
 
     ];
 

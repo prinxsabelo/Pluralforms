@@ -1,10 +1,10 @@
 import React, { useCallback, useContext, useEffect } from "react";
-import Cookies from "js-cookie";
+import cookie from "js-cookie";
 import { useLocation, useHistory } from "react-router-dom";
 import AuthContext from "../../shared/context/auth-context";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 
-const ConfirmAuth = () => {
+const ConfirmLogin = () => {
 
 
     const { sendRequest } = useHttpClient();
@@ -13,21 +13,21 @@ const ConfirmAuth = () => {
     let history = useHistory();
     console.log(Auth);
     const fetchApi = useCallback(async () => {
-        const userData = Cookies.get("userData");
+        const userData = cookie.get("userData");
         if (!userData && !Auth.authProceed) {
             // if (!Auth.email && !Auth.token) {
             let response;
             if (window.location.pathname.search("google") !== -1) {
-                response = await sendRequest(`http://localhost:8000/api/auth/google/callback${location.search}`);
+                response = await sendRequest(`http://localhost:8000/api/login/google/callback${location.search}`);
             } else {
-                response = await sendRequest(`http://localhost:8000/api/auth/facebook/callback${location.search}`);
+                response = await sendRequest(`http://localhost:8000/api/login/facebook/callback${location.search}`);
             }
-            if (response && response.ok) {
+            if (response) {
                 const { id, email, name, avatar } = response.user;
                 const { token } = response;
                 let user = { email, name, avatar };
 
-                Cookies.set("userData", JSON.stringify({ id, token, user }));
+                cookie.set("userData", JSON.stringify({ id, token, user }));
                 Auth.setToken(token);
                 Auth.setUser(user);
 
@@ -49,4 +49,4 @@ const ConfirmAuth = () => {
         </>
     );
 };
-export default ConfirmAuth;
+export default ConfirmLogin;

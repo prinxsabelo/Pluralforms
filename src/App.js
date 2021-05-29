@@ -1,4 +1,4 @@
-import Cookies from "js-cookie";
+import cookie from "js-cookie";
 import { useEffect, useState } from "react";
 import {
   Route,
@@ -9,9 +9,8 @@ import {
 
 import { PublicHomePage } from "./PublicHomePage";
 import AuthContext from "./shared/context/auth-context";
-import ConfirmAuth from "./user/pages/ConfirmAuth";
+import ConfirmLogin from "./user/pages/ConfirmLogin";
 import Login from "./user/pages/Login";
-import Signup from "./user/pages/Signup";
 import { User } from "./user/pages/User";
 
 const Routes = ({ authProceed }) => {
@@ -22,10 +21,10 @@ const Routes = ({ authProceed }) => {
       <Route exact path="/">
         {authProceed ? <Redirect to="/user" /> : <PublicHomePage />}
       </Route>
+      <Route path="/login/google" component={ConfirmLogin} />
+      <Route path="/login/facebook" component={ConfirmLogin} />
       <ProtectedLogin path="/login" authProceed={authProceed} component={Login} />
-      <ProtectedLogin path="/signup" authProceed={authProceed} component={Signup} />
-      <Route path="/auth/google" component={ConfirmAuth} />
-      <Route path="/auth/facebook" component={ConfirmAuth} />
+
       <ProtectedRoute
         path="/user"
         authProceed={authProceed}
@@ -60,7 +59,7 @@ function App() {
 
   useEffect(() => {
     const readCookie = () => {
-      const userData = Cookies.get("userData");
+      const userData = cookie.get("userData");
       if (userData) {
         const { token, user } = JSON.parse(userData);
 

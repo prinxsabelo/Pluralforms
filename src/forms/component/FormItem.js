@@ -130,12 +130,12 @@ const FormItem = ({ form, checkDelete }) => {
           >
             <div className="w-10/12 truncate flex space-x-2">
               <div className="w-12 h-12 border-2 flex items-center justify-center"> xxx </div>
-              <div>
+              <div className=" w-full">
                 <h3 className="text-xl truncate pr-8 font-medium"> {title}</h3>
                 <p className="text-sm"> modified on {updated_at}</p>
               </div>
             </div>
-            <div className="w-24  whitespace-nowrap text-sm tracking-wide">
+            <div className="flex-auto  whitespace-nowrap text-sm tracking-wide">
               <div>
                 {no_questions} {no_questions > 1 ? "questions" : "question"}{" "}
               </div>

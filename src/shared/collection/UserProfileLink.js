@@ -4,18 +4,21 @@ import Cookies from "js-cookie";
 import { useContext } from "react/cjs/react.development";
 import AuthContext from "../context/auth-context"
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { useHttpClient } from "../hooks/http-hook";
 
 
 const UserProfileLink = () => {
+    const { sendRequest } = useHttpClient();
     const [user, setUser] = useState("");
     const Auth = useContext(AuthContext);
 
     useEffect(() => {
         const { user } = Auth;
         setUser(user);
-        console.log(user);
+        // console.log(user);
     }, [Auth])
-    const logOut = () => {
+    const logOut = async () => {
+        const response = await sendRequest(`http://localhost:8000/api/logout`);
         Cookies.remove("userData");
         Auth.setUser(null);
         Auth.setToken(null);

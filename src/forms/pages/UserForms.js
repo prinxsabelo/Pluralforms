@@ -8,11 +8,12 @@ import CustomHeader from "../../shared/header/CustomHeader";
 import FormList from "../component/FormList";
 const UserForms = () => {
   const { openDeleteModal, closeModal } = useContext(Context);
-  const { forms, deleteForm } = useContext(FormContext);
+  const { deleteForm, getForms } = useContext(FormContext);
   const [formId, setFormId] = useState();
+  const [forms, setForms] = useState([]);
   useEffect(() => {
-    console.log(forms);
-  }, [forms]);
+    getForms();
+  }, [getForms]);
   const checkDelete = (form_id) => {
     setFormId(form_id);
     openDeleteModal();
@@ -25,7 +26,10 @@ const UserForms = () => {
     <>
       <div className="md:mx-2">
         <CustomHeader />
-        <FormList forms={forms} checkDelete={checkDelete} />
+        {/* {forms &&
+          <FormList forms={forms} checkDelete={checkDelete} />
+        } */}
+
       </div>
       <DeleteModal
         onDelete={handleDelete}

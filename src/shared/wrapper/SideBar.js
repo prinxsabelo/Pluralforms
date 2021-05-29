@@ -9,7 +9,7 @@ import SideBarItem from "./SideBarItem";
 
 const SideBar = () => {
     const Auth = useContext(AuthContext);
-    console.log(Auth);
+    // console.log(Auth);
     const { addForm } = useContext(FormContext);
     const { sideBarItems } = useContext(Context);
 
