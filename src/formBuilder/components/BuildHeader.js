@@ -9,7 +9,7 @@ import {
   ChevronDoubleRightIcon,
 } from "@heroicons/react/outline";
 import Backdrop from "../../shared/collection/Backdrop";
-import { QuestionContext } from "../../shared/context/question-context";
+import { QuestionContext } from "../../shared/contexts/question-context";
 
 const BuildHeader = ({ q_id, properties, type, children }) => {
   const history = useHistory();

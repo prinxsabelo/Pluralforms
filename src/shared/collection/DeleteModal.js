@@ -2,7 +2,7 @@
 import { Fragment, useRef, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationIcon } from "@heroicons/react/outline";
-import { Context } from "../context/context";
+import { Context } from "../contexts/context";
 
 export default function DeleteModal(props) {
   const {

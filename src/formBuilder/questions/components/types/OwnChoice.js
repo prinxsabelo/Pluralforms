@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 
 import Button from "../../../../shared/collection/Button";
-import { QuestionContext } from "../../../../shared/context/question-context";
+import { QuestionContext } from "../../../../shared/contexts/question-context";
 import Choice from "./Choice";
 
 const OwnChoice = (props) => {

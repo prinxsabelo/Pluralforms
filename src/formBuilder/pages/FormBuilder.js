@@ -5,9 +5,9 @@ import Tabs from "../components/tabs/Tabs";
 import { useContext } from "react";
 import NavBar from "../../shared/wrapper/NavBar";
 import Questions from "./Questions";
-import { QuestionContext } from "../../shared/context/question-context";
+import { QuestionContext } from "../../shared/contexts/question-context";
 import TabContent from "../components/tabs/TabContent";
-import { ViewportContext } from "../../shared/context/viewport-context";
+import { ViewportContext } from "../../shared/contexts/viewport-context";
 const FormBuilder = () => {
     let { form_id } = useParams();
     const { getForm, form } = useContext(QuestionContext);

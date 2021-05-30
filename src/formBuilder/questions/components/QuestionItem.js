@@ -6,7 +6,7 @@ import Backdrop from "../../../shared/collection/Backdrop";
 import Pop from "../../../shared/collection/Pop";
 
 import QTypeIcon from "../../../shared/collection/QTypeIcon";
-import { QuestionContext } from "../../../shared/context/question-context";
+import { QuestionContext } from "../../../shared/contexts/question-context";
 const QuestionItem = ({
   q_id,
   title,

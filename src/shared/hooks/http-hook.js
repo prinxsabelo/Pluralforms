@@ -3,10 +3,9 @@ import { useContext } from "react/cjs/react.development";
 import jwt from 'jsonwebtoken';
 
 import axios from "axios";
-import AuthContext from "../context/auth-context";
+import AuthContext from "../contexts/auth-context";
 
 import cookie from 'js-cookie';
-const userData = cookie.get("userData");
 
 
 //PICKING JWT FROM API FROM .env IN BACKEND...
@@ -14,7 +13,6 @@ const userData = cookie.get("userData");
 export const useHttpClient = () => {
     const jwt_token = "KVCQFJI7zBWSq8TDIpUD5wzHLkSAJnK0X496Y8aKoCff0Wgemf6eqxpNWb5xY8bO";
     const Auth = useContext(AuthContext);
-    // console.log(Auth);
     if (Auth.token) {
         const token = Auth.token;
         jwt.verify(token, jwt_token, function (err, decoded) {
@@ -46,7 +44,7 @@ export const useHttpClient = () => {
 
             const httpAbortCtrl = new AbortController();
             activeHttpRequests.current.push(httpAbortCtrl);
-            console.log(data);
+            // console.log(data);
             try {
                 let response = await axios({
                     method,
@@ -60,7 +58,7 @@ export const useHttpClient = () => {
                 activeHttpRequests.current = activeHttpRequests.current.filter(
                     reqCtrl => reqCtrl !== httpAbortCtrl
                 );
-                console.log(responseData);
+                // console.log(responseData);
                 setIsLoading(false);
                 return responseData;
 

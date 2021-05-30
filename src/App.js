@@ -8,13 +8,13 @@ import {
 } from "react-router-dom";
 
 import { PublicHomePage } from "./PublicHomePage";
-import AuthContext from "./shared/context/auth-context";
+import AuthContext from "./shared/contexts/auth-context";
 import ConfirmLogin from "./user/pages/ConfirmLogin";
 import Login from "./user/pages/Login";
 import { User } from "./user/pages/User";
 
 const Routes = ({ authProceed }) => {
-  console.log(authProceed)
+  // console.log(authProceed)
 
   return (
     <Switch>

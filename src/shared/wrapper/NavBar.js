@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Context } from '../context/context';
+import { Context } from '../contexts/context';
 
 import NavItem from './NavItem';
 const NavBar = () => {

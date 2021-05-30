@@ -3,7 +3,7 @@ import FormLabel from "../components/FormLabel";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import QTypeIcon from "../../shared/collection/QTypeIcon";
-import { ResultContext } from "../../shared/context/result-context";
+import { ResultContext } from "../../shared/contexts/result-context";
 
 const RespondentDetail = () => {
     let { form_id, token } = useParams();

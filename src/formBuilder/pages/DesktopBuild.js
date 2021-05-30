@@ -3,7 +3,7 @@ import {
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
 } from "@heroicons/react/outline";
-import { QuestionContext } from "../../shared/context/question-context";
+import { QuestionContext } from "../../shared/contexts/question-context";
 import BuildHeader from "../components/BuildHeader";
 import Button from "../../shared/collection/Button";
 import BuildRequired from "../components/BuildRequired";

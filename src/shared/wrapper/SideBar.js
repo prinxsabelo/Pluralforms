@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import Button from '../collection/Button';
 import UserProfileLink from "../collection/UserProfileLink";
-import AuthContext from '../context/auth-context';
-import { Context } from '../context/context';
-import { FormContext } from '../context/form-context';
+import AuthContext from '../contexts/auth-context';
+import { Context } from '../contexts/context';
+import { FormContext } from '../contexts/form-context';
 import SideBarItem from "./SideBarItem";
 
 

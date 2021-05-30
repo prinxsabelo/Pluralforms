@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import {
-    HomeIcon, FolderIcon, InformationCircleIcon
+    HomeIcon, FolderIcon
 } from "@heroicons/react/outline";
 const SideBarItem = ({ item }) => {
 

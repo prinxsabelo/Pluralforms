@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
-import { Context } from '../context/context';
-import { FormContext } from '../context/form-context';
+import { Context } from '../contexts/context';
+import { FormContext } from '../contexts/form-context';
 
 import Backdrop from './Backdrop';
 import Button from './Button';

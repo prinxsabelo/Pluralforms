@@ -1,8 +1,8 @@
 import { useContext, useEffect } from "react";
 import { useParams } from "react-router";
-import { ResultContext } from "../../shared/context/result-context";
+import { ResultContext } from "../../shared/contexts/result-context";
 
-import { ViewportContext } from "../../shared/context/viewport-context";
+import { ViewportContext } from "../../shared/contexts/viewport-context";
 
 import SumDetail from "../components/summary/SumDetail";
 import SumReport from "../components/summary/SumReport";

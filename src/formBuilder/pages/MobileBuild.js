@@ -5,7 +5,7 @@ import FormLabel from "../components/FormLabel";
 import Button from "../../shared/collection/Button";
 import QuestionType from "../questions/components/QuestionType";
 import Properties from "../questions/components/Properties";
-import { QuestionContext } from "../../shared/context/question-context";
+import { QuestionContext } from "../../shared/contexts/question-context";
 
 const MobileBuild = () => {
   const history = useHistory();

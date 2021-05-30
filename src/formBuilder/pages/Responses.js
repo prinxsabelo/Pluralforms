@@ -9,9 +9,9 @@ import RespondentsList from "../components/responses/RespondentsList";
 import DeleteModal from "../../shared/collection/DeleteModal";
 
 import RDrawer from "../../shared/collection/RDrawer";
-import { ViewportContext } from "../../shared/context/viewport-context";
-import { Context } from "../../shared/context/context";
-import { ResultContext } from "../../shared/context/result-context";
+import { ViewportContext } from "../../shared/contexts/viewport-context";
+import { Context } from "../../shared/contexts/context";
+import { ResultContext } from "../../shared/contexts/result-context";
 const Responses = () => {
   let { form_id } = useParams();
   const breakpoint = 768;

@@ -1,7 +1,7 @@
 import { useEffect } from "react/cjs/react.development";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import { useState, useContext } from "react";
-import AuthContext from "../../shared/context/auth-context";
+import AuthContext from "../../shared/contexts/auth-context";
 
 const Login = () => {
     const { isLoading, sendRequest } = useHttpClient();

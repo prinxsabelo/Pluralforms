@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 
 import QTypeIcon from "../../../shared/collection/QTypeIcon";
 import ToggleSwitch from "../../../shared/collection/ToggleSwitch";
-import { QuestionContext } from "../../../shared/context/question-context";
+import { QuestionContext } from "../../../shared/contexts/question-context";
 const Properties = (props) => {
   const [properties, setProperties] = useState({
     randomize: "",

@@ -2,7 +2,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import AuthFormHook from "../../shared/hooks/auth-form-hook";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import Cookies from 'js-cookie';
-import AuthContext from "../../shared/context/auth-context";
+import AuthContext from "../../shared/contexts/auth-context";
 import { useContext } from "react";
 import AuthComponent from "../components/Auth.component";
 const Signup = () => {

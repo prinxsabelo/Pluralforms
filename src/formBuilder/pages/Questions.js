@@ -2,7 +2,7 @@ import { useContext } from "react";
 import Backdrop from "../../shared/collection/Backdrop";
 import Button from "../../shared/collection/Button";
 import QDrawer from "../../shared/collection/QDrawer";
-import { QuestionContext } from "../../shared/context/question-context";
+import { QuestionContext } from "../../shared/contexts/question-context";
 import QuestionList from "../questions/components/QuestionList";
 
 const Questions = () => {

@@ -4,7 +4,9 @@ import { NavLink, useHistory } from "react-router-dom";
 
 import Backdrop from "../../shared/collection/Backdrop";
 import Pop from "../../shared/collection/Pop";
-import { FormContext } from "../../shared/context/form-context";
+import { FormContext } from "../../shared/contexts/form-context";
+import Moment from 'react-moment';
+
 import ActionItem from "./ActionItem";
 const FormItem = ({ form, checkDelete }) => {
   const [pop, setPop] = useState(false);
@@ -107,11 +109,11 @@ const FormItem = ({ form, checkDelete }) => {
                   {title}{" "}
                 </h3>
                 <div className="flex  space-x-4  w-full">
-                  <p className="text-xs">Modified on {updated_at} </p>
+                  <p className="text-xs">Last updated <Moment fromNow>{updated_at}</Moment> </p>
                 </div>
                 <div className="flex space-x-4 text-xs">
-                  <div>{no_questions} questions</div>
-                  <div>{no_responses} responses</div>
+                  <div>{no_questions}0 questions</div>
+                  <div>{no_responses}0 responses</div>
                 </div>
               </div>
             </NavLink>
@@ -132,15 +134,15 @@ const FormItem = ({ form, checkDelete }) => {
               <div className="w-12 h-12 border-2 flex items-center justify-center"> xxx </div>
               <div className=" w-full">
                 <h3 className="text-xl truncate pr-8 font-medium"> {title}</h3>
-                <p className="text-sm"> modified on {updated_at}</p>
+                <p className="text-sm"> Last updated <Moment fromNow>{updated_at}</Moment> </p>
               </div>
             </div>
             <div className="flex-auto  whitespace-nowrap text-sm tracking-wide">
               <div>
-                {no_questions} {no_questions > 1 ? "questions" : "question"}{" "}
+                0  {no_questions} {no_questions > 1 ? "questions" : "question"}{" "}
               </div>
               <div>
-                {no_responses} {no_responses > 1 ? "responses" : "response"}
+                0  {no_responses} {no_responses > 1 ? "responses" : "response"}
               </div>
             </div>
           </NavLink>

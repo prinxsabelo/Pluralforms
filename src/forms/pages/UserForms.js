@@ -2,18 +2,28 @@ import { useContext, useEffect, useState } from "react";
 
 
 import DeleteModal from "../../shared/collection/DeleteModal";
-import { Context } from "../../shared/context/context";
-import { FormContext } from "../../shared/context/form-context";
+import { Context } from "../../shared/contexts/context";
+import { FormContext } from "../../shared/contexts/form-context";
 import CustomHeader from "../../shared/header/CustomHeader";
 import FormList from "../component/FormList";
 const UserForms = () => {
   const { openDeleteModal, closeModal } = useContext(Context);
-  const { deleteForm, getForms } = useContext(FormContext);
+  const { deleteForm, getForms, forms } = useContext(FormContext);
   const [formId, setFormId] = useState();
-  const [forms, setForms] = useState([]);
+  const [checker, setChecker] = useState(false);
   useEffect(() => {
-    getForms();
-  }, [getForms]);
+
+
+    if (!checker) {
+      console.log('xx');
+      getForms();
+      if (forms) {
+        setChecker(true);
+      }
+    }
+
+    // console.log(forms);
+  }, [forms, getForms, checker]);
   const checkDelete = (form_id) => {
     setFormId(form_id);
     openDeleteModal();
@@ -22,13 +32,14 @@ const UserForms = () => {
     closeModal();
     deleteForm(formId);
   };
+
   return (
     <>
       <div className="md:mx-2">
         <CustomHeader />
-        {/* {forms &&
+        {forms &&
           <FormList forms={forms} checkDelete={checkDelete} />
-        } */}
+        }
 
       </div>
       <DeleteModal
