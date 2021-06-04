@@ -11,21 +11,22 @@ import {
   ArrowLeftIcon,
 } from "@heroicons/react/outline";
 
-import { FormContext } from "../../shared/contexts/form-context";
-import { QuestionContext } from "../../shared/contexts/question-context";
+import { FormContext } from "../../shared/contexts/form.context";
+import { BuildQuestionContext } from "../../shared/contexts/build-question.context";
 
 const FormLabel = (props) => {
   // console.log(props);
   let history = useHistory();
   const {
+    form,
     drawerIsOpen,
     setDrawerIsOpen,
     setTypeAction,
-
     setQDrawerPosition,
-  } = useContext(QuestionContext);
+  } = useContext(BuildQuestionContext);
   const changeHandler = (e) => {
     const { value } = e.target;
+    console.log(value);
     setTitle(value);
   };
   const submitForm = (e) => {
@@ -43,16 +44,13 @@ const FormLabel = (props) => {
   const closeDrawer = () => {
     setDrawerIsOpen(false);
   };
-  const { forms, renameForm } = useContext(FormContext);
+  const { renameForm } = useContext(FormContext);
   let { form_id, q_id } = useParams();
-
-  const form = forms.find((f) => f.form_id === form_id);
-
-  
 
   const [title, setTitle] = useState("");
   useEffect(() => {
     if (form) {
+      console.log(form);
       setTitle(form.title);
     }
   }, [form, setTitle]);
@@ -93,7 +91,7 @@ const FormLabel = (props) => {
             <form className="w-1/2 ">
               {buildCheck ? (
                 <input
-                  value={title}
+                  value={title || ''}
                   onChange={changeHandler}
                   onBlur={submitForm}
                   placeholder="Enter Form Name"

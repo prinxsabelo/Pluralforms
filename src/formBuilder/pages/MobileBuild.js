@@ -5,7 +5,7 @@ import FormLabel from "../components/FormLabel";
 import Button from "../../shared/collection/Button";
 import QuestionType from "../questions/components/QuestionType";
 import Properties from "../questions/components/Properties";
-import { QuestionContext } from "../../shared/contexts/question-context";
+import { BuildQuestionContext } from "../../shared/contexts/build-question.context";
 
 const MobileBuild = () => {
   const history = useHistory();
@@ -18,7 +18,7 @@ const MobileBuild = () => {
     typeAction,
     setCurrentType,
     developQuestion,
-  } = useContext(QuestionContext);
+  } = useContext(BuildQuestionContext);
   let { form_id, q_id } = useParams();
 
   const [question, setQuestion] = useState();

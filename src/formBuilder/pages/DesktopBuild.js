@@ -3,7 +3,7 @@ import {
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
 } from "@heroicons/react/outline";
-import { QuestionContext } from "../../shared/contexts/question-context";
+import { BuildQuestionContext } from "../../shared/contexts/build-question.context";
 import BuildHeader from "../components/BuildHeader";
 import Button from "../../shared/collection/Button";
 import BuildRequired from "../components/BuildRequired";
@@ -21,7 +21,7 @@ const DesktopBuild = () => {
     setDrawerIsOpen,
     setTypeAction,
     setQDrawerPosition,
-  } = useContext(QuestionContext);
+  } = useContext(BuildQuestionContext);
   const { q_id } = questionDetail;
 
   const [question, setQuestion] = useState();
@@ -114,11 +114,17 @@ const DesktopBuild = () => {
                   onClick={() => goto("forward", question.q_id)}
                   className=" text-gray-500 bg-white flex items-center justify-center"
                 >
-                  {index < form.questions.length ? (
-                    <ChevronDoubleRightIcon className="w-6" />
-                  ) : (
-                    <span className="w-5">.</span>
-                  )}
+                  {
+                    form.questions &&
+                    <>
+                      {index < form.questions.length ? (
+                        <ChevronDoubleRightIcon className="w-6" />
+                      ) : (
+                        <span className="w-5">.</span>
+                      )}
+                    </>
+                  }
+
                 </Button>
               </div>
               <div>

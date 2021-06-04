@@ -1,9 +1,10 @@
 import { useState, createContext, useContext } from "react";
 import { Context } from "./context";
 import { useHttpClient } from "../hooks/http-hook";
-
+import { useHistory } from 'react-router-dom';
 export const FormContext = createContext();
 const FormContextProvider = (props) => {
+    const history = useHistory();
     const { sendRequest, isLoading } = useHttpClient();
     // const { setShowDialog, setDialogContent } = useContext(Context);
     const { showDialog, setDialogContent } = useContext(Context);
@@ -38,7 +39,8 @@ const FormContextProvider = (props) => {
                 }
                 showDialog(false);
                 //REDIRECT TO FORM..
-                alert(response.form_id);
+                const { form_id } = response;
+                history.push(`/user/form/${form_id}/build`);
             } catch {
                 showDialog(false);
             }
@@ -64,29 +66,25 @@ const FormContextProvider = (props) => {
         });
         showDialog(true);
     };
-    const renameForm = (title, form_id) => {
-        let formIndex = forms.findIndex((f) => f.id === form_id);
-        if (formIndex !== -1) {
-            forms[formIndex].title = title;
-            setForms(forms);
+    const renameForm = async (title, form_id) => {
+        const response = await sendRequest(`http://localhost:8000/api/user/forms/update`, 'POST', JSON.stringify({ title, form_id }));
+        if (response) {
+            let index = forms.findIndex(form => form_id === form.form_id);
+            let newForms = [...forms];
+            newForms[index] = response;
+            setForms(newForms);
         }
     };
     const deleteForm = (form_id) => {
         const filteredForms = forms.filter((f) => f.id !== form_id);
         setForms(filteredForms);
     };
-    // const getForms = async () => {
-    //     console.log('xx');
-    //     // try {
-    //     //     const response = await sendRequest(`http://localhost:8000/api/user/forms`);
-    //     // }
-    //     // catch { }
-    // }
 
     const getForms = async () => {
         //Fetch forms here.. If there's any error set forms to empty..
         try {
             const response = await sendRequest(`http://localhost:8000/api/user/forms`);
+            console.log(response);
             setForms(response);
         } catch {
             setForms([]);

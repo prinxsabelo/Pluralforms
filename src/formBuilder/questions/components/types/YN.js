@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import Button from "../../../../shared/collection/Button";
 
-import { QuestionContext } from "../../../../shared/contexts/question-context";
+import { BuildQuestionContext } from "../../../../shared/contexts/build-question.context";
 
 import Response from "./Response";
 
 const YN = (props) => {
   const { q_id, properties } = props;
-  const { developQuestion } = useContext(QuestionContext);
+  const { developQuestion } = useContext(BuildQuestionContext);
   const [responses, setResponses] = useState([]);
   useEffect(() => {
     if (properties.responses.length > 0) {

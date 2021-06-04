@@ -6,7 +6,7 @@ import Backdrop from "../../../shared/collection/Backdrop";
 import Pop from "../../../shared/collection/Pop";
 
 import QTypeIcon from "../../../shared/collection/QTypeIcon";
-import { QuestionContext } from "../../../shared/contexts/question-context";
+import { BuildQuestionContext } from "../../../shared/contexts/build-question.context";
 const QuestionItem = ({
   q_id,
   title,
@@ -21,7 +21,7 @@ const QuestionItem = ({
     setTypeAction,
 
     copyQuestion,
-  } = useContext(QuestionContext);
+  } = useContext(BuildQuestionContext);
 
   const [pop, setPop] = useState(false);
 

@@ -3,7 +3,7 @@ import { useContext } from "react/cjs/react.development";
 import jwt from 'jsonwebtoken';
 
 import axios from "axios";
-import AuthContext from "../contexts/auth-context";
+import AuthContext from "../contexts/auth.context";
 
 import cookie from 'js-cookie';
 

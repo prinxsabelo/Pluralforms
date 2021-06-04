@@ -2,11 +2,11 @@ import { useContext, useState } from "react";
 
 import DeleteModal from "../../../shared/collection/DeleteModal";
 import { Context } from "../../../shared/contexts/context";
-import { QuestionContext } from "../../../shared/contexts/question-context";
+import { BuildQuestionContext } from "../../../shared/contexts/build-question.context";
 import QuestionItem from "./QuestionItem";
 
 const QuestionList = (props) => {
-  const { deleteQuestion } = useContext(QuestionContext);
+  const { deleteQuestion } = useContext(BuildQuestionContext);
 
   const { openDeleteModal, closeModal } = useContext(Context);
   const [question, setQuestion] = useState();

@@ -1,12 +1,12 @@
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ContextProvider from "../../shared/contexts/context";
-import FormContextProvider from "../../shared/contexts/form-context";
+import FormContextProvider from "../../shared/contexts/form.context";
 import ViewportProvider from "../../shared/contexts/viewport-context";
 import ModalContextProvider from "../../shared/contexts/modal-context";
 import ResultContextProvider from "../../shared/contexts/result-context";
 import Dialog from "../../shared/collection/Dialog";
-import QuestionProvider from "../../shared/contexts/question-context";
+import BuildQuestionProvider from "../../shared/contexts/build-question.context";
 import MobileBuild from "../../formBuilder/pages/MobileBuild";
 import RespondentDetail from "../../formBuilder/pages/RespondentDetail";
 import FormBuilder from "../../formBuilder/pages/FormBuilder";
@@ -19,7 +19,7 @@ export const User = () => {
             <ContextProvider>
                 <ViewportProvider>
                     <FormContextProvider>
-                        <QuestionProvider>
+                        <BuildQuestionProvider>
                             <ResultContextProvider>
                                 <ModalContextProvider>
                                     <Switch>
@@ -45,7 +45,7 @@ export const User = () => {
                                     </Switch>
                                 </ModalContextProvider>
                             </ResultContextProvider>
-                        </QuestionProvider>
+                        </BuildQuestionProvider>
                     </FormContextProvider>
                 </ViewportProvider>
             </ContextProvider>

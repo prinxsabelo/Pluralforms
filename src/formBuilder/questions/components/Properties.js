@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 
 import QTypeIcon from "../../../shared/collection/QTypeIcon";
 import ToggleSwitch from "../../../shared/collection/ToggleSwitch";
-import { QuestionContext } from "../../../shared/contexts/question-context";
+import { BuildQuestionContext } from "../../../shared/contexts/build-question.context";
 const Properties = (props) => {
   const [properties, setProperties] = useState({
     randomize: "",
@@ -11,7 +11,7 @@ const Properties = (props) => {
     choices: [],
     responses: [],
   });
-  const { developQuestion } = useContext(QuestionContext);
+  const { developQuestion } = useContext(BuildQuestionContext);
   useEffect(() => {
     setProperties(props.properties);
   }, [setProperties, props.properties]);

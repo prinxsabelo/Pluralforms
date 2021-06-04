@@ -2,7 +2,7 @@ import { useContext } from "react";
 import Backdrop from "../../shared/collection/Backdrop";
 import Button from "../../shared/collection/Button";
 import QDrawer from "../../shared/collection/QDrawer";
-import { QuestionContext } from "../../shared/contexts/question-context";
+import { BuildQuestionContext } from "../../shared/contexts/build-question.context";
 import QuestionList from "../questions/components/QuestionList";
 
 const Questions = () => {
@@ -12,7 +12,7 @@ const Questions = () => {
     setDrawerIsOpen,
     setTypeAction,
     setQDrawerPosition,
-  } = useContext(QuestionContext);
+  } = useContext(BuildQuestionContext);
   const addQuestion = () => {
     drawerIsOpen ? closeDrawer() : openDrawer();
   };
@@ -35,7 +35,8 @@ const Questions = () => {
               className="border h-8 border-red-500 w-full p-2 rounded-lg focus:rounded-lg"
             />
           </div>
-          {form && form.questions.length > 0 ? (
+
+          {form.questions && form.questions.length > 0 ? (
             <>
               <QuestionList questions={form.questions} />
               <div className="md:hidden absolute bottom-1 p-2 w-full flex justify-between items-center bg-white">

@@ -3,14 +3,16 @@ import { createContext, useContext, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { useHistory } from "react-router-dom";
 
-import PayloadApi from "../api/payload-api";
 import { ViewportContext } from "./viewport-context";
+import { useHttpClient } from "../hooks/http-hook";
 const breakpoint = 768;
-export const QuestionContext = createContext();
-const QuestionProvider = (props) => {
+export const BuildQuestionContext = createContext();
+const BuildQuestionProvider = (props) => {
   const history = useHistory();
   const { width } = useContext(ViewportContext);
   const [form, setForm] = useState();
+  const { sendRequest, isLoading } = useHttpClient();
+
   const [questionDetail, setQuestionDetail] = useState({
     q_id: null,
     index: 0,
@@ -30,18 +32,20 @@ const QuestionProvider = (props) => {
     { typeId: 5, label: "Yes/No", type: "YN" },
   ]);
 
-  const getForm = (form_id) => {
-    console.log(form_id);
-    const fetchForm = async () => {
-      try {
-        const data = await PayloadApi;
-        console.log(data);
-        if (data.form) {
-          setForm(data.form);
-        }
-      } catch (err) { }
-    };
-    fetchForm();
+  const getForm = async (form_id) => {
+    setForm({});
+    //Fetch forms here.. If there's any error set forms to empty..
+    try {
+      const response = await sendRequest(`http://localhost:8000/api/user/form`, 'POST', JSON.stringify({ form_id }));
+      if (response) {
+
+        setForm(response.form);
+        // console.log(form);
+      }
+
+    } catch {
+      setForm({});
+    }
   };
   const developQuestion = (qn) => {
     if (qn.type === "RATING" && typeof qn.properties.shape === "undefined") {
@@ -70,7 +74,8 @@ const QuestionProvider = (props) => {
   };
 
   const addQuestion = (type) => {
-
+    console.log(type);
+    console.log('Now add questions..');
     const qn = {
       title: "",
 
@@ -131,7 +136,7 @@ const QuestionProvider = (props) => {
   };
 
   return (
-    <QuestionContext.Provider
+    <BuildQuestionContext.Provider
       value={{
         getForm,
         setForm,
@@ -154,10 +159,11 @@ const QuestionProvider = (props) => {
         copyQuestion,
         qDrawerPosition,
         setQDrawerPosition,
+        isLoading
       }}
     >
       {props.children}
-    </QuestionContext.Provider>
+    </BuildQuestionContext.Provider>
   );
 };
-export default QuestionProvider;
+export default BuildQuestionProvider;

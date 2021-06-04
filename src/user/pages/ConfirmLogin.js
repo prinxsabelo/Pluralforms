@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect } from "react";
 import cookie from "js-cookie";
 import { useLocation, useHistory } from "react-router-dom";
-import AuthContext from "../../shared/contexts/auth-context";
+import AuthContext from "../../shared/contexts/auth.context";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 
 const ConfirmLogin = () => {

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { useContext } from "react";
 import QTypeIcon from "./QTypeIcon";
 import { CSSTransition } from "react-transition-group";
-import { QuestionContext } from "../contexts/question-context";
+import { BuildQuestionContext } from "../contexts/build-question.context";
 
 const QDrawer = (props) => {
   const {
@@ -14,7 +14,7 @@ const QDrawer = (props) => {
     setDrawerIsOpen,
     typeAction,
     qDrawerPosition,
-  } = useContext(QuestionContext);
+  } = useContext(BuildQuestionContext);
 
   const setQType = (type) => {
     setDrawerIsOpen(false);

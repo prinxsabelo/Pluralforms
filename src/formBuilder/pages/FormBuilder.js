@@ -2,18 +2,30 @@ import { Redirect, useParams } from "react-router-dom";
 
 import FormLabel from "../components/FormLabel";
 import Tabs from "../components/tabs/Tabs";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import NavBar from "../../shared/wrapper/NavBar";
 import Questions from "./Questions";
-import { QuestionContext } from "../../shared/contexts/question-context";
+import { BuildQuestionContext } from "../../shared/contexts/build-question.context";
 import TabContent from "../components/tabs/TabContent";
 import { ViewportContext } from "../../shared/contexts/viewport-context";
 const FormBuilder = () => {
+    const [checker, setChecker] = useState(false);
+
     let { form_id } = useParams();
-    const { getForm, form } = useContext(QuestionContext);
-    if (!form) {
-        getForm(form_id);
-    }
+    const { getForm, form, isLoading } = useContext(BuildQuestionContext);
+    useEffect(() => {
+
+        if (!checker) {
+            getForm(form_id);
+            if (form) {
+                console.log(form);
+                setChecker(true);
+            }
+
+        }
+
+    }, [checker, form_id, getForm, form])
+
 
     const { width } = useContext(ViewportContext);
 
@@ -72,6 +84,7 @@ const FormBuilder = () => {
                 <div className="md:hidden">
                     <header className="shadow">
                         <FormLabel />
+                        {isLoading ? <>True</> : <>False</>}
                         <Tabs tabs={mobileTabs} />
                     </header>
                     <main>

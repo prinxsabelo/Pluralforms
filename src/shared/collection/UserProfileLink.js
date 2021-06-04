@@ -2,7 +2,7 @@ import { useEffect, useState, } from "react";
 import Cookies from "js-cookie";
 
 import { useContext } from "react/cjs/react.development";
-import AuthContext from "../contexts/auth-context"
+import AuthContext from "../contexts/auth.context"
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { useHttpClient } from "../hooks/http-hook";
 

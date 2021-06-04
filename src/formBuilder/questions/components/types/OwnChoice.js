@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 
 import Button from "../../../../shared/collection/Button";
-import { QuestionContext } from "../../../../shared/contexts/question-context";
+import { BuildQuestionContext } from "../../../../shared/contexts/build-question.context";
 import Choice from "./Choice";
 
 const OwnChoice = (props) => {
   const { q_id, properties } = props;
-  const { developQuestion } = useContext(QuestionContext);
+  const { developQuestion } = useContext(BuildQuestionContext);
 
   const [choices, setChoices] = useState([]);
   useEffect(() => {
