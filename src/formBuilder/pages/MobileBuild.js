@@ -20,9 +20,10 @@ const MobileBuild = () => {
     developQuestion,
   } = useContext(BuildQuestionContext);
   let { form_id, q_id } = useParams();
-
+  q_id = parseInt(q_id);
   const [question, setQuestion] = useState();
   useEffect(() => {
+
     if (!form) {
       getForm(form_id);
     }

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import {
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
@@ -26,6 +26,7 @@ const DesktopBuild = () => {
 
   const [question, setQuestion] = useState();
   const [index, setIndex] = useState(0);
+  const inputElement = useRef(null);
   const arr = [
     {
       id: 1,
@@ -47,7 +48,6 @@ const DesktopBuild = () => {
   };
   const changeHandler = (e) => {
     const { q_id, properties, type } = question;
-
     if (e.target.name === "title") {
       developQuestion({ title: e.target.value, q_id, type, properties });
     }
@@ -70,6 +70,9 @@ const DesktopBuild = () => {
   };
 
   useEffect(() => {
+    if (inputElement.current) {
+      inputElement.current.focus();
+    }
     if (form && form.questions) {
       let qIndex = form.questions.findIndex((qn) => qn.q_id === q_id);
       setIndex(qIndex + 1);
@@ -78,12 +81,7 @@ const DesktopBuild = () => {
       setQuestion(q);
       if (q && q.type !== currentType) {
         let { q_id, title, properties } = q;
-
         developQuestion({ title, q_id, type: currentType, properties });
-      }
-      // Send Form Data here.. for db update
-      if (form) {
-        // console.log(form);
       }
     }
   }, [form, question, q_id, currentType, developQuestion]);
@@ -95,7 +93,7 @@ const DesktopBuild = () => {
 
   return (
     <>
-      <div className="hidden md:flex flex-col items-center build shadow-xl p-2 m-2 ">
+      <div className="hidden md:flex flex-col items-center build border shadow-lg p-2 m-2 ">
         {currentType && question ? (
           <>
             <BuildHeader {...question}>
@@ -136,11 +134,12 @@ const DesktopBuild = () => {
             <form className="flex flex-col md:justify-end  p-1 bg-white w-3/4 border shadow">
               <div>
                 <textarea
-                  autoFocus={true}
+                  ref={inputElement}
                   className="px-4 py-2 border w-full text-xl rounded-md question-textarea
                                     focus:outline-none focus:border-red-400 hover:shadow-md"
                   name="title"
                   onChange={changeHandler}
+
                   placeholder="Type your Question Here.."
                   value={question.title}
                 ></textarea>

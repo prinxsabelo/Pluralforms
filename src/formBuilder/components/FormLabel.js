@@ -50,7 +50,7 @@ const FormLabel = (props) => {
   const [title, setTitle] = useState("");
   useEffect(() => {
     if (form) {
-      console.log(form);
+      // console.log(form);
       setTitle(form.title);
     }
   }, [form, setTitle]);

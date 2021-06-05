@@ -8,21 +8,21 @@ import Response from "./Response";
 const YN = (props) => {
   const { q_id, properties } = props;
   const { developQuestion } = useContext(BuildQuestionContext);
-  const [responses, setResponses] = useState([]);
+  const [feedbacks, setFeedbacks] = useState([]);
   useEffect(() => {
-    if (properties.responses.length > 0) {
-      setResponses(properties.responses);
+    if (properties.feedbacks && properties.feedbacks.length > 0) {
+      setFeedbacks(properties.feedbacks);
     } else {
-      setResponses([
+      setFeedbacks([
         { label: "", occupy: "YES", index: 0 },
         { label: "", occupy: "NO", index: 1 },
       ]);
     }
-  }, [setResponses, properties.responses]);
+  }, [setFeedbacks, properties.feedbacks]);
   const handleResponse = (event, index) => {
     const { value } = event.target;
-    responses[index].label = value;
-    properties.responses = responses;
+    feedbacks[index].label = value;
+    properties.feedbacks = feedbacks;
     let { title, type } = props;
     developQuestion({ title, q_id, properties, type });
   };
@@ -78,7 +78,7 @@ const YN = (props) => {
         </div>
 
         <div className="flex flex-col space-y-2 w-11/12 md:w-3/4">
-          {responses.map((response, index) => (
+          {feedbacks.map((response, index) => (
             <Response
               key={index}
               index={index}

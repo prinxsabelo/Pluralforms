@@ -11,7 +11,8 @@ import {
 import Backdrop from "../../shared/collection/Backdrop";
 import { BuildQuestionContext } from "../../shared/contexts/build-question.context";
 
-const BuildHeader = ({ q_id, properties, type, children }) => {
+const BuildHeader = (props) => {
+  const { q_id, properties, type, children, title } = props;
   const history = useHistory();
   const {
     form,
@@ -22,9 +23,13 @@ const BuildHeader = ({ q_id, properties, type, children }) => {
     currentType,
     setCurrentType,
     setQDrawerPosition,
+    developQuestion
   } = useContext(BuildQuestionContext);
   const qType = questionTypes.find((qt) => qt.type === type);
+
   const { required } = properties;
+
+  // 
   const arr = [
     {
       id: 1,
@@ -34,9 +39,11 @@ const BuildHeader = ({ q_id, properties, type, children }) => {
     },
   ];
   const onToggleChange = (index, isChecked) => {
+    console.log('xx');
     let name = arr[index]["name"];
     arr[index]["name"] = isChecked;
     properties[name] = isChecked;
+    developQuestion({ title, q_id, properties, type });
   };
   const openDrawer = () => {
     if (!currentType && qType.type) {

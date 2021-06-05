@@ -89,7 +89,7 @@ body.Dialog-active {
 }
 
 .build {
-  height: 85vh;
+  height: 80vh;
   overflow-y: auto;
 }
 .mobile-build {

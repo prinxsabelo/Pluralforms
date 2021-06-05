@@ -12,13 +12,13 @@ const FormBuilder = () => {
     const [checker, setChecker] = useState(false);
 
     let { form_id } = useParams();
-    const { getForm, form, isLoading } = useContext(BuildQuestionContext);
+    const { getForm, form, } = useContext(BuildQuestionContext);
+    // console.log(isLoading)
     useEffect(() => {
 
         if (!checker) {
             getForm(form_id);
             if (form) {
-                console.log(form);
                 setChecker(true);
             }
 
@@ -70,7 +70,7 @@ const FormBuilder = () => {
                     </header>
                     <main className="flex w-full relative bottom-0 top-0">
                         {window.location.pathname === `/user/form/${form_id}/build` && (
-                            <div className="w-1/3 border-r shadow-xl ">
+                            <div className="w-1/3 border-r shadow-xl h-screen">
                                 <Questions />
                             </div>
                         )}
@@ -84,7 +84,7 @@ const FormBuilder = () => {
                 <div className="md:hidden">
                     <header className="shadow">
                         <FormLabel />
-                        {isLoading ? <>True</> : <>False</>}
+                        {/* {isLoading ? <>True</> : <>False</>} */}
                         <Tabs tabs={mobileTabs} />
                     </header>
                     <main>

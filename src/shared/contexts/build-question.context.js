@@ -1,11 +1,13 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useCallback } from "react";
 
-import { v4 as uuid } from "uuid";
 import { useHistory } from "react-router-dom";
 
 import { ViewportContext } from "./viewport-context";
 import { useHttpClient } from "../hooks/http-hook";
+import useDebounceForQuestionUpdate from "../hooks/use-debounce-for-question-update.hook";
+
 const breakpoint = 768;
+
 export const BuildQuestionContext = createContext();
 const BuildQuestionProvider = (props) => {
   const history = useHistory();
@@ -24,6 +26,8 @@ const BuildQuestionProvider = (props) => {
   const [qDrawerPosition, setQDrawerPosition] = useState("left");
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
+  // Question is being updated in the function useDebounceForQuestionUpdate.. 
+  const [updateQuestion] = useDebounceForQuestionUpdate();
   const [question, setQuestion] = useState();
   const [questionTypes, setQuestionTypes] = useState([
     { typeId: 1, label: "Text", type: "TEXT" },
@@ -38,24 +42,26 @@ const BuildQuestionProvider = (props) => {
     try {
       const response = await sendRequest(`http://localhost:8000/api/user/form`, 'POST', JSON.stringify({ form_id }));
       if (response) {
-
         setForm(response.form);
-        // console.log(form);
       }
 
     } catch {
       setForm({});
     }
   };
-  const developQuestion = (qn) => {
+  //Question is being developed here so as to have effect on all areas that extracted data from it..
+  const developQuestion = useCallback((qn) => {
+    if (!qn.title) qn.title = "";
     if (qn.type === "RATING" && typeof qn.properties.shape === "undefined") {
-      qn.properties = { shape: "star" };
+      qn.properties.shape = "star";
     }
+    qn.form_id = form.form_id;
+    updateQuestion(qn);
 
     const questions = form.questions.map((q) => (q.q_id === qn.q_id ? qn : q));
     setForm({ ...form, questions });
-    console.log(form);
-  };
+
+  }, [setForm, form, updateQuestion]);
 
   //ShowQuestion function works only on desktop..
   const showQuestion = (q_id, type) => {
@@ -67,72 +73,56 @@ const BuildQuestionProvider = (props) => {
     }
     if (typeAction === "new") {
       setTypeAction("edit");
+      // If screen size is mobile.. Navigate to questions..
       if (width <= breakpoint) {
         history.push(`/user/form/${form.form_id}/questions/${q_id}`);
       }
     }
   };
 
-  const addQuestion = (type) => {
-    console.log(type);
-    console.log('Now add questions..');
-    const qn = {
-      title: "",
+  // Question is being added here..
+  const addQuestion = async (type) => {
+    const { form_id } = form;
+    try {
+      const qn = await sendRequest(`http://localhost:8000/api/user/form/build`, 'POST', JSON.stringify({ type, form_id }));
 
-      type,
-      q_id: uuid(),
-      properties: {
-        shape: "star",
-        allow_multiple_selection: false,
-        randomize: false,
-        responses: [],
-        choices: [],
-      },
-    };
-    console.log(qn);
 
-    form.questions = [...form.questions, qn];
+      form.questions = [...form.questions, qn];
 
-    let qIndex = form.questions.findIndex(({ q_id }) => q_id === qn.q_id);
-    let q_id = form.questions[qIndex].q_id;
-    showQuestion(q_id, type);
+      let qIndex = form.questions.findIndex(({ q_id }) => q_id === qn.q_id);
+      let q_id = form.questions[qIndex].q_id;
+      showQuestion(q_id, type);
+    } catch { }
   };
 
   const copyQuestion = (question) => {
-    let index = form.questions.findIndex((q) => q.q_id === question.q_id);
+    // let index = form.questions.findIndex((q) => q.q_id === question.q_id);
 
-    const { title, type, properties } = form.questions[index];
-    console.log(title, type, properties);
-
-    const qn = {
-      q_id: uuid(),
-      title,
-      type,
-      properties,
-    };
-    console.log(qn);
-    const questions = form.questions.concat(qn);
-    setForm({ ...form, questions });
-    showQuestion(qn.q_id, qn.type);
+    // const { title, type, properties } = form.questions[index];
+    // console.log(title, type, properties);
+    // console.log(qn);
+    // const questions = form.questions.concat(qn);
+    // setForm({ ...form, questions });
+    // showQuestion(qn.q_id, qn.type);
   };
 
   const deleteQuestion = (question) => {
-    if (question && question.q_id) {
-      console.log(question.q_id);
-      let index = form.questions.findIndex((q) => q.q_id === question.q_id);
+    // if (question && question.q_id) {
+    //   console.log(question.q_id);
+    //   let index = form.questions.findIndex((q) => q.q_id === question.q_id);
 
-      console.log(index);
-      console.log(form.questions, index);
-      if (index > 0) {
-        const { type, q_id } = form.questions[index - 1];
-        showQuestion(q_id, type);
-      }
+    //   console.log(index);
+    //   console.log(form.questions, index);
+    //   if (index > 0) {
+    //     const { type, q_id } = form.questions[index - 1];
+    //     showQuestion(q_id, type);
+    //   }
 
-      const questions = form.questions.filter(
-        ({ q_id }) => q_id !== question.q_id
-      );
-      setForm({ ...form, questions });
-    }
+    //   const questions = form.questions.filter(
+    //     ({ q_id }) => q_id !== question.q_id
+    //   );
+    //   setForm({ ...form, questions });
+    // }
   };
 
   return (
@@ -141,8 +131,14 @@ const BuildQuestionProvider = (props) => {
         getForm,
         setForm,
         form,
-        questionDetail,
+        question,
+        setQuestion,
+        addQuestion,
+        deleteQuestion,
+        copyQuestion,
         showQuestion,
+        questionDetail,
+
         developQuestion,
         currentType,
         setCurrentType,
@@ -152,15 +148,11 @@ const BuildQuestionProvider = (props) => {
         setDrawerIsOpen,
         typeAction,
         setTypeAction,
-        question,
-        setQuestion,
-        addQuestion,
-        deleteQuestion,
-        copyQuestion,
         qDrawerPosition,
         setQDrawerPosition,
         isLoading
       }}
+
     >
       {props.children}
     </BuildQuestionContext.Provider>

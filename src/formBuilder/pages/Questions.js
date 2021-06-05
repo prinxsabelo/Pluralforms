@@ -24,7 +24,10 @@ const Questions = () => {
   const closeDrawer = () => {
     setDrawerIsOpen(false);
   };
+  if (form && form.questions) {
+    // console.log(form.questions);
 
+  }
   return (
     <div>
       {form && (
@@ -52,11 +55,11 @@ const Questions = () => {
           ) : (
             <>
               {/* Starting afresh here.. */}
-              <div className="flex flex-col w-full justify-center items-center">
+              <div className="flex flex-col  w-full justify-center items-center">
                 <div>Feel free to create questions..</div>
                 <Button
                   onClick={addQuestion}
-                  className="bg-gray-900 py-2 w-1/2 uppercase"
+                  className="bg-gray-900 py-2 w-1/2 uppercase text-base"
                 >
                   Create Question
                 </Button>

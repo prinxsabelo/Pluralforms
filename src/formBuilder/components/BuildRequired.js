@@ -1,9 +1,11 @@
-
+import { useContext } from "react";
 import ToggleSwitch from "../../shared/collection/ToggleSwitch";
+import { BuildQuestionContext } from "../../shared/contexts/build-question.context";
 
-const BuildRequired = ({ properties }) => {
-
+const BuildRequired = (props) => {
+    const { q_id, title, properties, type } = props;
     const { required } = properties
+    const { developQuestion } = useContext(BuildQuestionContext);
     const arr = [
         {
             id: 1,
@@ -17,7 +19,7 @@ const BuildRequired = ({ properties }) => {
         let name = arr[index]['name'];
         arr[index]['name'] = isChecked
         properties[name] = isChecked;
-
+        developQuestion({ title, q_id, properties, type });
     }
 
     return (

@@ -65,7 +65,10 @@ export const useHttpClient = () => {
             } catch (error) {
                 if (error.response) {
                     const { message } = error.response.data;
-                    alert(message);
+                    console.log(error.response.status);
+                    console.log(message);
+                    // alert(message);
+                    // alert(error.response.status);
                     setError(error.response.data);
 
 

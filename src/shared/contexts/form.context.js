@@ -12,12 +12,12 @@ const FormContextProvider = (props) => {
     const [title, setTitle] = useState("");
     const submitForm = async (form) => {
         console.log(form);
-        console.log(isLoading);
+        console.log({ isLoading });
         if (form.form_id) {
             //UPDATE EXISTING FORM
             try {
                 const { title, form_id } = form;
-                const response = await sendRequest(`http://localhost:8000/api/user/forms/update`, 'POST', JSON.stringify({ title, form_id }));
+                const response = await sendRequest(`http://localhost:8000/api/user/forms/update`, 'PUT', JSON.stringify({ title, form_id }));
                 if (response) {
                     let index = forms.findIndex(form => form_id === form.form_id);
                     let newForms = [...forms];
@@ -67,7 +67,7 @@ const FormContextProvider = (props) => {
         showDialog(true);
     };
     const renameForm = async (title, form_id) => {
-        const response = await sendRequest(`http://localhost:8000/api/user/forms/update`, 'POST', JSON.stringify({ title, form_id }));
+        const response = await sendRequest(`http://localhost:8000/api/user/forms/update`, 'PUT', JSON.stringify({ title, form_id }));
         if (response) {
             let index = forms.findIndex(form => form_id === form.form_id);
             let newForms = [...forms];
