@@ -3,7 +3,7 @@ import FormItem from "./FormItem";
 const FormList = ({ forms, checkDelete }) => {
 
   return (
-    <div className="form-list overflow-y-auto md:px-12 md:pl-4 flex flex-col ">
+    <div className="form-list overflow-y-auto overflow-x-hidden md:px-12 md:pl-4 flex flex-col ">
       {(forms && forms.length > 0) ?
         <>
           {forms.map((form, index) => (

@@ -70,9 +70,7 @@ const DesktopBuild = () => {
   };
 
   useEffect(() => {
-    if (inputElement.current) {
-      inputElement.current.focus();
-    }
+
     if (form && form.questions) {
       let qIndex = form.questions.findIndex((qn) => qn.q_id === q_id);
       setIndex(qIndex + 1);
@@ -89,6 +87,9 @@ const DesktopBuild = () => {
     const { properties } = question;
     const { required } = properties;
     arr[0].value = required;
+    if (inputElement.current && question.properties.choices === []) {
+      inputElement.current.focus();
+    }
   }
 
   return (
