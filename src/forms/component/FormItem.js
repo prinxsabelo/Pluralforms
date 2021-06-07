@@ -8,7 +8,7 @@ import { FormContext } from "../../shared/contexts/form.context";
 import Moment from 'react-moment';
 
 import ActionItem from "./ActionItem";
-const FormItem = ({ form, checkDelete }) => {
+const FormItem = ({ form, closeForm }) => {
   const [pop, setPop] = useState(false);
   const history = useHistory();
   const { editForm } = useContext(FormContext);
@@ -18,10 +18,11 @@ const FormItem = ({ form, checkDelete }) => {
   const copy = () => {
     console.log({});
   };
-  const del = () => {
+
+  const close = () => {
+    closeForm(form);
     setPop(false);
-    checkDelete(form_id);
-  };
+  }
   const rename = () => {
     editForm(form);
     setPop(false);
@@ -35,8 +36,8 @@ const FormItem = ({ form, checkDelete }) => {
     const { action } = checkAction;
     if (action === "rename") {
       rename();
-    } else if (action === "delete") {
-      checkDelete(form_id);
+    } else if (action === "close") {
+      close();
     }
   };
   const ActionsArr = [
@@ -55,8 +56,8 @@ const FormItem = ({ form, checkDelete }) => {
 
     {
       id: 3,
-      action: "delete",
-      name: "Delete",
+      action: "close",
+      name: "Close",
       link: false,
     },
 
@@ -163,7 +164,7 @@ const FormItem = ({ form, checkDelete }) => {
         show={pop}
         message="form"
         copy={() => copy()}
-        del={() => del()}
+        close={() => close()}
         rename={() => rename()}
         settings={() => settings()}
       />

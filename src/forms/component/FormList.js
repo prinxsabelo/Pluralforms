@@ -1,6 +1,6 @@
 import FormItem from "./FormItem";
 
-const FormList = ({ forms, checkDelete }) => {
+const FormList = ({ forms, checkDelete, closeForm }) => {
 
   return (
     <div className="form-list overflow-y-auto overflow-x-hidden md:px-12 md:pl-4 flex flex-col ">
@@ -12,6 +12,7 @@ const FormList = ({ forms, checkDelete }) => {
               key={form.form_id}
               index={index}
               checkDelete={checkDelete}
+              closeForm={closeForm}
             />
           ))}
         </> :

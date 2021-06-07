@@ -13,6 +13,9 @@ const Container = () => {
                 <Route path="/user/home" exact>
                     <Home />
                 </Route>
+                <Route path="/user/closed_forms" exact>
+                    <UserForms />
+                </Route>
                 <Route path="/user/forms" exact>
                     <UserForms />
                 </Route>

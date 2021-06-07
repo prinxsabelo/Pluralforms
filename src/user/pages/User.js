@@ -36,7 +36,7 @@ export const User = () => {
                                             <FormBuilder />
                                         </Route>
 
-                                        <Route path={["/user/", "/user/home", "/user/forms", "/user/profile",]} t>
+                                        <Route path={["/user/", "/user/home", "/user/forms", "/user/profile",]} >
                                             <div className=" bg-white text-black w-full text-white flex flex-col h-screen">
                                                 <Wrapper />
                                                 <Dialog />

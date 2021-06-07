@@ -9,6 +9,8 @@ const FormContextProvider = (props) => {
     // const { setShowDialog, setDialogContent } = useContext(Context);
     const { showDialog, setDialogContent } = useContext(Context);
     const [forms, setForms] = useState([]);
+    const [closedForms, setClosedForms] = useState([]);
+
     const [title, setTitle] = useState("");
     const submitForm = async (form) => {
         console.log(form);
@@ -75,19 +77,40 @@ const FormContextProvider = (props) => {
             setForms(newForms);
         }
     };
-    const deleteForm = (form_id) => {
-        const filteredForms = forms.filter((f) => f.id !== form_id);
-        setForms(filteredForms);
+    const deleteForm = async (form_id) => {
+        const response = await sendRequest(`http://localhost:8000/api/user/forms/delete`, 'DELETE', JSON.stringify({ form_id }));
+        if (response) {
+            const newClosedForms = closedForms.filter(f => f.form_id !== form_id);
+            setClosedForms(newClosedForms);
+        }
     };
-
+    const closeForm = async (form_id) => {
+        const response = await sendRequest(`http://localhost:8000/api/user/forms/close`, 'PUT', JSON.stringify({ form_id }));
+        if (response) {
+            const newActiveForms = forms.filter(f => f.form_id !== response.form_id);
+            setForms(newActiveForms);
+            setClosedForms([...closedForms, response]);
+        }
+    }
+    const restoreForm = async (form_id) => {
+        const response = await sendRequest(`http://localhost:8000/api/user/forms/restore`, 'PUT', JSON.stringify({ form_id }));
+        if (response) {
+            const newClosedForms = closedForms.filter(f => f.form_id !== response.form_id);
+            setClosedForms(newClosedForms);
+            setForms([...forms, response]);
+        }
+    }
     const getForms = async () => {
         //Fetch forms here.. If there's any error set forms to empty..
         try {
             const response = await sendRequest(`http://localhost:8000/api/user/forms`);
-            console.log(response);
-            setForms(response);
+            let activeForms = response.filter(f => f.status === "active");
+            setForms(activeForms);
+            let closedForms = response.filter(c => c.status !== "active");
+            setClosedForms(closedForms);
         } catch {
             setForms([]);
+            setClosedForms([]);
         }
 
     }
@@ -103,7 +126,10 @@ const FormContextProvider = (props) => {
                 setTitle,
                 submitForm,
                 deleteForm,
-                getForms
+                getForms,
+                closedForms,
+                closeForm,
+                restoreForm
             }}
         >
             {props.children}
