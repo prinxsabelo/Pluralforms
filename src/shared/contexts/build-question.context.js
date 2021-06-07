@@ -88,10 +88,7 @@ const BuildQuestionProvider = (props) => {
 
 
       form.questions = [...form.questions, qn];
-
-      let qIndex = form.questions.findIndex(({ q_id }) => q_id === qn.q_id);
-      let q_id = form.questions[qIndex].q_id;
-      showQuestion(q_id, type);
+      showQuestion(qn.q_id, type);
     } catch { }
   };
 

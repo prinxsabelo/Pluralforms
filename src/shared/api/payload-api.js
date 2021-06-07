@@ -15,7 +15,7 @@ const PayloadApi = {
                     "required": false,
                     "randomize": false,
                     "choices": [],
-                    "responses": [],
+                    "feedback": [],
 
                 }
             },
@@ -30,7 +30,7 @@ const PayloadApi = {
                     "required": false,
                     "randomize": false,
                     "choices": [],
-                    "responses": []
+                    "feedback": []
                 }
             },
             {
@@ -43,7 +43,7 @@ const PayloadApi = {
                     "required": false,
                     "randomize": false,
                     "choices": [],
-                    "responses": []
+                    "feedback": []
                 }
             },
             {
@@ -57,7 +57,7 @@ const PayloadApi = {
                     "required": false,
                     "randomize": false,
                     "choices": [],
-                    "responses": []
+                    "feedback": []
                 }
             },
             {
@@ -84,7 +84,7 @@ const PayloadApi = {
                             "label": "Fucked"
                         }
                     ],
-                    "responses": []
+                    "feedback": []
                 }
             },
             {
@@ -98,14 +98,14 @@ const PayloadApi = {
                     "required": false,
                     "randomize": false,
                     "choices": [],
-                    "responses": [
+                    "feedback": [
                         {
-                            "response_id": "xxx",
+                            "feedback_id": "xxx",
                             "occupy": "YES",
                             "label": "Hell Yes"
                         },
                         {
-                            "response_id": "xxx",
+                            "feedback_id": "xxx",
                             "occupy": "NO",
                             "label": "Hell No"
                         }
@@ -127,7 +127,7 @@ const PayloadApi = {
                     "required": false,
                     "randomize": false,
                     "choices": [],
-                    "responses": [],
+                    "feedback": [],
 
                 }
             },
@@ -142,7 +142,7 @@ const PayloadApi = {
                     "required": false,
                     "randomize": false,
                     "choices": [],
-                    "responses": []
+                    "feedback": []
                 }
             },
             {
@@ -155,7 +155,7 @@ const PayloadApi = {
                     "required": false,
                     "randomize": false,
                     "choices": [],
-                    "responses": []
+                    "feedback": []
                 }
             },
             {
@@ -169,7 +169,7 @@ const PayloadApi = {
                     "required": false,
                     "randomize": false,
                     "choices": [],
-                    "responses": []
+                    "feedback": []
                 }
             },
             {
@@ -196,7 +196,7 @@ const PayloadApi = {
                             "label": "In control"
                         }
                     ],
-                    "responses": []
+                    "feedback": []
                 }
             },
             {
@@ -210,14 +210,14 @@ const PayloadApi = {
                     "required": false,
                     "randomize": false,
                     "choices": [],
-                    "responses": [
+                    "feedback": [
                         {
-                            "response_id": "xxx",
+                            "feedback_id": "xxx",
                             "occupy": "YES",
                             "label": "Hell Yes"
                         },
                         {
-                            "response_id": "xxx",
+                            "feedback_id": "xxx",
                             "occupy": "NO",
                             "label": "Hell No"
                         }
@@ -231,9 +231,9 @@ const PayloadApi = {
 export default PayloadApi;
 
 
-// Model for response_tb
+// Model for feedback_tb
 // {
-//     response_id:integer,
+//     feedback_id:integer,
 //     queston_id:integer,
 //     type:"",
 //     occupy:"",

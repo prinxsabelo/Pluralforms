@@ -86,12 +86,12 @@ const Properties = (props) => {
             <div className="flex flex-auto justify-between items-center space-x-2">
               {iconArr.map((icon) => (
                 <div
-                  className={`${props.properties.shape === icon.shape
-                    ? `bg-yellow-300`
-                    : `bg-white`
-                    } 
-                                      w-full border border-red-500 md:border-none shadow cursor-pointer p-3 flex space-x-8 justify-between justify-evenly md:justify-center        
-                                      `}
+                  className={`
+                                      w-full border-2 border-red-500  shadow cursor-pointer p-3 flex space-x-8 
+                                      justify-between justify-evenly md:justify-center
+                                      ${props.properties.shape === icon.shape ? `bg-yellow-300` : `bg-white`} 
+                              `
+                  }
                   key={icon.shape}
                   onClick={() => onShapeChange(icon.shape)}
                 >

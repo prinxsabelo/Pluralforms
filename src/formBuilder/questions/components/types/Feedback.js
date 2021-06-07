@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-const Response = (props) => {
+const Feedback = (props) => {
 
     const [label, setLabel] = useState("xxx");
     useEffect(() => {
         setLabel(props.label);
     }, [props, setLabel])
-    const handleResponse = (event, index) => {
+    const handleFeedback = (event, index) => {
 
         setLabel(event.target.value);
         props.onChange(event, index)
@@ -14,12 +14,12 @@ const Response = (props) => {
     return (
         <>
 
-            <input autoFocus={props.index === 0 || props.index + 1 === props.ResponsesLength} autoComplete="off"
-                placeholder={`Response If ${props.occupy}`}
+            <input autoFocus={props.index === 0 || props.index + 1 === props.feedbacksLength} autoComplete="off"
+                placeholder={`Feedback If ${props.occupy}`}
                 className="border w-full p-3  outline-none rounded focus:border-black"
-                onChange={(event) => handleResponse(event, props.index)}
+                onChange={(event) => handleFeedback(event, props.index)}
                 index={props.index}
-                name={`Response${props.index}`}
+                name={`feedback${props.index}`}
                 value={label}
             />
 
@@ -30,4 +30,4 @@ const Response = (props) => {
         </>
     )
 }
-export default Response;
+export default Feedback;

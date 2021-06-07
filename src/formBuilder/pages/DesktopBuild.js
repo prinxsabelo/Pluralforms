@@ -130,7 +130,6 @@ const DesktopBuild = () => {
                 <BuildRequired {...question} />
               </div>
 
-              {/* <Properties {...question} index={index} /> */}
             </BuildHeader>
             <form className="flex flex-col md:justify-end  p-1 bg-white w-3/4 border shadow">
               <div>
@@ -152,7 +151,7 @@ const DesktopBuild = () => {
                 </>
               )}
             </form>
-            <div className=" w-3/4 flex justify-between p-2 shadow">
+            <div className=" w-3/4 flex items-center justify-between p-2 shadow">
               <div className="w-8/12">
                 <Properties {...question} index={index} />
               </div>

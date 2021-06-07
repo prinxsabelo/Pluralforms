@@ -3,26 +3,26 @@ import Button from "../../../../shared/collection/Button";
 
 import { BuildQuestionContext } from "../../../../shared/contexts/build-question.context";
 
-import Response from "./Response";
+import Feedback from "./Feedback";
 
 const YN = (props) => {
   const { q_id, properties } = props;
   const { developQuestion } = useContext(BuildQuestionContext);
-  const [feedbacks, setFeedbacks] = useState([]);
+  const [feedback, setFeedback] = useState([]);
   useEffect(() => {
-    if (properties.feedbacks && properties.feedbacks.length > 0) {
-      setFeedbacks(properties.feedbacks);
+    if (properties.feedback && properties.feedback.length > 0) {
+      setFeedback(properties.feedback);
     } else {
-      setFeedbacks([
+      setFeedback([
         { label: "", occupy: "YES", index: 0 },
         { label: "", occupy: "NO", index: 1 },
       ]);
     }
-  }, [setFeedbacks, properties.feedbacks]);
-  const handleResponse = (event, index) => {
+  }, [setFeedback, properties.feedback]);
+  const handleFeedback = (event, index) => {
     const { value } = event.target;
-    feedbacks[index].label = value;
-    properties.feedbacks = feedbacks;
+    feedback[index].label = value;
+    properties.feedback = feedback;
     let { title, type } = props;
     developQuestion({ title, q_id, properties, type });
   };
@@ -78,13 +78,13 @@ const YN = (props) => {
         </div>
 
         <div className="flex flex-col space-y-2 w-11/12 md:w-3/4">
-          {feedbacks.map((response, index) => (
-            <Response
+          {feedback.map((feedback, index) => (
+            <Feedback
               key={index}
               index={index}
-              label={response.label}
-              {...response}
-              onChange={(event, index) => handleResponse(event, index)}
+              label={feedback.label}
+              {...feedback}
+              onChange={(event, index) => handleFeedback(event, index)}
             />
           ))}
         </div>
