@@ -69,6 +69,10 @@ const BuildQuestionProvider = (props) => {
     setQuestionDetail({ q_id, type });
     let questionType = questionTypes.find((q) => q.type === type);
     if (questionType) {
+      //Setting the type to default first..
+      if (type === questionType.type) {
+        setCurrentType("xxx");
+      }
       setCurrentType(type);
     }
     if (typeAction === "new") {
@@ -85,10 +89,11 @@ const BuildQuestionProvider = (props) => {
     const { form_id } = form;
     try {
       const qn = await sendRequest(`http://localhost:8000/api/user/form/build`, 'POST', JSON.stringify({ type, form_id }));
+      if (qn) {
+        form.questions = [...form.questions, qn];
+        showQuestion(qn.q_id, type);
+      }
 
-
-      form.questions = [...form.questions, qn];
-      showQuestion(qn.q_id, type);
     } catch { }
   };
 
@@ -103,23 +108,22 @@ const BuildQuestionProvider = (props) => {
     // showQuestion(qn.q_id, qn.type);
   };
 
-  const deleteQuestion = (question) => {
-    // if (question && question.q_id) {
-    //   console.log(question.q_id);
-    //   let index = form.questions.findIndex((q) => q.q_id === question.q_id);
+  const deleteQuestion = async ({ q_id }) => {
+    const { form_id } = form;
+    const qn = await sendRequest(`http://localhost:8000/api/user/form/build/delete`, 'DELETE', JSON.stringify({ q_id, form_id }));
+    if (qn) {
+      if (form.questions.length > 0) {
+        const questions = form.questions.filter(q => q.q_id !== q_id);
+        setForm({ ...form, questions });
+      }
 
-    //   console.log(index);
-    //   console.log(form.questions, index);
-    //   if (index > 0) {
-    //     const { type, q_id } = form.questions[index - 1];
-    //     showQuestion(q_id, type);
-    //   }
+      let index = form.questions.findIndex((q) => q.q_id === q_id);
+      if (index > 0) {
+        const { type, q_id } = form.questions[index - 1];
+        showQuestion(q_id, type);
 
-    //   const questions = form.questions.filter(
-    //     ({ q_id }) => q_id !== question.q_id
-    //   );
-    //   setForm({ ...form, questions });
-    // }
+      }
+    }
   };
 
   return (

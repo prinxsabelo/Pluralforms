@@ -45,8 +45,9 @@ const Dialog = (props) => {
                                 <h3 className="text-2xl md:text-2xl">{header}</h3>
                             </header>
                             <main className="p-2 py-4">
-                                <input autoFocus autoComplete="off" value={form.title} placeholder={placeholder} name="title" onChange={changeHandler}
-                                    className="p-2 w-full border-2 rounded text-lg" />
+                                <input autoFocus autoComplete="off" value={form.title} placeholder={placeholder} name="title"
+                                    onChange={changeHandler}
+                                    className="p-2 w-full border-2 rounded text-lg form-titlef" />
                             </main>
                             <footer className="flex justify-between space-x-4 px-2">
                                 <button type="button"

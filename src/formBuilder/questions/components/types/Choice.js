@@ -3,9 +3,13 @@ import Button from "../../../../shared/collection/Button";
 
 const Choice = (props) => {
 
-    const [label, setLabel] = useState("xxx");
+    const [label, setLabel] = useState("");
     useEffect(() => {
-        setLabel(props.label);
+        if (!props.label) {
+            setLabel("");
+        } else {
+            setLabel(props.label);
+        }
     }, [props, setLabel])
     const handleChoice = (event, index) => {
 
@@ -21,7 +25,8 @@ const Choice = (props) => {
         <>
 
             <div className=" flex space-x-1 items-center">
-                <input autoFocus={props.index === 0 || props.index + 1 === props.choicesLength} autoComplete="off" placeholder={`Choice ${props.index + 1}`}
+                <input autoFocus={props.index === 0 || props.index + 1 === props.choicesLength} autoComplete="off"
+                    placeholder={`Enter Choice ${props.index + 1} here..`}
                     className="border w-full p-3  outline-none rounded focus:border-black"
                     onChange={(event) => handleChoice(event, props.index)}
                     onKeyDown={handleKeyDown}

@@ -23,7 +23,6 @@ const DesktopBuild = () => {
     setQDrawerPosition,
   } = useContext(BuildQuestionContext);
   const { q_id } = questionDetail;
-
   const [question, setQuestion] = useState();
   const [index, setIndex] = useState(0);
   const inputElement = useRef(null);
@@ -71,18 +70,23 @@ const DesktopBuild = () => {
 
   useEffect(() => {
 
+
     if (form && form.questions) {
       let qIndex = form.questions.findIndex((qn) => qn.q_id === q_id);
       setIndex(qIndex + 1);
       let q = form.questions[qIndex];
-
+      if (q && (q.type === "CHOICE" && inputElement.current && q.properties.choices.length === 0)) {
+        inputElement.current.focus();
+      } else if (q && (q.type === "TEXT" || q.type === "RATING") && inputElement.current) {
+        inputElement.current.focus();
+      }
       setQuestion(q);
       if (q && q.type !== currentType) {
         let { q_id, title, properties } = q;
         developQuestion({ title, q_id, type: currentType, properties });
       }
     }
-  }, [form, question, q_id, currentType, developQuestion]);
+  }, [form, question, q_id, currentType, developQuestion, inputElement]);
   if (question && question.properties) {
     const { properties } = question;
     const { required } = properties;

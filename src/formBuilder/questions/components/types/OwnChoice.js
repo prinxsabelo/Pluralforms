@@ -5,7 +5,7 @@ import { BuildQuestionContext } from "../../../../shared/contexts/build-question
 import Choice from "./Choice";
 
 const OwnChoice = (props) => {
-  const { q_id, properties } = props;
+  const { q_id, title, type, properties } = props;
   const { developQuestion } = useContext(BuildQuestionContext);
 
   const [choices, setChoices] = useState([]);
@@ -15,30 +15,37 @@ const OwnChoice = (props) => {
     } else {
       setChoices([{ label: "", index: 0 }]);
     }
-  }, [setChoices, properties.choices]);
+  }, [setChoices, properties.choices, properties.choices.length]);
   const handleChoice = (event, index) => {
     const { value } = event.target;
 
     choices[index].label = value;
     properties.choices = choices;
-    let { title, type } = props;
 
     developQuestion({ title, q_id, properties, type });
   };
   const addChoice = () => {
-    setChoices([...choices, { label: "", index: choices.length }]);
+    const newChoice = { label: "", index: choices.length };
+    const newChoices = [...choices, newChoice]
+    setChoices(newChoices);
+    properties.choices = newChoices;
+    developQuestion({ title, q_id, properties, type });
   };
   const deleteChoice = (choice) => {
-    //  console.log(choices);
     let i = 0;
-    const filterChoices = choices
+    const newChoices = choices
       .filter((c) => c.index !== choice.index)
       .map((el) => {
+        console.log(el.index);
         el.index = i;
         i++;
         return el;
       });
-    setChoices(filterChoices);
+    console.log(newChoices);
+    setChoices(newChoices);
+    properties.choices = newChoices;
+
+    developQuestion({ title, q_id, properties, type });
   };
   if (choices.length === 0) {
     setChoices([{ label: "", index: 0 }]);

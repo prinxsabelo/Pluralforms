@@ -12,6 +12,11 @@ const NoChoice = (props) => {
             {props.type === "YN" &&
                 <YN {...props} />
             }
+            {props.type === "TEXT" &&
+                <div className="w-full flex items-center space-x-1">
+                    <input className="border rounded w-full p-3" readOnly placeholder="You will have your answer here.." />
+                </div >
+            }
         </>
     )
 }
