@@ -42,6 +42,12 @@ const FormItem = ({ form, closeForm }) => {
   };
   const ActionsArr = [
     {
+      id: 0,
+      action: "build",
+      name: "Build",
+      link: true,
+    },
+    {
       id: 1,
       action: "share",
       name: "Share",
@@ -113,8 +119,8 @@ const FormItem = ({ form, closeForm }) => {
                   <p className="text-xs">Last updated <Moment fromNow>{updated_at}</Moment> </p>
                 </div>
                 <div className="flex space-x-4 text-xs">
-                  <div>{no_questions}0 questions</div>
-                  <div>{no_responses}0 responses</div>
+                  <div>{no_questions} questions</div>
+                  <div>{no_responses} responses</div>
                 </div>
               </div>
             </NavLink>
@@ -126,26 +132,25 @@ const FormItem = ({ form, closeForm }) => {
           </div>
         </div>
 
-        <div className="hidden md:flex w-full flex-wrap py-1">
+        <div className="hidden md:flex w-full flex-wrap p-1">
           <NavLink
-            className="w-6/12 flex p-2  items-center "
+            className="w-6/12 flex p-2  items-center bg-gray-100"
             to={`/user/form/${form_id}/build`}
           >
             <div className="w-10/12 truncate flex space-x-2">
               <div className="w-12 h-12 border-2 flex items-center justify-center"> xxx </div>
-              <div className=" w-full">
+              <div className="w-10/12">
                 <h3 className="text-xl truncate pr-8 font-medium"> {title}</h3>
-                <p className="text-sm"> Last updated <Moment fromNow>{updated_at}</Moment> </p>
+                <div className="flex text-sm space-x-4">
+                  <p>  {no_questions} {no_questions > 1 ? "questions" : "question"}{" "}</p>
+                  <p>  0  {no_responses} {no_responses > 1 ? "responses" : "response"}</p>
+                  <p> Last updated <Moment fromNow>{updated_at}</Moment> </p>
+
+                </div>
+
               </div>
             </div>
-            <div className="flex-auto  whitespace-nowrap text-sm tracking-wide">
-              <div>
-                0  {no_questions} {no_questions > 1 ? "questions" : "question"}{" "}
-              </div>
-              <div>
-                0  {no_responses} {no_responses > 1 ? "responses" : "response"}
-              </div>
-            </div>
+
           </NavLink>
           <div className="flex-auto flex space-x-2 w-full md:w-auto p-2 justify-start xl:justify-end">
             {ActionsArr.map((a) => (

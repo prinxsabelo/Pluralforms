@@ -80,8 +80,8 @@ const ClosedFormItem = ({ form, checkDelete, restoreForm }) => {
                                     <p className="text-xs">Last updated <Moment fromNow>{updated_at}</Moment> </p>
                                 </div>
                                 <div className="flex space-x-4 text-xs">
-                                    <div>{no_questions}0 questions</div>
-                                    <div>{no_responses}0 responses</div>
+                                    <div>{no_questions} questions</div>
+                                    <div>{no_responses} responses</div>
                                 </div>
                             </div>
                         </div>
@@ -107,10 +107,10 @@ const ClosedFormItem = ({ form, checkDelete, restoreForm }) => {
                         </div>
                         <div className="flex-auto  whitespace-nowrap text-sm tracking-wide">
                             <div>
-                                0  {no_questions} {no_questions > 1 ? "questions" : "question"}{" "}
+                                {no_questions} {no_questions > 1 ? "questions" : "question"}{" "}
                             </div>
                             <div>
-                                0  {no_responses} {no_responses > 1 ? "responses" : "response"}
+                                0 {no_responses} {no_responses > 1 ? "responses" : "response"}
                             </div>
                         </div>
                     </div>

@@ -12,6 +12,7 @@ const Questions = () => {
     setDrawerIsOpen,
     setTypeAction,
     setQDrawerPosition,
+
   } = useContext(BuildQuestionContext);
   const addQuestion = () => {
     drawerIsOpen ? closeDrawer() : openDrawer();
@@ -32,17 +33,22 @@ const Questions = () => {
     <div>
       {form && (
         <>
-          <div className="flex p-1 md:hidden">
+          {/* <div className="flex p-1 md:hidden">
             <input
               placeholder="Search Question"
               className="border h-8 border-red-500 w-full p-2 rounded-lg focus:rounded-lg"
             />
-          </div>
+          </div> */}
 
           {form.questions && form.questions.length > 0 ? (
             <>
               <QuestionList questions={form.questions} />
-              <div className="md:hidden absolute bottom-1 p-2 w-full flex justify-between items-center bg-white">
+
+              <div className="flex justify-center py-1 space-x-4 w-full border-b-2">
+                <Button className="bg-red-500 uppercase py-2 text-xs"> Edit Welcome Page</Button>
+                <Button className="bg-red-500 uppercase py-2 text-xs"> Edit Thank you Page</Button>
+              </div>
+              <div className="md:hidden p-1 w-full flex justify-between items-center bg-white">
                 <div>Total Questions = {form.questions.length}</div>
                 <Button
                   onClick={addQuestion}
@@ -66,6 +72,7 @@ const Questions = () => {
               </div>
             </>
           )}
+
         </>
       )}
       <QDrawer show={drawerIsOpen} />

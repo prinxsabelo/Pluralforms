@@ -28,6 +28,7 @@ const Dialog = (props) => {
     const handleSubmit = (ev) => {
         ev.preventDefault();
         submitForm(form);
+        return false;
     }
     const { q_id } = DialogContent;
     return <>
@@ -55,8 +56,8 @@ const Dialog = (props) => {
                                     onClick={closeDialog}>
                                     Cancel
                                 </button>
-                                <Button type="submit" className="bg-gray-900 text-lg w-48 uppercase">
-                                    Save
+                                <Button type="submit" onClick={handleSubmit} className="bg-gray-900 text-lg w-48 uppercase">
+                                    xSave
                                 </Button>
 
                             </footer>
