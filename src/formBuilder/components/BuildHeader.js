@@ -120,7 +120,7 @@ const BuildHeader = (props) => {
             <div className="flex space-x-5">{children}</div>
             <div>
               {qType && (
-                <Button className="bg-gray-900 uppercase" onClick={openDrawer}>
+                <Button className="bg-gray-900 uppercase md:text-sm" onClick={openDrawer}>
                   <span className="flex items-center">
                     <div className="px-1 ">
                       <QTypeIcon

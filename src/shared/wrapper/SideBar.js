@@ -22,7 +22,7 @@ const SideBar = () => {
                     PLURALFORMS
                 </div>
                 <div className="w-full">
-                    <Button className="bg-gray-900 uppercase w-full " onClick={() => addForm()}>Create Form</Button>
+                    <Button className="bg-gray-900 uppercase w-full md:text-base" onClick={() => addForm()}>Create Form</Button>
                 </div>
 
                 <div className="flex flex-col w-full py-3 space-y-3">

@@ -4,10 +4,12 @@ const Feedback = (props) => {
 
     const [label, setLabel] = useState("xxx");
     useEffect(() => {
-        setLabel(props.label);
+        if (props.label) {
+            setLabel(props.label);
+        }
+
     }, [props, setLabel])
     const handleFeedback = (event, index) => {
-
         setLabel(event.target.value);
         props.onChange(event, index)
     }

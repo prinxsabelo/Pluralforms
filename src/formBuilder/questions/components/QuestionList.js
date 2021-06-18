@@ -24,7 +24,7 @@ const QuestionList = (props) => {
   return (
     <>
       <div className="relative">
-        <div className="md:mx-1  md:py-2 q-list pb-8 border-4">
+        <div className="md:mx-1  md:py-2 q-list pb-8 ">
           {questions.map((q, index) => {
             return (
               <QuestionItem
