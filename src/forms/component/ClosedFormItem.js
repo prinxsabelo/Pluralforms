@@ -37,13 +37,13 @@ const ClosedFormItem = ({ form, checkDelete, restoreForm }) => {
         {
             id: 1,
             action: "restore",
-            name: "Restore Form",
+            name: "Restore ",
             link: false,
         },
         {
             id: 2,
             action: "delete",
-            name: "Delete Form",
+            name: "Delete",
             link: false,
         },
     ];
@@ -120,6 +120,7 @@ const ClosedFormItem = ({ form, checkDelete, restoreForm }) => {
                                 {...a}
                                 key={a.id}
                                 form_id={form_id}
+                                type="closed"
                                 onHandle={() => handleAction(a)}
                             />
                         ))}

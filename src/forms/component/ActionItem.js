@@ -2,41 +2,49 @@ import { NavLink } from "react-router-dom";
 import {
   ShareIcon,
   PresentationChartBarIcon,
-  TrashIcon,
+  ClipboardIcon,
   PencilAltIcon,
-  AdjustmentsIcon,
-  DuplicateIcon,
   CogIcon,
+  XIcon,
+  TrashIcon
 } from "@heroicons/react/outline";
 
 const ActionItem = (props) => {
   return (
     <>
       {props.link ? (
-        <NavLink
-          className="hidden md:flex items-center justify-center space-x-1 bg-gray-800 text-gray-100 my-2 px-2 h-8 rounded-lg truncate"
-          to={`/user/form/${props.form_id}/${props.action}`}
-        >
-          {props.action === "share" && <ShareIcon className="w-4" />}
-          {props.action === "results" && (
-            <PresentationChartBarIcon className="w-4" />
-          )}
-          {props.action === "build" && <PencilAltIcon className="w-4" />}
-
-          <span className="text-xs"> {props.name}</span>
+        <NavLink to={`/user/form/${props.form_id}/${props.action}`}
+          className="flex flex-col justify-center items-center bg-gray-800 text-white px-4 py-2 w-14 rounded-lg hover:bg-red-800 hover:shadow-md">
+          <span>
+            {props.action === "share" && <ShareIcon className="w-4" />}
+            {props.action === "results" && <PresentationChartBarIcon className="w-4" />}
+            {props.action === "build" && <PencilAltIcon className="w-4" />}
+          </span>
+          <span className="text-xs">
+            {props.name}
+          </span>
         </NavLink>
-      ) : (
-        <button
-          className="hidden md:flex items-center justify-center space-x-1 bg-gray-800 text-gray-100 my-2 px-2 h-8 rounded-lg truncate"
-          onClick={props.onHandle}
-        >
-          {props.action === "rename" && <AdjustmentsIcon className="w-4" />}
-          {props.action === "delete" && <TrashIcon className="w-4" />}
-          {props.action === "copy" && <DuplicateIcon className="w-4" />}
-          {props.action === "settings" && <CogIcon className="w-4" />}
-          <span className="text-xs"> {props.name}</span>
-        </button>
-      )}
+
+      )
+        :
+        (
+          <button onClick={props.onHandle}
+            className="flex flex-col justify-center items-center bg-gray-800 text-white px-4 py-2 w-14 rounded-lg  hover:bg-red-800 hover:shadow-md">
+            <span>
+              {props.action === "delete" && <TrashIcon className="w-4" />}
+              {props.action === "rename" && <PencilAltIcon className="w-4" />}
+              {props.action === "close" && <XIcon className="w-4" />}
+              {props.action === "copy" && <ClipboardIcon className="w-4" />}
+              {props.action === "settings" && <CogIcon className="w-4" />}
+            </span>
+            <span className="text-xs">
+              {props.name}
+            </span>
+
+          </button>
+
+        )
+      }
     </>
   );
 };

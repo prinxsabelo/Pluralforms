@@ -39,7 +39,7 @@ const Dialog = (props) => {
                         <form className="fixed bg-white text-gray-800
                                 top-28 left-2 right-2 p-4 z-50 rounded
                                 md:top-1/4 md:bottom-1/4 md:left-1/3 md:w-1/3"
-
+                            onSubmit={handleSubmit}
                         >
                             <header className="border-b-2 p-2 flex justify-center">
                                 <h3 className="text-2xl md:text-2xl">{header}</h3>
@@ -55,7 +55,7 @@ const Dialog = (props) => {
                                     onClick={closeDialog}>
                                     Cancel
                                 </button>
-                                <Button className="bg-gray-900 text-lg w-48 uppercase" onClick={handleSubmit}>
+                                <Button type="submit" className="bg-gray-900 text-lg w-48 uppercase">
                                     Save
                                 </Button>
 

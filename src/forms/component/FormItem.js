@@ -147,7 +147,7 @@ const FormItem = ({ form, closeForm }) => {
               </div>
             </div>
           </NavLink>
-          <div className="flex-auto flex space-x-2 w-full md:w-auto p-1 ">
+          <div className="flex-auto flex space-x-2 w-full md:w-auto p-2 justify-start xl:justify-end">
             {ActionsArr.map((a) => (
               <ActionItem
                 {...a}
