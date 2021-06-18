@@ -70,6 +70,10 @@ const Questions = () => {
                   Create Question
                 </Button>
               </div>
+              <div className="flex flex-col justify-center py-4  w-full items-center mt-2 space-y-2 justify-center border-b-2">
+                <Button className="bg-red-500 uppercase py-2 text-xs w-1/2"> Edit Welcome Page</Button>
+                <Button className="bg-red-500 uppercase py-2 text-xs w-1/2"> Edit Thank you Page</Button>
+              </div>
             </>
           )}
 
