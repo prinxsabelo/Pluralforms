@@ -69,7 +69,7 @@ const QuestionItem = ({
               shape={properties.shape}
             />
           </div>
-          <div className="ml-14">
+          <div className="ml-14 truncate">
             <span className="font-semibold mr-1">{index}. </span>
             {title}
           </div>
@@ -130,7 +130,7 @@ const QuestionItem = ({
                 shape={properties.shape}
               />
             </div>
-            <div className=" py-4 flex-auto ">{title}</div>
+            <div className=" py-4 flex-auto truncate">{title}</div>
           </NavLink>
 
           <div

@@ -23,7 +23,7 @@ const ToggleSwitch = (props) => {
   const { index, label } = props;
   return (
     <Switch.Group>
-      <div className="flex items-center">
+      <div className="flex items-center ">
         <Switch.Label className="mr-1 text-sm md:text-xl">{label}</Switch.Label>
         <Switch
           checked={enabled}

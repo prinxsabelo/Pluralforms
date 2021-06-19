@@ -57,7 +57,7 @@ const Dialog = (props) => {
                                     Cancel
                                 </button>
                                 <Button type="submit" onClick={handleSubmit} className="bg-gray-900 text-lg w-48 uppercase">
-                                    xSave
+                                    Save
                                 </Button>
 
                             </footer>

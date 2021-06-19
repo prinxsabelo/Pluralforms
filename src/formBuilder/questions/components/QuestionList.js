@@ -8,7 +8,7 @@ import QuestionItem from "./QuestionItem";
 const QuestionList = (props) => {
   const { deleteQuestion } = useContext(BuildQuestionContext);
 
-  const { openDeleteModal, closeModal } = useContext(Context);
+  const { openDeleteModal, closeDeleteModal } = useContext(Context);
   const [question, setQuestion] = useState();
 
   const checkDelete = (q) => {
@@ -16,7 +16,7 @@ const QuestionList = (props) => {
     openDeleteModal();
   };
   const handleDelete = () => {
-    closeModal();
+    closeDeleteModal();
     deleteQuestion(question);
   };
   const { questions } = props;

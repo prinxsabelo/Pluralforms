@@ -18,8 +18,9 @@ const FormContextProvider = (props) => {
         if (form.form_id) {
             //UPDATE EXISTING FORM
             try {
-                const { title, form_id } = form;
-                const response = await sendRequest(`http://localhost:8000/api/user/forms/update`, 'PUT', JSON.stringify({ title, form_id }));
+                const { title, begin_desc, begin_header, end_desc, end_header, form_id } = form;
+                const response = await sendRequest(`http://localhost:8000/api/user/forms/update`, 'PUT',
+                    JSON.stringify({ title, form_id, begin_desc, begin_header, end_desc, end_header }));
                 if (response) {
                     let index = forms.findIndex(form => form_id === form.form_id);
                     let newForms = [...forms];

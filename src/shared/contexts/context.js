@@ -29,15 +29,21 @@ const ContextProvider = (props) => {
         showDialog(false);
     };
 
-    const [open, setOpen] = useState(false);
-
-    const closeModal = () => {
-        setOpen(false);
+    const [deleteOpen, setDeleteOpen] = useState(false);
+    const [editOpen, setEditOpen] = useState(false);
+    const closeDeleteModal = () => {
+        setDeleteOpen(false);
     }
     const openDeleteModal = () => {
-
-        setOpen(true);
+        setDeleteOpen(true);
     }
+    const closeEditModal = () => {
+        setEditOpen(false);
+    }
+    const openEditModal = () => {
+        setEditOpen(true);
+    }
+
     const handleDelete = () => {
         alert('delete');
     }
@@ -57,10 +63,12 @@ const ContextProvider = (props) => {
                 setModalShow,
                 // ModalContent,
                 // setModalContent,
-                open,
-                closeModal,
+                deleteOpen,
+                closeDeleteModal,
                 openDeleteModal,
-
+                editOpen,
+                openEditModal,
+                closeEditModal,
                 handleDelete
             }}
         >
