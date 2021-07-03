@@ -122,7 +122,7 @@ export default function EditModal(props) {
                             onChange={e => setBeginDesc(e.target.value)}
                             name="begin_desc"
                             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500
-                              rounded p-3 mb-3 leading-tight focus:outline-none focus:bg-white h-24" id="begin_desc"
+                              rounded p-3 mb-3 leading-tight focus:outline-none focus:bg-white h-18" id="begin_desc"
                             type="text" placeholder="Jane"
                             value={beginDesc}
                           />
@@ -167,7 +167,7 @@ export default function EditModal(props) {
 
                               name="end_desc"
                               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500
-                            rounded p-3 mb-3 leading-tight focus:outline-none focus:bg-white" id="end_desc"
+                            rounded p-3 mb-3 leading-tight focus:outline-none focus:bg-white  h-18" id="end_desc"
                               type="text" placeholder="Jane"
                               value={endDesc}
                             />
@@ -183,13 +183,13 @@ export default function EditModal(props) {
 
 
               }
-              <div className="flex justify-end space-x-4 px-7">
+              <div className="flex justify-end space-x-4 px-7 mb-2">
                 <button type="button"
                   className="text-md underline font-black outline-none focus:outline-none shadow p-3"
                   onClick={closeEditModal}
                   ref={cancelButtonRef}
                 >
-                  Cancel
+                  Cancelx
                 </button>
 
                 <Button className="bg-gray-900 text-lg  w-48 uppercase"

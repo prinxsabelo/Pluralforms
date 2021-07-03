@@ -88,6 +88,7 @@ const FormItem = ({ form, closeForm }) => {
   ];
 
   const { form_id, title, no_questions, no_responses, updated_at } = form;
+
   const header = (
     <div className="flex w-full items-center -mb-1 space-x-1 py-2 px-3 truncate text-lg bg-white">
       <div>{title}</div>
@@ -120,7 +121,7 @@ const FormItem = ({ form, closeForm }) => {
                 </div>
                 <div className="flex space-x-4 text-xs">
                   <div>{no_questions} questions</div>
-                  <div>{no_responses} responses</div>
+                  <div>{no_responses} 0 responses</div>
                 </div>
               </div>
             </NavLink>
@@ -143,7 +144,7 @@ const FormItem = ({ form, closeForm }) => {
                 <h3 className="text-xl truncate pr-8 font-medium"> {title}</h3>
                 <div className="flex text-sm space-x-4">
                   <p>  {no_questions} {no_questions > 1 ? "questions" : "question"}{" "}</p>
-                  <p>  0  {no_responses} {no_responses > 1 ? "responses" : "response"}</p>
+                  <p>    {no_responses} 0 {no_responses > 1 ? "responses" : "response"}</p>
                   <p> Last updated <Moment fromNow>{updated_at}</Moment> </p>
 
                 </div>

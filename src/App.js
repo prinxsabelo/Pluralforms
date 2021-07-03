@@ -6,6 +6,7 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
+import { FormReply } from "./FormReply";
 
 import { PublicHomePage } from "./PublicHomePage";
 import AuthContext from "./shared/contexts/auth.context";
@@ -18,11 +19,13 @@ const Routes = ({ authProceed }) => {
 
   return (
     <Switch>
-      <Route exact path="/">
+      {/* <Route exact path="/">
         {authProceed ? <Redirect to="/user" /> : <PublicHomePage />}
-      </Route>
+      </Route> */}
+      <Route exact path="/" component={PublicHomePage} />
       <Route path="/login/google" component={ConfirmLogin} />
       <Route path="/login/facebook" component={ConfirmLogin} />
+
       <ProtectedLogin path="/login" authProceed={authProceed} component={Login} />
 
       <ProtectedRoute
@@ -30,6 +33,7 @@ const Routes = ({ authProceed }) => {
         authProceed={authProceed}
         component={User}
       />
+      <Route path="/form" component={FormReply} />
     </Switch>
   );
 };

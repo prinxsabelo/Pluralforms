@@ -51,6 +51,7 @@ const FormContextProvider = (props) => {
         console.log(isLoading);
     };
     const addForm = () => {
+        // Dialog is being opened right here..
         setDialogContent({
             header: "Create Form",
             placeholder: "Give your form a name",
@@ -60,6 +61,7 @@ const FormContextProvider = (props) => {
         showDialog(true);
     };
     const editForm = (form) => {
+        // Dialog is being opened right here..
         const { title, form_id } = form;
         setDialogContent({
             header: "Edit Form",

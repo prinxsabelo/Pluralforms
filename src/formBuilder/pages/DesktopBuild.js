@@ -103,32 +103,34 @@ const DesktopBuild = () => {
           <>
             <BuildHeader {...question}>
               <div className="flex space-x-2">
-                <Button
-                  onClick={() => goto("backward", question.q_id)}
-                  className=" text-gray-500 bg-white flex items-center justify-center"
-                >
-                  {index > 1 ? (
-                    <ChevronDoubleLeftIcon className="w-6" />
-                  ) : (
-                    <span className="w-5">.</span>
-                  )}
-                </Button>
-                <Button
-                  onClick={() => goto("forward", question.q_id)}
-                  className=" text-gray-500 bg-white flex items-center justify-center"
-                >
-                  {
-                    form.questions &&
-                    <>
-                      {index < form.questions.length ? (
-                        <ChevronDoubleRightIcon className="w-6" />
-                      ) : (
-                        <span className="w-5">.</span>
-                      )}
-                    </>
-                  }
 
-                </Button>
+                {index > 1 ?
+                  <Button
+                    onClick={() => goto("backward", question.q_id)}
+                    className=" text-gray-500 bg-white flex items-center justify-center"
+                  >
+                    <ChevronDoubleLeftIcon className="w-6" />
+                  </Button> :
+                  <Button className="cursor-not-allowed  text-gray-500 bg-white flex items-center justify-center">
+                    <span className="w-5">.</span>
+                  </Button>
+                }
+                {index < form.questions.length ?
+                  <Button
+                    onClick={() => goto("forward", question.q_id)}
+                    className=" text-gray-500 bg-white flex items-center justify-center"
+                  >
+                    <ChevronDoubleRightIcon className="w-6" />
+                  </Button>
+                  :
+                  <Button
+                    onClick={() => goto("forward", question.q_id)}
+                    className="cursor-not-allowed  text-gray-500 bg-white flex items-center justify-center"
+                  >
+                    <span className="w-5">.</span>
+                  </Button>
+                }
+
               </div>
               <div>
                 <BuildRequired {...question} />

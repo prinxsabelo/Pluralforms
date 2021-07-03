@@ -8,7 +8,7 @@ const Login = () => {
     const [googleUrl, setGoogleUrl] = useState("");
     const [facebookUrl, setFacebookUrl] = useState("");
     const Auth = useContext(AuthContext);
-    console.log(Auth);
+    // console.log(Auth);
 
     useEffect(() => {
         if (!Auth.token) {
@@ -27,7 +27,7 @@ const Login = () => {
                     'http://localhost:8000/api/login/facebook',
                 )
                 if (facebookUrl) {
-                    console.log(facebookUrl);
+                    // console.log(facebookUrl);
                     const { url } = facebookUrl;
                     setFacebookUrl(url);
                 }

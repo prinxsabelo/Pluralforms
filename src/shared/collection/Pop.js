@@ -24,12 +24,12 @@ const Pop = props => {
                                 props.total > props.length ?
                                     <button className="underline outline-none focus:outline-none hover:text-red-700 font-bold" onClick={props.selectAll}>
                                         Select All
-                                            </button>
+                                    </button>
 
                                     :
                                     <button className="underline outline-none focus:outline-none hover:text-red-700 font-bold" onClick={props.clearAll}>
                                         Clear Selection
-                                            </button>
+                                    </button>
 
 
                             }
@@ -46,7 +46,7 @@ const Pop = props => {
                 }
                 {props.type !== "response" &&
                     <>
-                        {props.header && props.header}
+                        <div className="w-11/12">  {props.header && props.header}</div>
                         <div className="py-2 flex flex-col space-y-1 text-base">
                             {props.rename &&
                                 <button onClick={props.rename} className="border-4 w-full text-left p-2   flex items-center space-x-2">
