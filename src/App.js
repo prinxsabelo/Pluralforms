@@ -10,6 +10,7 @@ import { FormReply } from "./FormReply";
 
 import { PublicHomePage } from "./PublicHomePage";
 import AuthContext from "./shared/contexts/auth.context";
+import FormReplyContextProvider from "./shared/contexts/form-reply.context";
 import ConfirmLogin from "./user/pages/ConfirmLogin";
 import Login from "./user/pages/Login";
 import { User } from "./user/pages/User";
@@ -85,10 +86,16 @@ function App() {
 
   return (
     <>
+
+
+
       <AuthContext.Provider value={{ token, setToken, user, setUser, authProceed }}>
-        <Router>
-          <Routes authProceed={authProceed} />
-        </Router>
+        <FormReplyContextProvider>
+          <Router>
+            <Routes authProceed={authProceed} />
+          </Router>
+        </FormReplyContextProvider>
+
       </AuthContext.Provider>
     </>
   );

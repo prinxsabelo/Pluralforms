@@ -115,7 +115,7 @@ const DesktopBuild = () => {
                     <span className="w-5">.</span>
                   </Button>
                 }
-                {index < form.questions.length ?
+                {index < form.questions && form.questions.length ?
                   <Button
                     onClick={() => goto("forward", question.q_id)}
                     className=" text-gray-500 bg-white flex items-center justify-center"
