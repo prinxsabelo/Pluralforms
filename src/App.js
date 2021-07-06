@@ -6,7 +6,8 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import { FormReply } from "./FormReply";
+import { FormReply } from "./formReply/pages/FormReply";
+
 
 import { PublicHomePage } from "./PublicHomePage";
 import AuthContext from "./shared/contexts/auth.context";
@@ -34,7 +35,7 @@ const Routes = ({ authProceed }) => {
         authProceed={authProceed}
         component={User}
       />
-      <Route path="/form" component={FormReply} />
+      <Route path="/form/:form_id" component={FormReply} />
     </Switch>
   );
 };

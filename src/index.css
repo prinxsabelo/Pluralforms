@@ -257,9 +257,8 @@ html {
   background-color: pink;
 }
 
-#section2 {
+.section {
   height: 100vh;
-  background-color: yellow;
   transition-duration: 4s;
   transition-delay: 2s;
 }

@@ -2,10 +2,10 @@ import ReactFullpage from '@fullpage/react-fullpage'; // will return static vers
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/outline";
 import { useState, useContext, useEffect } from 'react';
 
-import FormBegin from './FormBegin';
+import FormBeginx from './FormBeginx';
 import { FormReplyContext } from './shared/contexts/form-reply.context';
 
-export const FormReply = () => {
+export const FormReplyx = () => {
     const { getReply, data } = useContext(FormReplyContext);
     const [loading, setLoading] = useState(true);
 
@@ -15,7 +15,6 @@ export const FormReply = () => {
             document.getElementById(`down${sectionIndex}`).click();
         } else {
             document.getElementById(`up${sectionIndex}`).click();
-
         }
     }
     const moveSection = (mover, index, fullpageApi) => {
@@ -61,7 +60,7 @@ export const FormReply = () => {
         <>
 
             {(beginConfirm) ?
-                <FormBegin beginData={beginData} startForm={() => setBeginConfirm(false)} />
+                <FormBeginx beginData={beginData} startForm={() => setBeginConfirm(false)} />
                 :
                 <>
                     <div className="mmm-b bg-indigo-900 text-white flex justify-end items-center space-x-2">
@@ -100,20 +99,20 @@ export const FormReply = () => {
                             ..
                         </div>
                         <div className="bg-white relative top-2 -left-1 rounded-full w-14 h-14 flex items-center justify-center">
-
+                            {avatar}
                         </div>
                     </div>
                     <ReactFullpage
                         //fullpage options
                         licenseKey={'YOUR_KEY_HERE'}
-                        scrollingSpeed={500} /* Options here */
+                        scrollingSpeed={1000} /* Options here */
 
                         render={({ state, fullpageApi }) => {
                             return (
                                 <ReactFullpage.Wrapper>
                                     {
                                         replyArr.map((rq, index) =>
-                                            <div key={rq.q_id} className={` section bg-gray-400`}>
+                                            <div key={rq.q_id} className={` section bg-gray-200`}>
                                                 <div className="flex justify-center p-2">
                                                     {rq.title}
                                                 </div>
