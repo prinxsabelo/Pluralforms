@@ -21,9 +21,22 @@ const FormReplyContextProvider = props => {
         }
 
     }
+    const sendReply = async ({ token, answer, form_id, a_id, q_id }) => {
+        try {
+            const response = await sendRequest(`http://localhost:8000/api/reply/build`,
+                'POST',
+                JSON.stringify({ a_id, q_id, answer, form_id, token }));
+            if (response) {
+                setData(response);
+            }
+        }
+        catch {
+
+        }
+    }
     return (
         <FormReplyContext.Provider
-            value={{ getReply, data }}>
+            value={{ getReply, sendReply, data }}>
             {props.children}
         </FormReplyContext.Provider>
     )

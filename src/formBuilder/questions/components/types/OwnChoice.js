@@ -69,7 +69,7 @@ const OwnChoice = (props) => {
         <div className="flex md:pb-1">
           {choices.length <= 4 && (
             <Button
-              className="w-1/3 h-12 md:w-auto bg-gray-700 uppercase"
+              className="w-1/3 h-12 md:w-auto bg-gray-900 uppercase"
               onClick={addChoice}
               style={{ transition: "all .30s ease" }}
             >

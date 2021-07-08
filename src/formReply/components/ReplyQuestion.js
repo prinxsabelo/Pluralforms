@@ -1,87 +1,54 @@
-import ReplyType from "./ReplyType"
-import {
-    ChatAltIcon,
-    MenuAlt4Icon,
-    StarIcon,
-    HeartIcon,
-    ThumbUpIcon,
-    ScaleIcon,
-} from "@heroicons/react/outline";
-const fillReply = answer => {
-    alert(answer);
-}
-const ReplyQuestion = ({ moveSection, rq, index, fullpageApi }) => {
+
+import { useContext } from "react";
+import { FormReplyContext } from "../../shared/contexts/form-reply.context";
+import Rating from "./types/Rating";
+import { useParams } from 'react-router-dom';
+import Choice from "./types/Choice";
+const ReplyQuestion = ({ moveSection, rq, index, fullpageApi, length }) => {
+    const { sendReply } = useContext(FormReplyContext);
+    const { form_id } = useParams();
+    const token = 1;
     console.log(rq)
+    console.log(index);
+    const fillReply = (answer, q_id, a_id) => {
+
+        sendReply({ form_id, answer, q_id, a_id, token });
+        if (length > index + 1) {
+            moveSection("down", index += 1, fullpageApi)
+        } else {
+            alert('ready to submmit..');
+        }
+
+        rq.answer = answer;
+    }
+
     return (
-        <div key={rq.q_id} className={` section bg-gray-200 w-screen h-screen flex 
+        <div key={rq.q_id} className={` section bg-white w-screen h-screen flex 
                                          items-center justify-center
                                          `}>
-            <div className="w-full h-full flex items-center justify-center">
-                {/* <div className="w-full md:w-2/3 h-4/5 bg-yellow-400 flex flex-col py-32 px-2 md:px-16"> */}
-                <div className="w-full md:w-2/3 h-4/5 bg-yellow-400 flex flex-col py-32 px-2 md:px-16">
-                    <div className="flex space-x-2 md:space-x-4">
-                        <div className="w-10 h-10 md:w-10 md:h-10 flex items-center 
-                                            justify-center bg-red-100 rounded-full">
-                            {index + 1}
-                        </div>
-                        <div className="flex flex-col space-y-2 ">
-                            <div className="text-3xl">
-                                {rq.title}
+            <div className="w-full h-full flex mt-36 justify-center">
+                <div className="w-full md:w-2/3 h-2/3">
+                    <div
+                        className={`
+                                ${rq.type === "RATING" && 'flex w-full w-10/12  h-full flex-col px-2  md:px-16 py-32'}
+                                ${rq.type === "CHOICE" && 'flex w-full w-10/12  h-full flex-col justify-center'}
+                        `}>
+                        <div className="flex space-x-2">
+                            <div className="flex justify-center items-center w-10 h-10 bg-indigo-100  rounded-full ">
+                                {index + 1}
                             </div>
-                            <form>
-                                <fieldset className="flex space-x-3">
-                                    <div>
-                                        <input className="hidden" type="radio" id="rating-5" name="rating" value="5" />
-                                        <label htmlFor="rating-5" onClick={() => { fillReply(5) }} >
+                            <div className={`flex-col space-y-4 pt-1 w-full `}>
 
-                                            <StarIcon className={`w-16  hover:text-red-400
-                                             ${rq.answer >= 5 ? 'fill-current text-green-800' : ''}`} />
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <input className="hidden" type="radio" id="rating-4" name="rating" value="4" />
-                                        <label htmlFor="rating-4" onClick={() => { fillReply(4) }} >
-                                            <StarIcon className={` w-16    hover:text-red-400
-                                             ${rq.answer >= 4 ? 'fill-current text-green-800' : ''}`} />
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <input className="hidden" type="radio" id="rating-3" name="rating" value="3" />
-                                        <label htmlFor="rating-3" onClick={() => { fillReply(3) }} >
-                                            <StarIcon className={` w-16    hover:text-red-400
-                                             ${rq.answer >= 3 ? 'fill-current text-green-800' : ''}`} />
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <input className="hidden" type="radio" id="rating-2" name="rating" value="2" />
-                                        <label htmlFor="rating-2" onClick={() => { fillReply(2) }} >
-                                            <StarIcon className={` w-16    hover:text-red-400
-                                             ${rq.answer >= 2 ? 'fill-current text-green-800' : ''}`} />
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <input className="hidden" type="radio" id="rating-1" name="rating" value="4" />
-                                        <label htmlFor="rating-1" onClick={() => { fillReply(1) }} >
-                                            <StarIcon className={` w-16    hover:text-red-400
-                                             ${rq.answer >= 1 ? 'fill-current text-green-800' : ''}`} />
-                                        </label>
-                                    </div>
-                                </fieldset>
-                            </form>
-                            {/* <div>
-                                <input id="label1" name="star" type="radio" value="1" />
-                                <label htmlFor="label1">
-                                    <div>xxxxx</div>
-                                </label>
-                                <input id="label2" name="star" type="radio" value="2" />
-                                <label>
-                                    <div>yyyy</div>
-                                </label>
-                            </div> */}
+                                <div className="text-3xl flex-wrap break-words w-full">
+                                    {rq.title}
+                                </div>
+                                {rq.type === "RATING" && <Rating index={index} q_id={rq.q_id} a_id={rq.a_id} answer={rq.answer} shape={rq.shape} fillReply={fillReply} />}
+                                {rq.type === "CHOICE" && <Choice allow_multiple_selection={rq.allow_multiple_selection} index={index} q_id={rq.q_id} a_id={rq.a_id} answer={rq.answer} choices={rq.choices} fillReply={fillReply} />}
+                            </div>
                         </div>
+
+
                     </div>
-
-
                 </div>
             </div>
 
@@ -106,7 +73,7 @@ const ReplyQuestion = ({ moveSection, rq, index, fullpageApi }) => {
                 </button>
             </div>
 
-        </div>
+        </div >
     )
 }
 export default ReplyQuestion

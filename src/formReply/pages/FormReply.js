@@ -1,5 +1,4 @@
-import ReactFullpage from '@fullpage/react-fullpage'; // will return static version on server and "live" version on client
-import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/outline";
+
 import { useState, useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -23,6 +22,7 @@ export const FormReply = () => {
     const token = 1;
 
     const triggerMove = (move) => {
+        console.log(move);
         if (move === "down") {
             document.getElementById(`down${sectionIndex}`).click();
         } else {
@@ -30,7 +30,7 @@ export const FormReply = () => {
         }
     }
     const moveSection = (mover, index, fullpageApi) => {
-        setSectionIndex(index);
+        setSectionIndex(index, sectionIndex);
         if (mover === "down") {
             fullpageApi.moveSectionDown()
         } else {
@@ -54,7 +54,7 @@ export const FormReply = () => {
         beginData.begin_header = begin_header;
         beginData.begin_desc = begin_desc;
         setAvatar(avatar);
-    }, [form_id, data])
+    }, [form_id, data, beginData, getReply, loading])
     return (
         <>
             {/* {loading ? <div>Loading</div> : <div>Done..</div>} */}
@@ -62,7 +62,7 @@ export const FormReply = () => {
             {beginConfirm ? <FormBegin beginData={beginData} startForm={() => setBeginConfirm(false)} /> :
                 <>
                     <FormHeader avatar={avatar} />
-                    <FormBody replyArr={replyArr} moveSection={moveSection} />
+                    <FormBody sectionIndex={sectionIndex} triggerMove={triggerMove} length={replyArr.length} replyArr={replyArr} moveSection={moveSection} />
                     <FormFooter sectionIndex={sectionIndex} triggerMove={triggerMove} length={replyArr.length} />
                 </>
             }
