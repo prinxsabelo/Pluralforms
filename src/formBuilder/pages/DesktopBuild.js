@@ -141,7 +141,7 @@ const DesktopBuild = () => {
               <div>
                 <textarea
                   ref={inputElement}
-                  className="px-4 py-2 border w-full text-xl rounded-md question-textarea
+                  className="px-4 py-2 border w-full text-xl rounded-md question-textarea border-gray-600
                                     focus:outline-none focus:border-red-400 hover:shadow-md"
                   name="title"
                   onChange={changeHandler}

@@ -1,5 +1,5 @@
 
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect, } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { FormReplyContext } from '../../shared/contexts/form-reply.context';
@@ -15,7 +15,8 @@ export const FormReply = () => {
     const [sectionIndex, setSectionIndex] = useState(0);
     const [avatar, setAvatar] = useState("xxx");
     const [beginConfirm, setBeginConfirm] = useState(true);
-    const beginData = {};
+    const [begin_header, set_begin_header] = useState();
+    const [begin_desc, set_begin_desc] = useState();
     //Fetch  form_id from url..
     const { form_id } = useParams();
     //Fetch token from computer IP..
@@ -51,15 +52,17 @@ export const FormReply = () => {
         }
 
         const { begin_header, begin_desc, avatar } = data;
-        beginData.begin_header = begin_header;
-        beginData.begin_desc = begin_desc;
+        set_begin_header(begin_header);
+        set_begin_desc(begin_desc);
         setAvatar(avatar);
-    }, [form_id, data, beginData, getReply, loading])
+    }, [form_id, data, getReply, loading])
+
     return (
         <>
             {/* {loading ? <div>Loading</div> : <div>Done..</div>} */}
 
-            {beginConfirm ? <FormBegin beginData={beginData} startForm={() => setBeginConfirm(false)} /> :
+            {beginConfirm ? <FormBegin begin_header={begin_header} begin_desc={begin_desc}
+                startForm={() => setBeginConfirm(false)} /> :
                 <>
                     <FormHeader avatar={avatar} />
                     <FormBody sectionIndex={sectionIndex} triggerMove={triggerMove} length={replyArr.length} replyArr={replyArr} moveSection={moveSection} />

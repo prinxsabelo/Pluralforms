@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const Feedback = (props) => {
 
-    const [label, setLabel] = useState("xxx");
+    const [label, setLabel] = useState("");
     useEffect(() => {
         if (props.label) {
             setLabel(props.label);
@@ -18,7 +18,8 @@ const Feedback = (props) => {
 
             <input autoFocus={props.index === 0 || props.index + 1 === props.feedbacksLength} autoComplete="off"
                 placeholder={`Feedback If ${props.occupy}`}
-                className="border w-full p-3  outline-none rounded focus:border-black"
+                className="border  border-gray-600 w-full p-3  outline-none rounded focus:border-black
+                 placeholder-gray-500"
                 onChange={(event) => handleFeedback(event, props.index)}
                 index={props.index}
                 name={`feedback${props.index}`}

@@ -33,7 +33,7 @@ const FormBody = ({ replyArr, moveSection, length }) => {
                     />
                 </>
                 :
-                <div>
+                <div className="w-full h-screen flex items-center justify-center">
                     NO QUESTIONS FOR YOU TO ANSWER..
                 </div>
             }

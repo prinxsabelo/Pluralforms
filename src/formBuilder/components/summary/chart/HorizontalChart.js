@@ -22,7 +22,7 @@ const HorizontalChart = (props) => {
                 label: "Percentage ",
                 data: percentages,
 
-                backgroundColor: 'rgb(116, 202, 254)',
+                backgroundColor: 'rgba(167, 139, 250, 0.8)',
                 categoryPercentage: 1.0,
                 barPercentage: 0.9,
 

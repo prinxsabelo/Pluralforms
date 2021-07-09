@@ -2,15 +2,25 @@ import { useState, useEffect } from "react";
 import {
     CheckIcon
 } from "@heroicons/react/outline";
+import Button from "../../../shared/collection/Button";
+
 const Choice = ({ allow_multiple_selection, answer, q_id, a_id, choices, fillReply }) => {
+    console.log(answer);
     const [arr, setArr] = useState([]);
+    const [loading, setLoading] = useState(true);
     if (allow_multiple_selection) {
-        if (answer && arr.length === 0) {
-            setArr(JSON.parse(answer));
+        if (loading) {
+            if (answer) {
+                //Confirm here if we have an array as response..
+                if (answer && answer.includes(`${"["}`) && answer.length != 0) {
+                    setArr(JSON.parse(answer));
+                }
+
+            }
+
+
+            setLoading(false);
         }
-        // if (answer.length > 0) {
-        // setArr(JSON.parse(answer));
-        // }
 
     }
     const confirmChoice = (label) => {
@@ -33,9 +43,10 @@ const Choice = ({ allow_multiple_selection, answer, q_id, a_id, choices, fillRep
     }, [arr, answer])
     return (
         <div className="w-11/12 md:max-w-md">
+            {/* Confirm if multiple selection first then.. */}
             {allow_multiple_selection ?
                 <>
-                    <div className="text-lg md:text-sm">
+                    <div className="text-sm md:text-sm">
                         Choose as many as you like..
                     </div>
 
@@ -43,16 +54,16 @@ const Choice = ({ allow_multiple_selection, answer, q_id, a_id, choices, fillRep
 
                         <div key={choice.choice_id} onClick={() => confirmChoice(choice.label)}
                             className={` bg-gray-300 my-2  p-2 min-w-1/4 rounded-xl flex items-center
-                                 border-2 cursor-pointer
+                                 border-2 cursor-pointer hover:border-red-800 
                                 
-                             ${answer === choice.label ? 'border-green-400 ' : 'border-gray-400'}   
+                             ${arr.includes(choice.label) ? 'border-green-400 bg-green-100' : 'border-gray-400 hover:shadow-md hover:p-8'}   
                             `}
 
                         >
-                            <div className="flex items-center w-11/12">
+                            <div className="flex items-center w-11/12 text-base">
                                 <div className="pr-3">
                                     <div className={`flex font-bold text-white text-sm p-3 w-8 h-8 rounded-xl justify-center items-center
-                                   ${answer === choice.label ? 'bg-green-800 ' : 'bg-gray-100 text-gray-800'}   
+                                  ${arr.includes(choice.label) ? 'bg-green-800 ' : 'bg-gray-100 text-gray-800'}   
                             `}>
                                         {String.fromCharCode(index + 1 + 64)}
                                     </div>
@@ -62,7 +73,7 @@ const Choice = ({ allow_multiple_selection, answer, q_id, a_id, choices, fillRep
                                 </div>
                             </div>
                             <div className="w-1/12 flex items-center justify-end">
-                                {answer === choice.label &&
+                                {arr.includes(choice.label) &&
                                     <CheckIcon className="w-6 text-green-800" />
                                 }
 
@@ -72,20 +83,22 @@ const Choice = ({ allow_multiple_selection, answer, q_id, a_id, choices, fillRep
 
                     )}
                     <div>
-                        <button className="bg-red-400 p-2 m-2 text-2xl" onClick={() => submitChoices()}>
-                            Submit
-                        </button>
+                        <Button className="bg-gray-900 p-2 mt-1 md:mt-2 w-full text-lg md:text-xl" onClick={() => submitChoices()}>
+                            Continue
+                        </Button>
+
                     </div>
                 </>
                 :
                 <>
+                    {/* Else it is single choice.. */}
                     {choices.map((choice, index) =>
 
                         <div key={choice.choice_id} onClick={() => fillReply(choice.label, q_id, a_id)}
                             className={` bg-gray-300 my-2  p-2 min-w-1/4 rounded-xl flex items-center
                              border-2 cursor-pointer
                             
-                         ${answer === choice.label ? 'border-green-400 ' : 'border-gray-400'}   
+                         ${answer === choice.label ? 'border-green-400  bg-green-100' : 'border-gray-400  hover:border-red-800 hover:shadow-md hover:p-8'}   
                         `}
 
                         >
@@ -113,6 +126,7 @@ const Choice = ({ allow_multiple_selection, answer, q_id, a_id, choices, fillRep
                     )}
                 </>
             }
+
         </div>
     )
 }

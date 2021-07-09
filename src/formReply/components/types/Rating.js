@@ -3,19 +3,24 @@ import {
     HeartIcon,
     ThumbUpIcon
 } from "@heroicons/react/outline";
+import Button from "../../../shared/collection/Button";
+
 const Rating = ({ index, q_id, a_id, shape, answer, fillReply }) => {
     let ratings = 5;
-    answer = parseInt(answer);
+    if (answer) {
+        answer = parseInt(answer);
+    }
+
     return (
-        <form className="w-full flex justify-evenly md:justify-start md:space-x-2">
+        <form className="w-full flex flex-col space-y-12">
 
 
-            <>
+            <div className="flex justify-evenly md:justify-start md:space-x-2">
                 {Array.from(Array(parseInt(ratings)), (rating, r_index) => {
                     return (
 
                         <div key={r_index}>
-                            <input className="hidden" type="radio" id={`r${r_index + 1}`} name="rating" value={r_index + 1} />
+                            <input className="hidden" type="radio" name="rating" value={r_index + 1} />
 
                             <label htmlFor={`r${r_index + 1}`} onClick={() => { fillReply(r_index + 1, q_id, a_id) }} >
 
@@ -52,7 +57,15 @@ const Rating = ({ index, q_id, a_id, shape, answer, fillReply }) => {
 
                     )
                 })}
-            </>
+            </div>
+            {answer &&
+                <div className="mt-4">
+                    <Button className="bg-gray-900 p-2   text-lg md:text-xl" onClick={() => { fillReply(answer, q_id, a_id) }}>
+                        Continue
+                    </Button>
+                </div>
+            }
+
         </form>
     )
 }
