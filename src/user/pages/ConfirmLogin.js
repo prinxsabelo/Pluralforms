@@ -11,7 +11,7 @@ const ConfirmLogin = () => {
     const location = useLocation();
     const Auth = useContext(AuthContext);
     let history = useHistory();
-    console.log(Auth);
+
     const fetchApi = useCallback(async () => {
         const userData = cookie.get("userData");
         if (!userData && !Auth.authProceed) {
@@ -31,7 +31,7 @@ const ConfirmLogin = () => {
                 Auth.setToken(token);
                 Auth.setUser(user);
 
-                history.push("/user");
+                history.push("/user/forms");
             }
         }
 

@@ -6,6 +6,7 @@ import Pop from "../../shared/collection/Pop";
 import Moment from 'react-moment';
 
 import ActionItem from "./ActionItem";
+import { DotsVerticalIcon } from "@heroicons/react/outline";
 const ClosedFormItem = ({ form, checkDelete, restoreForm }) => {
     const [pop, setPop] = useState(false);
 
@@ -16,7 +17,7 @@ const ClosedFormItem = ({ form, checkDelete, restoreForm }) => {
 
     const del = () => {
         setPop(false);
-        checkDelete(form_id);
+        checkDelete(form.form_id);
     };
     const restore = () => {
         restoreForm(form);
@@ -58,7 +59,7 @@ const ClosedFormItem = ({ form, checkDelete, restoreForm }) => {
         <>
             <div
                 className=" md:border-2  md:rounded-lg md:flex-row  md:m-2 hover:shadow-md
-                                shadow-sm   border   md:flex flex-col w-full mb-1    bg-red-100
+                                shadow-sm   border   md:flex flex-col w-full mb-1    bg-red-200
                         "
             >
                 {/* Mobile Device Design Here.. */}
@@ -68,29 +69,23 @@ const ClosedFormItem = ({ form, checkDelete, restoreForm }) => {
 
                             className="flex w-full py-2 px-2 space-x-2 items-center"
                         >
-                            <div className="flex-auto w-12 h-12 border flex items-center justify-center">
-                                xxx
-                            </div>
-                            <div className="truncate w-10/12">
-                                <h3 className="text-lg w-full truncate font-medium">
-                                    {" "}
+
+                            <div className="flex flex-col">
+                                <div>
                                     {title}{" "}
-                                </h3>
-                                <div className="flex  space-x-4  w-full">
-                                    <p className="text-xs">Last updated <Moment fromNow>{updated_at}</Moment> </p>
                                 </div>
-                                <div className="flex space-x-4 text-xs">
+                                <div className="flex space-x-3 text-sm tracking-wide">
                                     <div>{no_questions} questions</div>
                                     <div>{no_responses} responses</div>
+                                    <div><Moment format="MMM D, YYYY.">{updated_at}</Moment> </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
-                    <div className="flex-auto  flex items-center justify-center">
-                        <button onClick={() => openPop()} className="w-full py-4 border">
-                            <div>::</div>
-                        </button>
-                    </div>
+                    <button className="flex flex-auto items-center justify-center" onClick={() => openPop()}>
+                        <DotsVerticalIcon className="h-8" />
+                    </button>
                 </div>
 
                 <div className="hidden md:flex w-full flex-wrap py-1">
@@ -98,8 +93,7 @@ const ClosedFormItem = ({ form, checkDelete, restoreForm }) => {
                         className="w-6/12 flex p-2  items-center "
 
                     >
-                        <div className="w-10/12 truncate flex space-x-2">
-                            <div className="w-12 h-12 border-2 flex items-center justify-center"> xxx </div>
+                        <div className="w-10/12 truncate flex space-x-2 px-4">
                             <div className=" w-full">
                                 <h3 className="text-xl truncate pr-8 font-medium"> {title}</h3>
                                 <p className="text-sm"> Last updated <Moment fromNow>{updated_at}</Moment> </p>
@@ -110,7 +104,7 @@ const ClosedFormItem = ({ form, checkDelete, restoreForm }) => {
                                 {no_questions} {no_questions > 1 ? "questions" : "question"}{" "}
                             </div>
                             <div>
-                                0 {no_responses} {no_responses > 1 ? "responses" : "response"}
+                                {no_responses} {no_responses > 1 ? "responses" : "response"}
                             </div>
                         </div>
                     </div>

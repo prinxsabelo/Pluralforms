@@ -1,9 +1,9 @@
 import { useEffect, useState, } from "react";
 import Cookies from "js-cookie";
 
-import { useContext } from "react/cjs/react.development";
+import { useContext } from "react";
 import AuthContext from "../contexts/auth.context"
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { NavLink } from "react-router-dom";
 import { useHttpClient } from "../hooks/http-hook";
 
 
@@ -22,7 +22,6 @@ const UserProfileLink = () => {
         Cookies.remove("userData");
         Auth.setUser(null);
         Auth.setToken(null);
-
     }
     return (
         <>

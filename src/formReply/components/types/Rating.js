@@ -5,12 +5,17 @@ import {
 } from "@heroicons/react/outline";
 import Button from "../../../shared/collection/Button";
 
-const Rating = ({ index, q_id, a_id, shape, answer, fillReply }) => {
+const Rating = ({ index, q_id, a_id, shape, answer, fillReply, length, submitForm }) => {
     let ratings = 5;
     if (answer) {
         answer = parseInt(answer);
     }
-
+    const handleSubmit = () => {
+        fillReply(answer, q_id, a_id);
+        if (index + 1 === length) {
+            submitForm();
+        }
+    }
     return (
         <form className="w-full flex flex-col space-y-12">
 
@@ -58,12 +63,27 @@ const Rating = ({ index, q_id, a_id, shape, answer, fillReply }) => {
                     )
                 })}
             </div>
-            {answer &&
+
+            {/* If last question.. submit form.. */}
+            {index + 1 === length ?
                 <div className="mt-4">
-                    <Button className="bg-gray-900 p-2   text-lg md:text-xl" onClick={() => { fillReply(answer, q_id, a_id) }}>
-                        Continue
+                    <Button className="bg-gray-900 p-2 w-56  text-lg md:text-xl" onClick={() => handleSubmit()}>
+                        Submit Form
                     </Button>
                 </div>
+
+                :
+                // Else continue form as usual..
+                <>
+                    {answer &&
+                        <div className="mt-4">
+                            <Button className="bg-gray-900 p-2   text-lg md:text-xl" onClick={() => { fillReply(answer, q_id, a_id) }}>
+                                Continue
+                            </Button>
+                        </div>
+                    }
+
+                </>
             }
 
         </form>

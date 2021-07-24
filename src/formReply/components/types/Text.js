@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Button from "../../../shared/collection/Button";
 
-const Text = ({ answer, q_id, a_id, fillReply }) => {
+const Text = ({ answer, q_id, a_id, fillReply, index, length, submitForm }) => {
     const [questionAnswer, setQuestionAnswer] = useState(answer || '');
     const handleChange = (e) => {
         const { value } = e.target;
@@ -13,7 +13,10 @@ const Text = ({ answer, q_id, a_id, fillReply }) => {
         }
     }
     const handleSubmit = () => {
-        fillReply(questionAnswer, q_id, a_id)
+        fillReply(questionAnswer, q_id, a_id);
+        if (index + 1 === length) {
+            submitForm();
+        }
     }
     return (
         <div className="absolute left-2 right-2 md:relative md:left-0 md:right-0 space-y-4">
@@ -22,10 +25,10 @@ const Text = ({ answer, q_id, a_id, fillReply }) => {
                 placeholder="Give your response here.." autoComplete="off"
                 autoFocus value={questionAnswer} onChange={handleChange} onKeyDown={handleKeyDown}
             />
-            <Button className="bg-gray-900 p-2   text-lg md:text-xl" onClick={() => handleSubmit()}>
-                Continue
-            </Button>
 
+            <Button className="bg-gray-900 p-2   text-lg md:text-xl" onClick={() => handleSubmit()}>
+                {index + 1 === length ? <>Submit Form</> : <>Continue</>}
+            </Button>
         </div>
     )
 }

@@ -1,5 +1,6 @@
+import { DotsVerticalIcon } from "@heroicons/react/outline";
 import { useContext, useState } from "react";
-import { NavLink, useRouteMatch } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import Backdrop from "../../../shared/collection/Backdrop";
 
@@ -7,20 +8,22 @@ import Pop from "../../../shared/collection/Pop";
 
 import QTypeIcon from "../../../shared/collection/QTypeIcon";
 import { BuildQuestionContext } from "../../../shared/contexts/build-question.context";
-const QuestionItem = ({
-  q_id,
-  title,
-  type,
-  properties,
-  index,
-  checkDelete,
-}) => {
+const QuestionItem = (question) => {
+
+  const {
+    q_id,
+    form_id,
+    title,
+    type,
+    properties,
+    q_index,
+    copyQuestion,
+    checkDelete,
+  } = question;
   const {
     showQuestion,
     questionDetail,
-    setTypeAction,
 
-    copyQuestion,
   } = useContext(BuildQuestionContext);
 
   const [pop, setPop] = useState(false);
@@ -29,48 +32,55 @@ const QuestionItem = ({
     setPop(true);
   };
   const copy = () => {
-    copyQuestion({ q_id });
+    console.log('copy question..');
+    copyQuestion({ q_id, form_id });
     setPop(false);
   };
-  const checkItemDelete = ({ q_id }) => {
+  const checkItemDelete = ({ q_id, form_id }) => {
     setPop(false);
-    checkDelete({ q_id });
+    checkDelete({ q_id, form_id });
   };
 
-  const { url } = useRouteMatch();
+  // const { url } = useRouteMatch();
   const header = (
     <div className="flex w-full items-center -mb-1 space-x-2 py-4 px-3 truncate text-lg bg-white">
-      <QTypeIcon
-        color="rgba(31, 41, 55)"
-        className="w-6"
-        type={type}
-        shape={properties.shape}
-      />
-      <div>{title}</div>
+      <div className="flex h-full items-center justify-center">
+        <QTypeIcon
+          color="rgba(31, 41, 55)"
+          className="w-6"
+          type={type}
+          shape={properties.shape}
+        />
+      </div>
+
+      <div> {title}</div>
     </div>
   );
+
   return (
     <>
       <div
-        className={`hidden md:flex q-item text-sm pr-2 rounded m-2 shadow  whitespace-no-wrap min-h-12 items-center
+        className={`hidden md:flex q-item text-sm pr-2 rounded m-1 shadow  whitespace-no-wrap min-h-12 items-center
                 border-2 cursor-pointer justify-between break-words relative
-                ${questionDetail.q_id === q_id && "bg-gray-200"}
+                ${questionDetail && (questionDetail.q_id === q_id) && "bg-gray-200"}
                 `}
       >
         <div
           className="w-full py-1 flex items-center py-3"
-          onClick={() => showQuestion(q_id, type)}
+          onClick={() => showQuestion(question)}
         >
-          <div className="px-2 bg-gray-900 flex absolute top-0 bottom-0 ">
+
+          <div className="px-2 bg-yellow-500 flex absolute top-0 bottom-0 ">
             <QTypeIcon
               color="white"
-              className="w-8 text-gray-100"
+              className="w-8 text-gray-50 bg-yellow-500"
               type={type}
               shape={properties.shape}
             />
+
           </div>
           <div className="ml-14 truncate">
-            <span className="font-semibold mr-1">{index}. </span>
+            <span className="font-semibold mr-1">{q_index + 1}. </span>
             {title}
           </div>
         </div>
@@ -97,7 +107,7 @@ const QuestionItem = ({
 
           <div
             className="bg-gray-100 p-1 rounded-full"
-            onClick={() => checkItemDelete({ q_id })}
+            onClick={() => checkItemDelete({ q_id, form_id })}
           >
             <svg
               className="w-4 h-4"
@@ -115,22 +125,21 @@ const QuestionItem = ({
         </div>
       </div>
 
-      <div className="md:hidden">
-        <div className="flex items-center  border shadow  w-full font-medium mb-1">
+      <div className="md:hidden w-full   flex justify-center flex-col space-x-1 p-1">
+        <div className=" flex items-center  border-2 shadow  w-full font-medium ">
           <NavLink
-            onClick={() => setTypeAction("..")}
+            onClick={() => showQuestion(question)}
             className="flex items-center w-11/12 truncate px-2 space-x-2"
-            to={`${url}/${q_id}`}
+            to={`${window.location.pathname}/${q_id}`}
           >
-            <div className="flex bg-gray-200 p-2  rounded-full h-10 w-10 ">
+            <div className="flex bg-yellow-500 p-2  rounded-full h-10 w-10 ">
               <QTypeIcon
-                color="red"
-                className="w-8"
+                className="w-8 text-gray-50 bg-yellow-500"
                 type={type}
                 shape={properties.shape}
               />
             </div>
-            <div className=" py-4 flex-auto truncate">{title}</div>
+            <div className=" py-4 flex-auto truncate ">{title}</div>
           </NavLink>
 
           <div
@@ -138,7 +147,7 @@ const QuestionItem = ({
                                     flex items-center justify-center"
             onClick={() => openPop()}
           >
-            <div>::</div>
+            <DotsVerticalIcon className="w-6" />
           </div>
         </div>
       </div>
@@ -148,7 +157,7 @@ const QuestionItem = ({
         show={pop}
         message="question"
         copy={() => copy()}
-        del={() => checkItemDelete({ q_id })}
+        del={() => checkItemDelete({ q_id, form_id })}
       />
       {pop && <Backdrop onClick={() => setPop(false)} />}
     </>

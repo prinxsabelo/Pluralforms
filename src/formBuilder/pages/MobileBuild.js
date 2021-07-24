@@ -1,111 +1,60 @@
-import { useContext, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { CheckIcon } from "@heroicons/react/outline";
+import { useContext, } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import Button from "../../shared/collection/Button";
+import LoadingSpinner from "../../shared/collection/LoadingSpinner.";
+import { BuildQuestionContext } from "../../shared/contexts/build-question.context";
 import BuildHeader from "../components/BuildHeader";
 import FormLabel from "../components/FormLabel";
-import Button from "../../shared/collection/Button";
-import QuestionType from "../questions/components/QuestionType";
 import Properties from "../questions/components/Properties";
-import { BuildQuestionContext } from "../../shared/contexts/build-question.context";
+import QuestionType from "../questions/components/QuestionType";
 
-const MobileBuild = () => {
+const MobileBuild = ({ form }) => {
   const history = useHistory();
-  const {
-    form,
-    setForm,
-    getForm,
-    currentType,
-    setTypeAction,
-    typeAction,
-    setCurrentType,
-    developQuestion,
-  } = useContext(BuildQuestionContext);
-  let { form_id, q_id } = useParams();
-  q_id = parseInt(q_id);
-  const [question, setQuestion] = useState();
-  useEffect(() => {
+  const { questionDetail, developQuestion, setQuestionDetail } = useContext(BuildQuestionContext)
 
-    if (!form) {
-      getForm(form_id);
-    }
+  //Function applicable for mobile..
+  const saveQuestion = () => {
     if (form && form.questions) {
-      console.log(form);
-      let q = form.questions.find((x) => x.q_id === q_id);
-      if (q) {
-        if (q.type && !currentType) {
-          setCurrentType(q.type);
-        }
 
-        if (typeAction === "edit") {
-          if (q && q.type !== currentType) {
-            let { q_id, title, properties } = q;
-            setCurrentType(currentType);
-            developQuestion({ title, q_id, properties, type: currentType });
-          }
-        } else {
-          setCurrentType(q.type);
-        }
+      const { form_id } = questionDetail;
 
-        setQuestion(q);
-      }
+      setQuestionDetail();
+      history.push(`/user/form/${form_id}/questions`);
     }
-  }, [
-    q_id,
-    form_id,
-    form,
-    setForm,
-    getForm,
-    currentType,
-    setCurrentType,
-    developQuestion,
-    setTypeAction,
-    typeAction,
-
-  ]);
+  }
 
   const changeHandler = (e) => {
-    //  console.log(e);
-    const { q_id, properties, type } = question;
-    // console.log(q_id);
-    // Check locally.. until save..
+    // Update question..
+    const { q_id, form_id, properties, type, q_index, q_count } = questionDetail
     if (e.target.name === "title") {
-      developQuestion({ title: e.target.value, q_id, type, properties });
+      developQuestion(({
+        title: e.target.value, q_index, q_count, q_id,
+        form_id, type, properties, fix: "update",
+      }));
     }
   };
-  const saveQuestion = (q) => {
-    //  console.log(q);
-    developQuestion(q);
-    history.push(`/user/form/${form.form_id}/questions`);
-  };
+
+
   return (
     <>
+
       <header>
-        <FormLabel />
+        <FormLabel form={form} />
       </header>
       <main>
-        {currentType && question ? (
-          <div>
-            <BuildHeader {...question}>
+        {questionDetail ?
+          <>
+
+            <BuildHeader >
               <Button
                 className="bg-gray-900"
-                onClick={() => saveQuestion(question)}
+                onClick={() => saveQuestion()}
               >
-                <svg
-                  className="w-8 h-8"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
+                <CheckIcon className="w-8 h-8" />
+
               </Button>
             </BuildHeader>
-
             <div
               className="w-full bg-white h-5/6  flex justify-center mobile-build
                                                 px-1 shadow rounded  relative"
@@ -114,29 +63,32 @@ const MobileBuild = () => {
                 <div>
                   <textarea
                     autoFocus={true}
-                    className="p-2 border w-full text-base rounded-md question-textarea
+                    className="p-2 border w-full text-base rounded-md question-textarea border-2 border-red-400
                                     focus:outline-none focus:shadow-md hover:shadow-md "
                     name="title"
                     placeholder="Type your Question Here.."
-                    value={question.title}
+                    value={questionDetail.title}
                     onChange={changeHandler}
                   ></textarea>
                 </div>
-                <QuestionType {...question} />
-                <Properties {...question} />
+                <QuestionType />
+
+                <Properties {...questionDetail} />
               </form>
             </div>
-            <footer className="fixed bottom-0 bg-white border-t w-full p-3 tracking-wider uppercase text-sm">
-              form made of love for you..
-            </footer>
-          </div>
-        ) : (
-          <div>Not Found..</div>
-        )}
+          </>
+          :
+          <>
+            <LoadingSpinner asOverlay>
+              ..
+            </LoadingSpinner>
+          </>
+        }
       </main>
-
-      {/* */}
+      <footer className="fixed bottom-0 bg-white border-t w-full p-3 tracking-wider uppercase text-sm">
+        pluralforms made of love for you..
+      </footer>
     </>
-  );
-};
+  )
+}
 export default MobileBuild;

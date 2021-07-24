@@ -5,64 +5,72 @@ import { BuildQuestionContext } from "../../../../shared/contexts/build-question
 import Choice from "./Choice";
 
 const OwnChoice = (props) => {
-  const { q_id, title, type, properties } = props;
-  const { developQuestion } = useContext(BuildQuestionContext);
 
+  const { developQuestion, questionDetail } = useContext(BuildQuestionContext);
+
+  const [properties, setProperties] = useState();
   const [choices, setChoices] = useState([]);
+
   useEffect(() => {
-    if (properties.choices.length > 0) {
-      setChoices(properties.choices);
-    } else {
-      setChoices([{ label: "", index: 0 }]);
+    if (questionDetail) {
+      setProperties(questionDetail.properties);
+
+      if (questionDetail.properties.choices.length > 0) {
+        setChoices(questionDetail.properties.choices);
+      } else {
+        setChoices([{ label: "", c_index: 0 }]);
+      }
     }
-  }, [setChoices, properties.choices, properties.choices.length]);
-  const handleChoice = (event, index) => {
+
+  }, [questionDetail]);
+  const handleChoice = (event, c_index) => {
+    const { q_id, title, form_id, type, q_index, q_count } = questionDetail;
     const { value } = event.target;
-
-    choices[index].label = value;
+    choices[c_index].label = value;
     properties.choices = choices;
+    developQuestion({ title, q_id, properties, form_id, type, fix: "update", q_count, q_index });
 
-    developQuestion({ title, q_id, properties, type });
   };
   const addChoice = () => {
-    const newChoice = { label: "", index: choices.length };
+    const { q_id, title, form_id, type, q_index, q_count } = questionDetail;
+    const newChoice = { label: "", c_index: choices.length };
     const newChoices = [...choices, newChoice]
     setChoices(newChoices);
     properties.choices = newChoices;
-    developQuestion({ title, q_id, properties, type });
+    developQuestion({ title, q_id, properties, form_id, type, fix: "update", q_count, q_index });
   };
   const deleteChoice = (choice) => {
+    const { q_id, title, form_id, type, q_index, q_count } = questionDetail;
     let i = 0;
     const newChoices = choices
-      .filter((c) => c.index !== choice.index)
+      .filter((c) => c.c_index !== choice.c_index)
       .map((el) => {
-        console.log(el.index);
-        el.index = i;
+        console.log(el.c_index);
+        el.c_index = i;
         i++;
         return el;
       });
-    console.log(newChoices);
     setChoices(newChoices);
     properties.choices = newChoices;
 
-    developQuestion({ title, q_id, properties, type });
+    developQuestion({ title, q_id, properties, form_id, type, fix: "update", q_count, q_index });
   };
   if (choices.length === 0) {
-    setChoices([{ label: "", index: 0 }]);
+    setChoices([{ label: "", c_index: 0 }]);
   }
   return (
     <>
-      <div className="w-full h-full  flex flex-col space-y-2 h-4/5 choice-auto">
-        {choices.map((choice, index) => (
+      <div className="w-full h-full  flex flex-col space-y-2 h-4/5 choice-auto mb-2">
+        {choices.map((choice, c_index) => (
           <Choice
-            key={index}
-            index={index}
-            name={`c${index}`}
+            key={c_index}
+            c_index={c_index}
+            name={`c${c_index}`}
             addChoice={addChoice}
             choicesLength={choices.length}
             deleteChoice={deleteChoice}
             label={choice.label}
-            onChange={(event, index) => handleChoice(event, index)}
+            onChange={(event, c_index) => handleChoice(event, c_index)}
             {...choice}
           />
         ))}

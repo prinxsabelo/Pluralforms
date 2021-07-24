@@ -1,56 +1,56 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useRef, useContext, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Context } from "../contexts/context";
 import Button from "./Button";
 import { useState } from "react/cjs/react.development";
+import { FormContext } from "../contexts/form.context";
 
 
-export default function EditModal(props) {
+export default function LandingModal(props) {
+
   const {
-    closeEditModal,
-    editOpen
+    closeLandingModal,
+    landingOpen
 
-  } = useContext(Context);
+  } = useContext(FormContext);
 
   const cancelButtonRef = useRef();
   const [beginHeader, setBeginHeader] = useState("");
   const [beginDesc, setBeginDesc] = useState("");
   const [endHeader, setEndHeader] = useState("");
   const [endDesc, setEndDesc] = useState("");
+  const { landingContent, sendForm } = useContext(FormContext);
+
+
   useEffect(() => {
-    if (props.form) {
+    if (landingContent) {
 
-      const { begin_header, begin_desc, end_header, end_desc } = props.form;
-
-      if (begin_header)
-        setBeginHeader(begin_header);
-      if (begin_desc)
-        setBeginDesc(begin_desc);
-      if (end_header)
-        setEndHeader(end_header);
-      if (end_desc)
-        setEndDesc(end_desc);
+      const { begin_header, begin_desc, end_header, end_desc } = landingContent;
+      setBeginHeader(begin_header);
+      setBeginDesc(begin_desc);
+      setEndHeader(end_header);
+      setEndDesc(end_desc);
 
     }
-  }, [setBeginHeader, props.form])
-  const sendForm = () => {
-    let form = props.form;
-    form.begin_desc = beginDesc;
-    form.end_desc = endDesc;
-    form.begin_header = beginHeader;
-    form.end_header = endHeader;
-    props.onEdit(form)
+  }, [landingContent])
+
+  const sendLanding = () => {
+
+    landingContent.begin_desc = beginDesc;
+    landingContent.end_desc = endDesc;
+    landingContent.begin_header = beginHeader;
+    landingContent.end_header = endHeader;
+    sendForm(landingContent)
   }
   return (
-    <Transition.Root show={editOpen} as={Fragment}>
+    <Transition.Root show={landingOpen} as={Fragment}>
       <Dialog
         as="div"
         static
         className="fixed z-100 inset-0 overflow-y-auto"
         initialFocus={cancelButtonRef}
-        open={editOpen}
-        onClose={closeEditModal}
+        open={landingOpen}
+        onClose={closeLandingModal}
       >
         <div className="flex items-end justify-center min-h-screen pt-1 px-4 pb-20 text-center sm:block sm:p-0 h-screen">
           <Transition.Child
@@ -89,7 +89,7 @@ export default function EditModal(props) {
                   my-2 sm:align-middle
                  sm:w-1/3 w-full h-3/4 md:h-1/2 "
             >
-              {props.editType === "begin" ? (
+              {landingContent && landingContent.landing_type === "begin" ? (
                 <>
                   <div className="bg-white px-4 pt-5">
                     <div className="flex flex-col sm:items-start">
@@ -109,8 +109,9 @@ export default function EditModal(props) {
                             name="begin_header"
                             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500
                                  rounded p-3 mb-3 leading-tight focus:outline-none focus:bg-white" id="begin_header"
-                            type="text" placeholder="Jane"
+                            type="text" placeholder="Welcome your audience.."
                             value={beginHeader}
+                            autoComplete="off"
                           />
 
                         </div>
@@ -121,10 +122,11 @@ export default function EditModal(props) {
                           <textarea
                             onChange={e => setBeginDesc(e.target.value)}
                             name="begin_desc"
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500
-                              rounded p-3 mb-3 leading-tight focus:outline-none focus:bg-white h-18" id="begin_desc"
+                            className="appearance-none block w-full bg-gray-200 text-gray-900 border border-red-500
+                              rounded p-3 mb-3 leading-tight focus:outline-none focus:bg-white blur-none" id="begin_desc"
                             type="text" placeholder="Jane"
                             value={beginDesc}
+                            autoComplete="off"
                           />
 
                         </div>
@@ -186,14 +188,14 @@ export default function EditModal(props) {
               <div className="flex justify-end space-x-4 px-7 mb-2">
                 <button type="button"
                   className="text-md underline font-black outline-none focus:outline-none shadow p-3"
-                  onClick={closeEditModal}
+                  onClick={closeLandingModal}
                   ref={cancelButtonRef}
                 >
-                  Cancelx
+                  Cancel
                 </button>
 
                 <Button className="bg-gray-900 text-lg  w-48 uppercase"
-                  onClick={sendForm} >
+                  onClick={sendLanding} >
                   Save
                 </Button>
 

@@ -8,7 +8,7 @@ const Tabs = (props) => {
     return (
         <div>
 
-            <ul className="nav nav-tabs px-2 py-1">
+            <ul className="nav nav-tabs px-2 ">
                 {tabs.map(tab =>
                     <Tab tab={tab} key={tab.id} />
                 )}

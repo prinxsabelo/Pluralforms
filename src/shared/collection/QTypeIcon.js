@@ -10,9 +10,10 @@ const QTypeIcon = ({ type, shape, className, color }) => (
   <>
     {type === "TEXT" && (
       <ChatAltIcon
-        className={`${className} stroke-current stroke-0`}
+        className={`${className} stroke-current stroke-0 `}
         aria-hidden="true"
         fill="none"
+
         stroke="currentColor"
       />
     )}

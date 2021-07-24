@@ -28,7 +28,7 @@ const ToggleSwitch = (props) => {
         <Switch
           checked={enabled}
           onChange={(event) => handleChange(event)}
-          className={`${enabled ? "bg-red-700" : "bg-gray-400"
+          className={`${enabled ? "bg-yellow-600" : "bg-gray-400"
             } relative inline-flex items-center h-5 rounded-full w-9 transition-colors focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-indigo-500`}
         >
           <span

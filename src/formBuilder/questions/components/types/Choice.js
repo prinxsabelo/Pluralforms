@@ -11,10 +11,10 @@ const Choice = (props) => {
             setLabel(props.label);
         }
     }, [props, setLabel])
-    const handleChoice = (event, index) => {
+    const handleChoice = (event, c_index) => {
 
         setLabel(event.target.value);
-        props.onChange(event, index)
+        props.onChange(event, c_index)
     }
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
@@ -25,13 +25,15 @@ const Choice = (props) => {
         <>
 
             <div className=" flex space-x-1 items-center">
-                <input autoFocus={props.index === 0 || props.index + 1 === props.choicesLength} autoComplete="off"
-                    placeholder={`Enter Choice ${props.index + 1} here..`}
-                    className="border w-full p-3  outline-none rounded focus:border-black"
-                    onChange={(event) => handleChoice(event, props.index)}
+                <input autoFocus={props.c_index === 0 || props.c_index + 1 === props.choicesLength}
+
+                    autoComplete="off"
+                    placeholder={`Enter Choice ${props.c_index + 1} here..`}
+                    className="border-2 border-gray-300 w-full p-3  outline-none rounded focus:border-gray-700"
+                    onChange={(event) => handleChoice(event, props.c_index)}
                     onKeyDown={handleKeyDown}
-                    index={props.index}
-                    name={`choice${props.index}`}
+                    c_index={props.c_index}
+                    name={`choice${props.c_index}`}
                     value={label}
                 />
 

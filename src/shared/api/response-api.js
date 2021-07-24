@@ -84,7 +84,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "2",
-                        "value": "1",
+                        "answer": "1",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -93,7 +93,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "3",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -102,7 +102,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "4",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -133,7 +133,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "8",
                         "title": "Rate my Jealousy",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -142,7 +142,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "9",
-                        "value": "3",
+                        "answer": "3",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -153,7 +153,7 @@ const ResponseApi = {
 
                         "a_id": "10",
                         "title": "My flow for you is",
-                        "value": "1",
+                        "answer": "1",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -193,7 +193,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "21",
-                        "value": "1",
+                        "answer": "1",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -202,7 +202,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "31",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -211,7 +211,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "41",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -242,7 +242,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "81",
                         "title": "Rate my Jealousy",
-                        "value": "1",
+                        "answer": "1",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -251,7 +251,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "91",
-                        "value": "1",
+                        "answer": "1",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -262,7 +262,7 @@ const ResponseApi = {
 
                         "a_id": "101",
                         "title": "My flow for you is",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -302,7 +302,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "211",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -311,7 +311,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "311",
-                        "value": "1",
+                        "answer": "1",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -320,7 +320,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "411",
-                        "value": "1",
+                        "answer": "1",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -351,7 +351,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "811",
                         "title": "Rate my Jealousy",
-                        "value": "4",
+                        "answer": "4",
                         "shape": "heart",
                         "total": "5",
                         "type": "RATING",
@@ -360,7 +360,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "911",
-                        "value": "5",
+                        "answer": "5",
                         "total": "5",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -371,7 +371,7 @@ const ResponseApi = {
 
                         "a_id": "1011",
                         "title": "My flow for you is",
-                        "value": "1",
+                        "answer": "1",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -411,7 +411,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "212",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -420,7 +420,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "312",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -429,7 +429,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "412",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -461,7 +461,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "812",
                         "title": "Rate my Jealousy",
-                        "value": "5",
+                        "answer": "5",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -470,7 +470,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "912",
-                        "value": "4",
+                        "answer": "4",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -481,7 +481,7 @@ const ResponseApi = {
 
                         "a_id": "1012",
                         "title": "My flow for you is",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -521,7 +521,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "213",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -530,7 +530,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "313",
-                        "value": "1",
+                        "answer": "1",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -539,7 +539,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "413",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -570,7 +570,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "813",
                         "title": "Rate my Jealousy",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -579,7 +579,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "913",
-                        "value": "5",
+                        "answer": "5",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -590,7 +590,7 @@ const ResponseApi = {
 
                         "a_id": "1013",
                         "title": "My flow for you is",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -630,7 +630,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "2",
-                        "value": "1",
+                        "answer": "1",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -639,7 +639,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "3",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -648,7 +648,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "4",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -679,7 +679,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "8",
                         "title": "Rate my Jealousy",
-                        "value": "1",
+                        "answer": "1",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -688,7 +688,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "9",
-                        "value": "5",
+                        "answer": "5",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -699,7 +699,7 @@ const ResponseApi = {
 
                         "a_id": "10",
                         "title": "My flow for you is",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -739,7 +739,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "21",
-                        "value": "1",
+                        "answer": "1",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -748,7 +748,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "31",
-                        "value": "5",
+                        "answer": "5",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -757,7 +757,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "41",
-                        "value": "5",
+                        "answer": "5",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -788,7 +788,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "81",
                         "title": "Rate my Jealousy",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -797,7 +797,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "91",
-                        "value": "3",
+                        "answer": "3",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -808,7 +808,7 @@ const ResponseApi = {
 
                         "a_id": "101",
                         "title": "My flow for you is",
-                        "value": "1",
+                        "answer": "1",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -848,7 +848,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "211",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -857,7 +857,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "311",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -866,7 +866,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "411",
-                        "value": "1",
+                        "answer": "1",
                         "total": "5",
                         "type": "RATING",
                         "shape": "star",
@@ -897,7 +897,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "811",
                         "title": "Rate my Jealousy",
-                        "value": "4",
+                        "answer": "4",
                         "shape": "heart",
                         "total": "5",
                         "type": "RATING",
@@ -906,7 +906,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "911",
-                        "value": "5",
+                        "answer": "5",
                         "total": "2",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -917,7 +917,7 @@ const ResponseApi = {
 
                         "a_id": "1011",
                         "title": "My flow for you is",
-                        "value": "1",
+                        "answer": "1",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -957,7 +957,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "212",
-                        "value": "5",
+                        "answer": "5",
                         "total": "5",
                         "type": "RATING",
                         "shape": "heart",
@@ -966,7 +966,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "312",
-                        "value": "5",
+                        "answer": "5",
                         "total": "5",
                         "type": "RATING",
                         "shape": "thumb",
@@ -975,7 +975,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "412",
-                        "value": "5",
+                        "answer": "5",
                         "total": "5",
                         "type": "RATING",
                         "shape": "star",
@@ -1006,7 +1006,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "812",
                         "title": "Rate my Jealousy",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -1015,7 +1015,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "912",
-                        "value": "2",
+                        "answer": "2",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -1026,7 +1026,7 @@ const ResponseApi = {
 
                         "a_id": "1012",
                         "title": "My flow for you is",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -1066,7 +1066,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "213",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -1075,7 +1075,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "313",
-                        "value": "5",
+                        "answer": "5",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -1084,7 +1084,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "413",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -1115,7 +1115,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "813",
                         "title": "Rate my Jealousy",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -1124,7 +1124,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "913",
-                        "value": "1",
+                        "answer": "1",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -1135,7 +1135,7 @@ const ResponseApi = {
 
                         "a_id": "1013",
                         "title": "My flow for you is",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -1175,7 +1175,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "2",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -1184,7 +1184,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "3",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -1193,7 +1193,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "4",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -1224,7 +1224,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "8",
                         "title": "Rate my Jealousy",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -1233,7 +1233,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "9",
-                        "value": "3",
+                        "answer": "3",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -1244,7 +1244,7 @@ const ResponseApi = {
 
                         "a_id": "10",
                         "title": "My flow for you is",
-                        "value": "1",
+                        "answer": "1",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -1284,7 +1284,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "21",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -1293,7 +1293,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "31",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -1302,7 +1302,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "41",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -1333,7 +1333,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "81",
                         "title": "Rate my Jealousy",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -1342,7 +1342,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "91",
-                        "value": "1",
+                        "answer": "1",
                         "total": "3",
                         "title": "Your love for me id?",
                         "shape": "thumb",
@@ -1353,7 +1353,7 @@ const ResponseApi = {
 
                         "a_id": "101",
                         "title": "My flow for you is",
-                        "value": "4",
+                        "answer": "4",
                         "shape": "star",
                         "total": "5",
                         "type": "RATING",
@@ -1393,7 +1393,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "211",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -1402,7 +1402,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "311",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -1411,7 +1411,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "411",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -1442,7 +1442,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "811",
                         "title": "Rate my Jealousy",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -1451,7 +1451,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "911",
-                        "value": "5",
+                        "answer": "5",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -1462,7 +1462,7 @@ const ResponseApi = {
 
                         "a_id": "1011",
                         "title": "My flow for you is",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -1502,7 +1502,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "212",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "type": "RATING",
                         "shape": "heart",
@@ -1511,7 +1511,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "312",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "type": "RATING",
                         "shape": "thumb",
@@ -1520,7 +1520,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "412",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -1551,7 +1551,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "812",
                         "title": "Rate my Jealousy",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -1560,7 +1560,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "912",
-                        "value": "2",
+                        "answer": "2",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -1571,7 +1571,7 @@ const ResponseApi = {
 
                         "a_id": "1012",
                         "title": "My flow for you is",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -1611,7 +1611,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "213",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -1620,7 +1620,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "313",
-                        "value": "5",
+                        "answer": "5",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -1629,7 +1629,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "413",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -1660,7 +1660,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "813",
                         "title": "Rate my Jealousy",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -1669,7 +1669,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "913",
-                        "value": "1",
+                        "answer": "1",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -1680,7 +1680,7 @@ const ResponseApi = {
 
                         "a_id": "1013",
                         "title": "My flow for you is",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -1720,7 +1720,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "2",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -1729,7 +1729,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "3",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -1738,7 +1738,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "4",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -1769,7 +1769,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "8",
                         "title": "Rate my Jealousy",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -1778,7 +1778,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "9",
-                        "value": "3",
+                        "answer": "3",
                         "total": "3",
                         "title": "Your love for me id?",
                         "shape": "thumb",
@@ -1789,7 +1789,7 @@ const ResponseApi = {
 
                         "a_id": "10",
                         "title": "My flow for you is",
-                        "value": "1",
+                        "answer": "1",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -1829,7 +1829,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "21",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -1838,7 +1838,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "31",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -1847,7 +1847,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "41",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -1878,7 +1878,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "81",
                         "title": "Rate my Jealousy",
-                        "value": "1",
+                        "answer": "1",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -1887,7 +1887,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "91",
-                        "value": "1",
+                        "answer": "1",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -1898,7 +1898,7 @@ const ResponseApi = {
 
                         "a_id": "101",
                         "title": "My flow for you is",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -1938,7 +1938,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "211",
-                        "value": "5",
+                        "answer": "5",
                         "total": "5",
                         "type": "RATING",
                         "shape": "heart",
@@ -1947,7 +1947,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "311",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "type": "RATING",
                         "shape": "thumb",
@@ -1956,7 +1956,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "411",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "type": "RATING",
                         "shape": "star",
@@ -1987,7 +1987,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "811",
                         "title": "Rate my Jealousy",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -1996,7 +1996,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "911",
-                        "value": "5",
+                        "answer": "5",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -2007,7 +2007,7 @@ const ResponseApi = {
 
                         "a_id": "1011",
                         "title": "My flow for you is",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -2047,7 +2047,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "212",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "type": "RATING",
                         "shape": "heart",
@@ -2056,7 +2056,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "312",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "type": "RATING",
                         "shape": "thumb",
@@ -2065,7 +2065,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "412",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "type": "RATING",
                         "shape": "star",
@@ -2096,7 +2096,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "812",
                         "title": "Rate my Jealousy",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -2105,7 +2105,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "912",
-                        "value": "2",
+                        "answer": "2",
                         "total": "3",
                         "title": "Your love for me id?",
                         "shape": "thumb",
@@ -2116,7 +2116,7 @@ const ResponseApi = {
 
                         "a_id": "1012",
                         "title": "My flow for you is",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -2156,7 +2156,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "213",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -2165,7 +2165,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "313",
-                        "value": "5",
+                        "answer": "5",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -2174,7 +2174,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "413",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -2205,7 +2205,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "813",
                         "title": "Rate my Jealousy",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -2214,7 +2214,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "913",
-                        "value": "1",
+                        "answer": "1",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -2225,7 +2225,7 @@ const ResponseApi = {
 
                         "a_id": "1013",
                         "title": "My flow for you is",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -2265,7 +2265,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "2",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "type": "RATING",
                         "shape": "heart",
@@ -2274,7 +2274,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "3",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "type": "RATING",
                         "shape": "thumb",
@@ -2283,7 +2283,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "4",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "type": "RATING",
                         "shape": "star",
@@ -2314,7 +2314,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "8",
                         "title": "Rate my Jealousy",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -2323,7 +2323,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "9",
-                        "value": "3",
+                        "answer": "3",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -2334,7 +2334,7 @@ const ResponseApi = {
 
                         "a_id": "10",
                         "title": "My flow for you is",
-                        "value": "1",
+                        "answer": "1",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -2374,7 +2374,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "21",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -2383,7 +2383,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "31",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -2392,7 +2392,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "41",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -2423,7 +2423,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "81",
                         "title": "Rate my Jealousy",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -2432,7 +2432,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "91",
-                        "value": "1",
+                        "answer": "1",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -2443,7 +2443,7 @@ const ResponseApi = {
 
                         "a_id": "101",
                         "title": "My flow for you is",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -2483,7 +2483,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "211",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -2492,7 +2492,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "311",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -2501,7 +2501,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "411",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -2532,7 +2532,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "811",
                         "title": "Rate my Jealousy",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -2541,7 +2541,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "911",
-                        "value": "5",
+                        "answer": "5",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -2552,7 +2552,7 @@ const ResponseApi = {
 
                         "a_id": "1011",
                         "title": "My flow for you is",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -2592,7 +2592,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "212",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -2601,7 +2601,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "312",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -2610,7 +2610,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "412",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -2641,7 +2641,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "812",
                         "title": "Rate my Jealousy",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -2650,7 +2650,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "912",
-                        "value": "2",
+                        "answer": "2",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -2661,7 +2661,7 @@ const ResponseApi = {
 
                         "a_id": "1012",
                         "title": "My flow for you is",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -2701,7 +2701,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "213",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "type": "RATING",
                         "shape": "heart",
@@ -2710,7 +2710,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "313",
-                        "value": "5",
+                        "answer": "5",
                         "total": "5",
                         "type": "RATING",
                         "shape": "thumb",
@@ -2719,7 +2719,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "413",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "type": "RATING",
                         "shape": "star",
@@ -2750,7 +2750,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "813",
                         "title": "Rate my Jealousy",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -2759,7 +2759,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "913",
-                        "value": "1",
+                        "answer": "1",
                         "total": "3",
                         "title": "Your love for me id?",
                         "shape": "thumb",
@@ -2770,7 +2770,7 @@ const ResponseApi = {
 
                         "a_id": "1013",
                         "title": "My flow for you is",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -2810,7 +2810,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "2",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "type": "RATING",
                         "shape": "heart",
@@ -2819,7 +2819,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "3",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "type": "RATING",
                         "shape": "thumb",
@@ -2828,7 +2828,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "4",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "type": "RATING",
                         "shape": "star",
@@ -2859,7 +2859,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "8",
                         "title": "Rate my Jealousy",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -2868,7 +2868,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "9",
-                        "value": "3",
+                        "answer": "3",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -2879,7 +2879,7 @@ const ResponseApi = {
 
                         "a_id": "10",
                         "title": "My flow for you is",
-                        "value": "1",
+                        "answer": "1",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -2919,7 +2919,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "21",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -2928,7 +2928,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "31",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -2937,7 +2937,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "41",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "type": "RATING",
                         "shape": "star",
@@ -2968,7 +2968,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "81",
                         "title": "Rate my Jealousy",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -2977,7 +2977,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "91",
-                        "value": "1",
+                        "answer": "1",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -2988,7 +2988,7 @@ const ResponseApi = {
 
                         "a_id": "101",
                         "title": "My flow for you is",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -3028,7 +3028,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "211",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -3037,7 +3037,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "311",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -3046,7 +3046,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "411",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -3077,7 +3077,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "811",
                         "title": "Rate my Jealousy",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -3086,7 +3086,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "911",
-                        "value": "5",
+                        "answer": "5",
                         "total": "3",
                         "title": "Your love for me id?",
                         "shape": "thumb",
@@ -3097,7 +3097,7 @@ const ResponseApi = {
 
                         "a_id": "1011",
                         "title": "My flow for you is",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -3137,7 +3137,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "212",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "type": "RATING",
                         "shape": "heart",
@@ -3146,7 +3146,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "312",
-                        "value": "3",
+                        "answer": "3",
                         "total": "5",
                         "type": "RATING",
                         "shape": "thumb",
@@ -3155,7 +3155,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "412",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "type": "RATING",
                         "shape": "star",
@@ -3186,7 +3186,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "812",
                         "title": "Rate my Jealousy",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -3195,7 +3195,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "912",
-                        "value": "2",
+                        "answer": "2",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -3206,7 +3206,7 @@ const ResponseApi = {
 
                         "a_id": "1012",
                         "title": "My flow for you is",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -3246,7 +3246,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "213",
-                        "value": "2",
+                        "answer": "2",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -3255,7 +3255,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "313",
-                        "value": "5",
+                        "answer": "5",
                         "total": "5",
                         "shape": "thumb",
                         "type": "RATING",
@@ -3264,7 +3264,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "413",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",
@@ -3295,7 +3295,7 @@ const ResponseApi = {
                         "skipped": false,
                         "a_id": "813",
                         "title": "Rate my Jealousy",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "heart",
                         "type": "RATING",
@@ -3304,7 +3304,7 @@ const ResponseApi = {
                     {
                         "skipped": false,
                         "a_id": "913",
-                        "value": "1",
+                        "answer": "1",
                         "total": "3",
                         "shape": "thumb",
                         "title": "Your love for me id?",
@@ -3315,7 +3315,7 @@ const ResponseApi = {
 
                         "a_id": "1013",
                         "title": "My flow for you is",
-                        "value": "4",
+                        "answer": "4",
                         "total": "5",
                         "shape": "star",
                         "type": "RATING",

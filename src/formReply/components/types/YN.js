@@ -1,10 +1,14 @@
-import { useState, useEffect } from "react";
+import Button from "../../../shared/collection/Button";
 
-const YN = ({ answer, q_id, a_id, fillReply }) => {
-    const [arr, setArr] = useState([
-        { label: "Yes", occupy: "YES" },
-        { label: "No", occupy: "NO" }
-    ])
+const YN = ({ answer, q_id, a_id, fillReply, index, length, submitForm }) => {
+
+    const arr = [
+        { label: "Yes", occupy: "Yes" },
+        { label: "No", occupy: "No" }
+    ]
+    const handleSubmit = () => {
+        submitForm();
+    }
     return (
         <div className="w-1/2 md:w-1/4 space-y-4">
             {arr.map((choice, index) =>
@@ -16,6 +20,7 @@ const YN = ({ answer, q_id, a_id, fillReply }) => {
                     <div className="flex items-center w-11/12 text-base">
                         <div className="pr-3">
                             <div className={`flex font-bold text-white text-sm p-3 w-8 h-8 rounded-xl justify-center items-center
+                                    
                                   ${answer === choice.occupy ? 'bg-green-800 ' : 'bg-gray-100 text-gray-800'}
                             `}>
                                 {String.fromCharCode(index + 1 + 64)}
@@ -30,7 +35,13 @@ const YN = ({ answer, q_id, a_id, fillReply }) => {
             )
             }
 
-
+            {index + 1 === length &&
+                <div className="mt-4">
+                    <Button className="bg-gray-900 p-2 w-56  text-lg md:text-xl" onClick={() => handleSubmit()}>
+                        Submit Form
+                    </Button>
+                </div>
+            }
         </div >
     )
 }

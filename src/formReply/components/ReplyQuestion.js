@@ -6,26 +6,58 @@ import Rating from "./types/Rating";
 import Choice from "./types/Choice";
 import Text from "./types/Text";
 import YN from "./types/YN";
-const ReplyQuestion = ({ moveSection, rq, index, fullpageApi, length }) => {
+import cookie from "js-cookie";
+import { toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const ReplyQuestion = ({ moveSection, rq, index, fullpageApi, length, submitForm }) => {
     const { sendReply } = useContext(FormReplyContext);
     const { form_id } = useParams();
-    const token = 1;
-    console.log(rq)
-    console.log(index);
+    const cookedReply = cookie.get("cookedReply");
+    const { token } = JSON.parse(cookedReply);
+    // console.log(rq)
+    // console.log(index);
     const fillReply = (answer, q_id, a_id) => {
-        if (rq.type === "YN" && !rq.submitted) {
-            let index = rq.feedback.findIndex(feed => feed.occupy === answer);
-            if (index != -1) {
-                alert(rq.feedback[index].label);
+        const sender = () => {
+            sendReply({ form_id, answer, q_id, a_id, token });
+
+            if (length > index + 1) {
+                moveSection("down", index += 1, fullpageApi)
             }
         }
-        sendReply({ form_id, answer, q_id, a_id, token });
 
-        if (length > index + 1) {
-            moveSection("down", index += 1, fullpageApi)
+        if (rq.type === "YN" && !rq.submitted) {
+            let f_index = rq.feedback.findIndex(feed => feed.occupy === answer);
+            if (f_index !== -1) {
+                sendReply({ form_id, answer, q_id, a_id, token });
+                if (rq.feedback[f_index].label) {
+                    toast.configure();
+                    const notify = () => toast.info(`${rq.feedback[f_index].label}`, {
+                        transition: Bounce,
+                        position: "bottom-center",
+                        autoClose: 4000,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: 0,
+
+                    })
+                    notify();
+                    setTimeout(() => {
+                        if (length > index + 1) {
+                            moveSection("down", index += 1, fullpageApi)
+                        }
+                    }, 4000)
+                }
+                else {
+                    moveSection("down", index += 1, fullpageApi)
+                }
+            }
         } else {
-            alert('ready to submmit..');
+            sender();
         }
+
         rq.submitted = true;
         rq.answer = answer;
     }
@@ -42,8 +74,8 @@ const ReplyQuestion = ({ moveSection, rq, index, fullpageApi, length }) => {
                                 ${rq.type === "CHOICE" && 'flex w-full w-10/12  h-full flex-col justify-center'}
                         `}>
                         <div className="flex space-x-2">
-                            <div className="flex justify-center items-center w-10 h-10 rounded-full ">
-                                {index + 1} =
+                            <div className="flex justify-center py-2 rounded-full ">
+                                {index + 1}=
                             </div>
                             <div className={`flex-col space-y-4 pt-1 w-full `}>
 
@@ -52,29 +84,32 @@ const ReplyQuestion = ({ moveSection, rq, index, fullpageApi, length }) => {
                                 </div>
 
                                 {rq.type === "YN" && (
-                                    <YN index={index} q_id={rq.q_id} a_id={rq.a_id}
-                                        answer={rq.answer} feedback={rq.feedback} fillReply={fillReply}
+                                    <YN index={index} q_id={rq.q_id} a_id={rq.a_id} length={length}
+                                        answer={rq.answer} feedback={rq.feedback}
+                                        fillReply={fillReply} submitForm={submitForm}
                                     />
                                 )}
 
                                 {rq.type === "RATING" && (
-                                    <Rating index={index} q_id={rq.q_id} a_id={rq.a_id}
-                                        answer={rq.answer} shape={rq.shape} fillReply={fillReply}
+                                    <Rating index={index} q_id={rq.q_id} a_id={rq.a_id} length={length}
+                                        answer={rq.answer} shape={rq.shape}
+                                        fillReply={fillReply} submitForm={submitForm}
                                     />
                                 )}
 
 
                                 {rq.type === "CHOICE" && (
-                                    <Choice allow_multiple_selection={rq.allow_multiple_selection}
+                                    <Choice allow_multiple_selection={rq.allow_multiple_selection} length={length}
                                         index={index} q_id={rq.q_id} a_id={rq.a_id}
-                                        answer={rq.answer} choices={rq.choices} fillReply={fillReply}
+                                        answer={rq.answer} choices={rq.choices}
+                                        fillReply={fillReply} submitForm={submitForm}
                                     />
                                 )}
 
 
                                 {rq.type === "TEXT" && (
-                                    <Text index={index} q_id={rq.q_id} a_id={rq.a_id}
-                                        answer={rq.answer} fillReply={fillReply}
+                                    <Text index={index} q_id={rq.q_id} a_id={rq.a_id} length={length}
+                                        answer={rq.answer} fillReply={fillReply} submitForm={submitForm}
                                     />
                                 )}
 
@@ -85,17 +120,6 @@ const ReplyQuestion = ({ moveSection, rq, index, fullpageApi, length }) => {
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
 
             <div className="flex hidden w-full space-x-4 justify-center">
 

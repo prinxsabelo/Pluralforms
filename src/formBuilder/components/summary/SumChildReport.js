@@ -1,58 +1,93 @@
 import QTypeIcon from "../../../shared/collection/QTypeIcon";
-import HorizontalChart from "./chart/HorizontalChart";
-import VerticalChart from "./chart/VerticalChart";
-import ReportDetail from "./ReportDetail";
+
+import DoughnutChart from "./chart/DoughnutChart";
+import TextReport from "./TextReport";
 
 const SumChildReport = (props) => {
-    const { title, type, summary, index, content } = props;
-    // console.log(summary);
+    const { title, type, index, content, data, shape, summary } = props;
     return (
         <>
-            <div className="hidden md:block shadow border  mt-4">
-                <div className="flex items-center shadow w-full space-x-6 ">
-                    <div className="flex items-center justify-center bg-gray-100 p-3 w-18 space-x-3">
-                        <QTypeIcon color="red" type={type} shape={summary.shape} className="w-8 text-gray-100" />
+            <div className="shadow-lg border-2 bg-white  mt-4">
+                <div className="flex items-center shadow w-full space-x-3 md:space-x-6 ">
+                    <div className="flex items-center justify-center  p-3 w-18 space-x-2 md:space-x-3 bg-yellow-600 text-white">
+
+                        <QTypeIcon color="" type={type} shape={shape} className="w-5 h-5 text-gray-100" />
+
                         <span> {index}</span>
                     </div>
                     <div>
-                        <div className=" text-xl font-semibold">{title}</div>
-                        <div className="text-xs">2 out of 5 people answered this question</div>
+                        <div className=" text-xl w-10/12 font-semibold truncate">{title}</div>
+                        {
+                            summary &&
+                            <div className="text-xs font-medium tracking-wider">{summary.submitted} out of {summary.total} people answered this question</div>
 
-                    </div>
-                </div>
-
-                <div className="flex mx-4 space-x-2 items-center">
-                    <div className="w-7/12 p-2">
-                        {type !== 'RATING'
-                            ? <HorizontalChart content={content} />
-                            : <VerticalChart content={content} />
                         }
 
-
-                    </div>
-                    <ReportDetail content={content} type={type} />
-
-
-
-                </div>
-
-            </div>
-            <div className="md:hidden flex flex-col shadow border-2">
-                <div className="flex items-center shadow w-full space-x-2  py-2">
-                    <QTypeIcon color="red" type={type} shape={summary.shape} className="w-8 text-gray-100" />
-                    <div>
-                        <div className=" text-lg">{title}</div>
-                        <div className="text-xs">2 out of 5 people answered this question</div>
-
                     </div>
                 </div>
-                <div className="flex flex-col">
-                    {type !== 'RATING'
-                        ? <HorizontalChart content={content} />
-                        : <VerticalChart content={content} />
-                    }
-                </div>
-                <ReportDetail content={content} type={type} />
+                {type !== "TEXT" &&
+                    <>
+
+                        {content && content.length > 0 ?
+                            <div className="flex flex-col md:flex-row mx-2 md:mx-16 space-x-2 items-center" >
+                                <div className="w-full md:w-1/2 md:py-6 justify-left justify-start">
+                                    <DoughnutChart content={content} />
+                                </div>
+                                <div className=" w-full h-full md:w-1/2 border-gray-200 flex flex-auto flex-col 
+                                 font-medium  tracking-wider text-xs border">
+
+                                    <div className="flex flex-col  ">
+                                        {content.map((con, index) =>
+                                            <div key={index} className="w-full flex h-full items-center border-b ">
+                                                <div className="h-full w-2/3 flex items-center space-x-2">
+                                                    <div className={` w-2 h-8 ${`index${index}`}`} ></div>
+                                                    <div>
+                                                        {type === "RATING" ?
+                                                            <div >{con.label} Rating</div>
+                                                            :
+                                                            <div>
+                                                                {con.label &&
+                                                                    <>
+                                                                        {con.label = con.label.strlen > 20 ? <> {con.label.substring(0, 15) + '..'} </> : con.label}
+
+                                                                    </>
+                                                                }
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <div className="w-1/3  h-full flex items-center">{con.percentage}%</div>
+                                                <div className="flex-auto h-full flex items-center pr-2">{con.value} <span className="ml-1"> responses </span> </div>
+
+
+
+                                            </div>
+                                        )}
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            :
+                            <div className="p-2 tracking-wider">
+                                No response found for question..
+                            </div>
+                        }
+
+                    </>
+                }
+                {type === "TEXT" &&
+                    <>
+                        {data && data.length > 0
+                            ?
+                            <TextReport data={data} /> :
+                            <div className="p-2 tracking-wider">
+                                No response found for question..
+                            </div>
+                        }
+                    </>
+
+                }
             </div>
         </>
     )

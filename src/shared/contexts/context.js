@@ -3,8 +3,8 @@ import { useState, createContext } from "react";
 export const Context = createContext();
 const ContextProvider = (props) => {
     const sideBarItems = [
-        { index: 0, item: "Home", link: "/user/" },
-        { index: 1, item: "My Forms", link: "/user/forms" },
+        // { index: 0, item: "Home", link: "/user/" },
+        // { index: 1, item: "My Forms", link: "/user/forms" },
 
     ];
 
@@ -35,12 +35,15 @@ const ContextProvider = (props) => {
         setDeleteOpen(false);
     }
     const openDeleteModal = () => {
+
         setDeleteOpen(true);
     }
-    const closeEditModal = () => {
+    const closeLandingModal = () => {
+
         setEditOpen(false);
     }
-    const openEditModal = () => {
+    const openLandingModal = (param, form) => {
+        console.log(param, form);
         setEditOpen(true);
     }
 
@@ -67,8 +70,8 @@ const ContextProvider = (props) => {
                 closeDeleteModal,
                 openDeleteModal,
                 editOpen,
-                openEditModal,
-                closeEditModal,
+                openLandingModal,
+                closeLandingModal,
                 handleDelete
             }}
         >

@@ -4,50 +4,52 @@ import QTypeIcon from "../../../shared/collection/QTypeIcon";
 import ToggleSwitch from "../../../shared/collection/ToggleSwitch";
 import { BuildQuestionContext } from "../../../shared/contexts/build-question.context";
 const Properties = (props) => {
-  const [properties, setProperties] = useState({
-    randomize: "",
-    allow_multiple_selection: "",
-    shape: "",
-    choices: [],
-    responses: [],
-  });
-  const { developQuestion } = useContext(BuildQuestionContext);
-  useEffect(() => {
-    setProperties(props.properties);
-  }, [setProperties, props.properties]);
 
-  let { title, q_id, type } = props;
+  const { developQuestion, questionDetail, } = useContext(BuildQuestionContext);
+  const [properties, setProperties] = useState(questionDetail);
+
+  useEffect(() => {
+    setProperties(questionDetail.properties);
+  }, [setProperties, questionDetail.properties]);
+
+  let { title, form_id, q_id, type, q_count, q_index } = questionDetail;
+
   const onToggleChange = (index, isChecked) => {
     // console.log(arr[index]);
     let name = arr[index]["name"];
     arr[index]["name"] = isChecked;
     properties[name] = isChecked;
 
-    // console.table(properties);
+    developQuestion({ title, q_id, properties, type, form_id, q_count, q_index, fix: "update", });
 
-    developQuestion({ title, q_id, properties, type });
   };
   const onShapeChange = (shape) => {
     properties.shape = shape;
 
-    developQuestion({ title, q_id, properties, type });
+
+    developQuestion({ title, q_id, properties, type, form_id, q_count, q_index, fix: "update", });
+
+
   };
-  // const { randomize, allow_multiple_selection } = properties
-  const { randomize, allow_multiple_selection } = properties;
-  const arr = [
-    {
-      id: 1,
-      label: "Randomize",
-      value: randomize,
-      name: "randomize",
-    },
-    {
-      id: 2,
-      label: "Multiple Selection",
-      value: allow_multiple_selection,
-      name: "allow_multiple_selection",
-    },
-  ];
+  let arr = [];
+  if (properties) {
+    const { randomize, allow_multiple_selection } = properties;
+    arr = [
+      {
+        id: 1,
+        label: "Randomize",
+        value: randomize,
+        name: "randomize",
+      },
+      {
+        id: 2,
+        label: "Multiple Selection",
+        value: allow_multiple_selection,
+        name: "allow_multiple_selection",
+      },
+    ];
+  }
+
   const iconArr = [
     {
       shape: "star",
@@ -62,7 +64,7 @@ const Properties = (props) => {
   return (
     <div className="flex w-full items-center md:space-x-2 mr-2 flex-start">
       <div className="flex-auto md:h-16 flex  items-center text-lg md:text-xl mb-2 md:mb-0">
-        {props.type === "CHOICE" && properties && (
+        {questionDetail.type === "CHOICE" && properties && (
           <>
             <div className="w-full md:mt-0 flex md:text-lg text-sm justify-evenly">
               {arr.map((property, index) => (
@@ -88,8 +90,9 @@ const Properties = (props) => {
                 <div
                   className={`
                                       w-full border-2 border-red-500  shadow cursor-pointer p-3 flex space-x-8 
-                                      justify-between justify-evenly md:justify-center
-                                      ${props.properties.shape === icon.shape ? `bg-yellow-300` : `bg-white`} 
+                                      justify-between justify-evenly md:justify-center rounded-lg
+                                      hover:bg-yellow-300
+                                      ${props.properties.shape === icon.shape ? `bg-yellow-500` : `bg-white`} 
                               `
                   }
                   key={icon.shape}

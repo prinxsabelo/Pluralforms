@@ -6,24 +6,27 @@ import { CSSTransition } from "react-transition-group";
 import { BuildQuestionContext } from "../contexts/build-question.context";
 
 const QDrawer = (props) => {
+  const { progressQuestion, currentType, setCurrentType, typeAction, setDrawerIsOpen, qDrawerPosition, } = props;
   const {
-    addQuestion,
-    currentType,
-    setCurrentType,
+    // addQuestion,
+    // currentType,
+    // setCurrentType,
     questionTypes,
-    setDrawerIsOpen,
-    typeAction,
-    qDrawerPosition,
+
+
+
   } = useContext(BuildQuestionContext);
 
   const setQType = (type) => {
     setDrawerIsOpen(false);
     if (typeAction === "new") {
-      addQuestion(type);
+      progressQuestion(type);
     } else {
       if (type !== currentType) {
         setCurrentType(type);
+        progressQuestion(type);
       }
+
     }
   };
   let content;
@@ -43,8 +46,9 @@ const QDrawer = (props) => {
           }
           onClick={props.onClick}
         >
-          <div className="flex justify-center mt-2 border-b-2">
-            <h3 className="text-center px-6 py-3 text-lg">
+
+          <div className="flex justify-start mt-2 border-b-2">
+            <h3 className="justify-start p-3 text-lg">
               {typeAction === "new" ? "Choose " : "Change "} Question Type
             </h3>
           </div>

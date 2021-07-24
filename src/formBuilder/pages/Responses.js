@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router";
 
 import Backdrop from "../../shared/collection/Backdrop";
 import QTypeIcon from "../../shared/collection/QTypeIcon";
@@ -7,25 +6,30 @@ import "./Responses.css";
 import Pop from "../../shared/collection/Pop";
 import RespondentsList from "../components/responses/RespondentsList";
 import DeleteModal from "../../shared/collection/DeleteModal";
-
+import Moment from 'react-moment';
+import { toast, Zoom } from 'react-toastify';
 import RDrawer from "../../shared/collection/RDrawer";
 import { ViewportContext } from "../../shared/contexts/viewport-context";
 import { Context } from "../../shared/contexts/context";
-import { ResultContext } from "../../shared/contexts/result-context";
+import { useHttpClient } from "../../shared/hooks/http-hook";
+import LoadingSpinner from "../../shared/collection/LoadingSpinner.";
+import { ReactComponent as Empty } from '../../assets/empty.svg';
+
 const Responses = () => {
-  let { form_id } = useParams();
+  let form_id = window.location.pathname.match(/\d+/)[0];
   const breakpoint = 768;
   const { width } = useContext(ViewportContext);
-  const { getFormResponses, formResponses, deleteFormResponses } = useContext(
-    ResultContext
-  );
+
+  const { sendRequest, isLoading } = useHttpClient();
+
   const [respondents, setRespondents] = useState([]);
   const [detail, setDetail] = useState({});
   const [questions, setQuestions] = useState([]);
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
   const [arr, setArr] = useState([]);
-  const { openDeleteModal, closeModal } = useContext(Context);
+  const [loadResponses, setLoadResponses] = useState(false);
+  const { openDeleteModal, closeDeleteModal } = useContext(Context);
   const showRespondent = (resp) => {
     setDrawerIsOpen(true);
     let index = respondents.findIndex((x) => x.token === resp.token);
@@ -102,30 +106,44 @@ const Responses = () => {
   const checkDelete = () => {
     openDeleteModal();
   };
-  const handleDelete = () => {
-    closeModal();
+  const handleDelete = async () => {
+    closeDeleteModal();
     //Deleting here..
-    deleteFormResponses(arr);
-    const resps = respondents.filter(({ token }) => !arr.includes(token));
-    setRespondents(resps);
-    setArr([]);
-    alert("deleted..");
+    console.log(arr);
+    try {
+      const data = await sendRequest(`http://localhost:8000/api/user/forms/response`, 'DELETE',
+        JSON.stringify({ arr }));
+      if (data) {
+        const resps = respondents.filter(({ token }) => !arr.includes(token));
+        setRespondents(resps);
+        setArr([]);
+        toast.configure();
+        const notify = () => toast.success(`Deletion was successful.. 😎`, {
+          transition: Zoom,
+          position: "bottom-center",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: 0,
+
+        })
+        notify();
+      }
+    } catch { }
+
+
   };
   useEffect(() => {
     let checkAllBox = document.getElementById("checkAllBox");
-
-    getFormResponses(form_id);
-    if (formResponses) {
-      if (formResponses.questions) {
-        let q = formResponses.questions;
-        if (q) {
-          setQuestions(q);
-        }
-      }
-      if (formResponses.respondents) {
-        let resp = formResponses.respondents;
-        if (resp) {
-          setRespondents(resp);
+    const fetchResponses = async () => {
+      try {
+        const data = await sendRequest(`http://localhost:8000/api/user/forms/response`, 'POST', JSON.stringify({ form_id }));
+        if (data) {
+          setQuestions(data.form.questions);
+          setRespondents(data.form.respondents);
+          let resp = data.form.respondents;
           if (arr.length === 0) {
             const newArr = [];
             resp.map((r) => {
@@ -144,165 +162,233 @@ const Responses = () => {
             }
           }
         }
+        setLoadResponses(true);
+
+      } catch {
+        setLoadResponses(true);
       }
+
     }
-  }, [getFormResponses, form_id, formResponses, setQuestions, setRespondents, arr.length]);
+    if (form_id && !loadResponses) {
+      fetchResponses();
+    }
+
+
+
+  }, [loadResponses, sendRequest, form_id, setQuestions, setRespondents, arr.length]);
 
   return (
     <>
-      {width > breakpoint ? (
+      {!isLoading ?
         <>
-          <div className="flex w-full px-8   main-container">
-            <div className="w-full flex flex-col shadow-lg p-1 m-1">
-              <div className="bg-red-100 w-full h-12"></div>
-              <div className="w-full cont overflow-x-auto">
-                <table className=" w-full border text-base">
-                  <thead className="border-b-2 text-sm uppercase tracking-wider p-2">
-                    <tr align="left" className="shadow">
-                      <th className="sticky top-0 bg-white shadow  font-normal px-5">
-                        <input
-                          name="all"
-                          className="form-checkbox w-7 h-7  cursor-pointer "
-                          type="checkbox"
-                          id="checkAllBox"
-                          onChange={handleAll}
-                        />
-                      </th>
-                      <th className="sticky  top-0  bg-white shadow  p-4 font-normal">
-                        User Name
-                      </th>
-                      <th className="sticky top-0 bg-white shadow p-4 font-normal">
-                        Response Info..
-                      </th>
-                      {questions && questions.length > 0 && (
-                        <>
-                          {questions.map((question) => (
-                            <th
-                              key={question.q_id}
-                              className="sticky  top-0  bg-white shadow  px-4 py-2  font-normal"
-                            >
-                              <p className="truncate ...">{question.title}</p>
-                            </th>
-                          ))}
-                        </>
-                      )}
-                    </tr>
-                  </thead>
-                  <tbody className="text-sm">
-                    {respondents && respondents.length > 0 && (
-                      <>
-                        {respondents.map((respondent, index) => (
-                          <tr
-                            key={respondent.token}
-                            className="border-b   hover:bg-gray-100 cursor-pointer"
-                          >
-                            <td className="flex items-center w-full items-center h-14 justify-center hover:bg-gray-200 cursor-default bg-white">
-                              <input
-                                name={respondent.token}
-                                className="form-checkbox w-7 h-7  cursor-pointer "
-                                type="checkbox"
-                                checked={respondent.isChecked}
-                                onChange={handleRespondent}
-                              />
-                            </td>
-                            <td onClick={() => showRespondent(respondent)}>
-                              <div className="flex p-4">
-                                Respondent {index + 1}
-                              </div>
-                            </td>
-                            <td onClick={() => showRespondent(respondent)}>
-                              <div className="flex p-4">10-12-2021</div>
-                            </td>
-                            {respondent.answers.map((answer, index) => (
-                              <td
-                                className="px-4 py-2"
-                                key={index}
-                                onClick={() => showRespondent(respondent)}
-                              >
-                                {answer.skipped === false ? (
-                                  <>
-                                    {answer.type !== "RATING" ? (
-                                      <div className="flex space-x-1">
-                                        {answer.text}
+          {width > breakpoint ? (
+            <>
+              {
+                respondents.length > 0 ?
+                  <div className="flex w-full px-8   main-container">
+                    <div className="w-full flex flex-col shadow-lg p-1 m-1">
+                      <div className="bg-yellow-500 w-full h-6"></div>
+                      <div className="w-full cont overflow-x-auto">
+                        <table className=" w-full border text-base">
+                          <thead className="border-b-2 text-sm uppercase tracking-wider p-2">
+                            <tr align="left" className="shadow">
+                              <th className="sticky top-0 bg-white shadow  font-normal px-5">
+                                <input
+                                  name="all"
+                                  className="form-checkbox w-7 h-7  cursor-pointer "
+                                  type="checkbox"
+                                  id="checkAllBox"
+                                  onChange={handleAll}
+                                />
+                              </th>
+                              <th className="sticky  top-0  bg-white shadow  p-4 font-normal">
+                                User Name
+                              </th>
+                              <th className="sticky top-0 bg-white shadow p-4 font-normal">
+                                Response Info..
+                              </th>
+                              {questions && questions.length > 0 && (
+                                <>
+                                  {questions.map((question) => (
+                                    <th
+                                      key={question.q_id}
+                                      className="sticky  top-0  bg-white shadow  px-4 py-2  font-normal"
+                                    >
+                                      <p className="truncate ...">{question.title}</p>
+                                    </th>
+                                  ))}
+                                </>
+                              )}
+                            </tr>
+                          </thead>
+                          <tbody className="text-sm">
+                            {respondents && respondents.length > 0 && (
+                              <>
+                                {respondents.map((respondent, index) => (
+                                  <tr
+                                    key={respondent.token}
+                                    className="border-b   hover:bg-gray-100 cursor-pointer truncate ..."
+                                  >
+                                    <td className="flex items-center w-full items-center h-14 justify-center hover:bg-gray-200 cursor-default bg-white">
+                                      <input
+                                        name={respondent.token}
+                                        className="form-checkbox w-7 h-7  cursor-pointer "
+                                        type="checkbox"
+                                        checked={respondent.isChecked}
+                                        onChange={handleRespondent}
+                                      />
+                                    </td>
+                                    <td onClick={() => showRespondent(respondent)}>
+                                      <div className="flex p-4">
+                                        Respondent {index + 1}
                                       </div>
-                                    ) : (
-                                      <div className="flex space-x-1">
-                                        {Array.from(
-                                          Array(parseInt(answer.value)),
-                                          (rating, index) => {
-                                            return (
-                                              <QTypeIcon
-                                                key={index}
-                                                color="red"
-                                                name={rating}
-                                                className="w-8 text-gray-800"
-                                                type={answer.type}
-                                                shape={answer.shape}
-                                              />
-                                            );
-                                          }
+                                    </td>
+                                    <td onClick={() => showRespondent(respondent)}>
+                                      <div className="flex p-4"><Moment fromNow>{respondent.submittedAt}</Moment></div>
+                                    </td>
+                                    {respondent.answers.map((answer, index) => (
+                                      <td
+                                        className="px-4 py-2"
+                                        key={index}
+                                        onClick={() => showRespondent(respondent)}
+                                      >
+                                        {answer.skipped === false ? (
+                                          <>
+                                            {answer.type !== "RATING" ? (
+                                              <>
+                                                {answer.allow_multiple_selection === false ?
+                                                  <div className="flex space-x-1">
+                                                    {answer.answer}
+                                                  </div>
+                                                  :
+                                                  <div className="flex w-full truncate ...">
+                                                    {
+                                                      (answer.answer).includes(`${"["}`) && (answer.answer).length !== 0 ?
+                                                        <>
+                                                          {JSON.parse((answer.answer)).map(an =>
+                                                            <span key={an} className="pr-1">{an}
+                                                              {JSON.parse(answer.answer).length > 1 && <>.. </>}
+                                                            </span>
+                                                          )}
+                                                        </> :
+                                                        <></>
+                                                    }
+
+                                                  </div>
+                                                }
+                                              </>
+                                            ) : (
+                                              <div className="flex space-x-1">
+                                                {answer.answer && parseInt(answer.answer) > 0 ?
+                                                  <>
+                                                    {Array.from(
+                                                      Array(parseInt(answer.answer)),
+                                                      (rating, index) => {
+                                                        return (
+                                                          <QTypeIcon
+                                                            key={index}
+                                                            color="red"
+                                                            name={rating}
+                                                            className="w-8 text-gray-800"
+                                                            type={answer.type}
+                                                            shape={answer.shape}
+                                                          />
+                                                        );
+                                                      }
+                                                    )}
+                                                  </>
+                                                  :
+                                                  <>...</>
+                                                }
+
+
+                                              </div>
+                                            )}
+                                          </>
+                                        ) : (
+                                          <div className="flex space-x-1">..</div>
                                         )}
-                                      </div>
-                                    )}
-                                  </>
-                                ) : (
-                                  <div className="flex space-x-1">..</div>
-                                )}
-                              </td>
-                            ))}
-                          </tr>
-                        ))}
-                      </>
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </>
-      ) : (
-        <>
-          {respondents && respondents.length > 0 ? (
-            <RespondentsList
-              respondents={respondents}
-              handleDelete={handleDelete}
-              handleRespondent={handleRespondent}
+                                      </td>
+                                    ))}
+                                  </tr>
+                                ))}
+                              </>
+                            )}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div> :
+                  <div className="flex flex-col w-full flex justify-center space-y-32">
+                    <div className="w-10/12 flex mx-2">
+                      <Empty />
+                    </div>
+                    <div className="flex flex-col space-y-2 items-center ">
+                      <div className="text-lg font-medium">No Response found for now..</div>
+                      <div>Let people fill your form first </div>
+                    </div>
+                  </div>
+              }
+
+            </>
+          ) : (
+            <>
+              {respondents && respondents.length > 0 ? (
+                <RespondentsList
+                  respondents={respondents}
+                  handleDelete={handleDelete}
+                  handleRespondent={handleRespondent}
+                />
+              ) : (
+                <div className="flex flex-col w-full flex justify-center -space-y-32">
+                  <div className="w-10/12 flex mx-2">
+                    <Empty />
+                  </div>
+                  <div className="flex flex-col space-y-2 items-center ">
+                    <div className="text-lg font-medium">No Response found for now..</div>
+                    <div>Let people fill your form first </div>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
+          {drawerIsOpen && <Backdrop onClick={closeDrawer} />}
+          <RDrawer show={drawerIsOpen} type="response" detail={detail} />
+          {arr.length > 0 && (
+            <>
+              {" "}
+              <Pop
+                show={true}
+                total={respondents.length}
+                del={() => checkDelete()}
+                clearAll={() => clearAll()}
+                selectAll={() => selectAll()}
+                length={arr.length}
+                type="response"
+              />{" "}
+            </>
+          )}
+          {arr.length === respondents.length ? (
+            <DeleteModal
+              onDelete={handleDelete}
+              message="You are about deleting all your responses.."
             />
           ) : (
-            <div>No Respondent Found..</div>
+            <DeleteModal
+              onDelete={handleDelete}
+              message={`You are about deleting your ${arr.length === 1 ? "response" : "responses"
+                } `}
+            />
           )}
         </>
-      )}
-      {drawerIsOpen && <Backdrop onClick={closeDrawer} />}
-      <RDrawer show={drawerIsOpen} type="response" detail={detail} />
-      {arr.length > 0 && (
-        <>
-          {" "}
-          <Pop
-            show={true}
-            total={respondents.length}
-            del={() => checkDelete()}
-            clearAll={() => clearAll()}
-            selectAll={() => selectAll()}
-            length={arr.length}
-            type="response"
-          />{" "}
-        </>
-      )}
-      {arr.length === respondents.length ? (
-        <DeleteModal
-          onDelete={handleDelete}
-          message="You are about deleting all your responses.."
-        />
-      ) : (
-        <DeleteModal
-          onDelete={handleDelete}
-          message={`You are about deleting your ${arr.length === 1 ? "response" : "responses"
-            } `}
-        />
-      )}
-    </>
-  );
+        :
+
+        <div className="flex h-screen ">
+          <LoadingSpinner />
+        </div>
+
+      }
+    </>);
 };
 
 export default Responses;

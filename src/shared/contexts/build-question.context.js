@@ -1,24 +1,37 @@
 import { createContext, useContext, useState, useCallback } from "react";
 
-import { useHistory } from "react-router-dom";
 
 import { ViewportContext } from "./viewport-context";
 import { useHttpClient } from "../hooks/http-hook";
 import useDebounceForQuestionUpdate from "../hooks/use-debounce-for-question-update.hook";
+import { useHistory } from "react-router-dom";
 
 const breakpoint = 768;
 
 export const BuildQuestionContext = createContext();
 const BuildQuestionProvider = (props) => {
   const history = useHistory();
+  const [updateQuestion, fetchLoader] = useDebounceForQuestionUpdate();
+  if (fetchLoader) { }
+
   const { width } = useContext(ViewportContext);
   const [form, setForm] = useState();
   const { sendRequest, isLoading } = useHttpClient();
+  const [goToQuestion, setGoToQuestion] = useState()
 
   const [questionDetail, setQuestionDetail] = useState({
-    q_id: null,
+    q_id: undefined,
+    q_count: null,
+    q_index: null,
+    form_id: null,
     index: 0,
+    title: "",
+    fix: "update",
+    properties: {
+      shape: "star"
+    }
   });
+  const [questionsLength, setQuestionsLength] = useState(0)
   const [currentType, setCurrentType] = useState("");
   const [typeAction, setTypeAction] = useState("");
 
@@ -27,7 +40,8 @@ const BuildQuestionProvider = (props) => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
   // Question is being updated in the function useDebounceForQuestionUpdate.. 
-  const [updateQuestion] = useDebounceForQuestionUpdate();
+  // const [updateQuestion, fetchLoader] = useDebounceForQuestionUpdate();
+  // if (fetchLoader) { }
   const [question, setQuestion] = useState();
   const [questionTypes, setQuestionTypes] = useState([
     { typeId: 1, label: "Text", type: "TEXT" },
@@ -51,38 +65,35 @@ const BuildQuestionProvider = (props) => {
   };
   //Question is being developed here so as to have effect on all areas that extracted data from it..
   const developQuestion = useCallback((qn) => {
-    if (!qn.title) qn.title = "";
-    if (qn.type === "RATING" && typeof qn.properties.shape === "undefined") {
-      qn.properties.shape = "star";
+
+    setQuestionDetail(qn);
+
+    if (width <= breakpoint) {
+      updateQuestion(qn);
     }
-    qn.form_id = form.form_id;
-    updateQuestion(qn);
 
-    const questions = form.questions.map((q) => (q.q_id === qn.q_id ? qn : q));
-    setForm({ ...form, questions });
 
-  }, [setForm, form, updateQuestion]);
+  }, [width, updateQuestion]);
+
 
   //ShowQuestion function works only on desktop..
-  const showQuestion = (q_id, type) => {
-    console.log(q_id, type);
-    setQuestionDetail({ q_id, type });
-    let questionType = questionTypes.find((q) => q.type === type);
-    if (questionType) {
-      //Setting the type to default first..
-      if (type === questionType.type) {
-        setCurrentType("xxx");
+  const showQuestion = (question) => {
+    // console.log(question);
+    // If screen size is mobile.. Navigate to question for mobile build..
+    if (width <= breakpoint) {
+      setQuestionDetail(question);
+      if (question && question.form_id) {
+        history.push(`/user/form/${question.form_id}/questions/${question.q_id}`);
       }
-      setCurrentType(type);
+
+    } else {
+      setQuestionDetail(question);
     }
-    if (typeAction === "new") {
-      setTypeAction("edit");
-      // If screen size is mobile.. Navigate to questions..
-      if (width <= breakpoint) {
-        history.push(`/user/form/${form.form_id}/questions/${q_id}`);
-      }
-    }
+
+    setGoToQuestion();
   };
+
+
 
   // Question is being added here..
   const addQuestion = async (type) => {
@@ -108,8 +119,8 @@ const BuildQuestionProvider = (props) => {
     // showQuestion(qn.q_id, qn.type);
   };
 
-  const deleteQuestion = async ({ q_id }) => {
-    const { form_id } = form;
+  const deleteQuestion = async ({ q_id, form_id }) => {
+    // const { form_id } = form;
     const qn = await sendRequest(`http://localhost:8000/api/user/form/build/delete`, 'DELETE', JSON.stringify({ q_id, form_id }));
     if (qn) {
       if (form.questions.length > 0) {
@@ -139,7 +150,7 @@ const BuildQuestionProvider = (props) => {
         copyQuestion,
         showQuestion,
         questionDetail,
-
+        setQuestionDetail,
         developQuestion,
         currentType,
         setCurrentType,
@@ -151,7 +162,11 @@ const BuildQuestionProvider = (props) => {
         setTypeAction,
         qDrawerPosition,
         setQDrawerPosition,
-        isLoading
+        isLoading,
+        goToQuestion,
+        setGoToQuestion,
+        questionsLength,
+        setQuestionsLength
       }}
 
     >

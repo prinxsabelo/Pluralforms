@@ -1,7 +1,7 @@
 import ReactFullpage from '@fullpage/react-fullpage'; // will return static version on server and "live" version on client
 import ReplyQuestion from './ReplyQuestion';
 
-const FormBody = ({ replyArr, moveSection, length }) => {
+const FormBody = ({ replyArr, moveSection, length, submitForm }) => {
     return (
         <>
             {(replyArr.length) > 0
@@ -22,6 +22,7 @@ const FormBody = ({ replyArr, moveSection, length }) => {
                                                 fullpageApi={fullpageApi}
                                                 rq={rq}
                                                 index={index} moveSection={moveSection}
+                                                submitForm={submitForm}
                                             />
                                         )
 

@@ -15,7 +15,8 @@ import FormReplyContextProvider from "./shared/contexts/form-reply.context";
 import ConfirmLogin from "./user/pages/ConfirmLogin";
 import Login from "./user/pages/Login";
 import { User } from "./user/pages/User";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Routes = ({ authProceed }) => {
   // console.log(authProceed)
 
@@ -35,7 +36,7 @@ const Routes = ({ authProceed }) => {
         authProceed={authProceed}
         component={User}
       />
-      <Route path="/form/:form_id" component={FormReply} />
+      <Route path="/form/:form_id/:ref_id" component={FormReply} />
     </Switch>
   );
 };
@@ -62,8 +63,17 @@ function App() {
   const [authProceed, setAuthProceed] = useState(true);
   const [token, setToken] = useState(false);
   const [user, setUser] = useState();
+  const contextClass = {
+    success: "bg-green-600",
+    error: "bg-red-600",
+    info: "bg-gray-600",
+    warning: "bg-orange-400",
+    default: "bg-indigo-600",
+    dark: "bg-white-600 font-gray-300",
+  };
 
   useEffect(() => {
+
     const readCookie = () => {
       const userData = cookie.get("userData");
       if (userData) {
@@ -85,6 +95,12 @@ function App() {
 
   }, [setAuthProceed, token]);
 
+  const clearWaitingQueue = () => {
+    // Easy, right 😎
+    toast.clearWaitingQueue();
+  }
+
+  if (clearWaitingQueue) { }
   return (
     <>
 
@@ -98,6 +114,16 @@ function App() {
         </FormReplyContextProvider>
 
       </AuthContext.Provider>
+      {/* <ToastContainer limit={1} /> */}
+      <ToastContainer
+        toastClassName={({ type }) => contextClass[type || "default"] +
+          " relative flex p-1 min-h-10 rounded-md justify-between overflow-hidden cursor-pointer"
+        }
+        bodyClassName={() => " font-white font-med block p-3"}
+
+        autoClose={3000}
+        limit={1}
+      />
     </>
   );
 }

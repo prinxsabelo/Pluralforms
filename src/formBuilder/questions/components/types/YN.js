@@ -6,16 +6,18 @@ import { BuildQuestionContext } from "../../../../shared/contexts/build-question
 import Feedback from "./Feedback";
 
 const YN = (props) => {
-  const { q_id, properties } = props;
-  const { developQuestion } = useContext(BuildQuestionContext);
+  const { developQuestion, questionDetail } = useContext(BuildQuestionContext);
+
+  const { q_id, title, properties, form_id, type, q_index, q_count } = questionDetail;
+
   const [feedback, setFeedback] = useState([]);
   useEffect(() => {
     if (properties.feedback && properties.feedback.length > 0) {
       setFeedback(properties.feedback);
     } else {
       setFeedback([
-        { label: "", occupy: "YES", index: 0 },
-        { label: "", occupy: "NO", index: 1 },
+        { label: "", occupy: "Yes", index: 0 },
+        { label: "", occupy: "No", index: 1 },
       ]);
     }
   }, [setFeedback, properties.feedback]);
@@ -23,13 +25,12 @@ const YN = (props) => {
     const { value } = event.target;
     feedback[index].label = value;
     properties.feedback = feedback;
-    let { title, type } = props;
-    developQuestion({ title, q_id, properties, type });
+    developQuestion({ title, q_id, form_id, properties, type, fix: "update", q_index, q_count });
   };
   return (
     <div className="w-full space-y-2 pl-2 p-5 items-center border">
       <div className="md:pl-2 w-10/12 md:w-1/3 flex">
-        <Button className="bg-yellow-400">
+        <Button className="bg-yellow-500">
           <div className="flex justify-evenly space-x-2 items-center px-2 md:text-lg">
             <span>
               <svg
@@ -50,7 +51,7 @@ const YN = (props) => {
             <span>Yes</span>
           </div>
         </Button>
-        <Button className="bg-yellow-400">
+        <Button className="bg-yellow-500">
           <div className="flex justify-evenly space-x-2 items-center px-2  md:text-lg">
             <span>
               <svg
@@ -77,7 +78,7 @@ const YN = (props) => {
           Give Optional Reponse for question.
         </div>
 
-        <div className="flex flex-col space-y-2 w-11/12 md:w-3/4">
+        <div className="flex flex-col space-y-4 w-11/12 md:w-3/4">
           {feedback.map((feedback, index) => (
             <Feedback
               key={index}

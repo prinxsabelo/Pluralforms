@@ -12,7 +12,7 @@ const RespondentsList = ({ respondents, handleDelete, handleRespondent }) => {
                 key={respondent.token}
                 token={respondent.token}
                 index={index + 1}
-               
+                submittedAt={respondent.submittedAt}
                 isChecked={respondent.isChecked}
                 handleRespondent={handleRespondent}
               />
@@ -22,7 +22,7 @@ const RespondentsList = ({ respondents, handleDelete, handleRespondent }) => {
           <div>No response..</div>
         )}
       </div>
-      
+
     </>
   );
 };

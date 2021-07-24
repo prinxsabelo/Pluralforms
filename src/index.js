@@ -14,14 +14,15 @@ if (userData) {
   jwt.verify(token, jwt_token, function (err, decoded) {
 
     if (err) {
+      console.log(err);
       cookie.remove("userData");
-      alert('Unauthenicated..');
+      alert('Unauthenicatedx..');
     } else {
 
       if (decoded.iss !== "http://localhost:8000/api/login/google/callback"
         && decoded.iss !== "http://localhost:8000/api/login/facebook/callback") {
         cookie.remove("userData");
-        alert('Unauthenicated..');
+        alert('Unauthenicatedy..');
       }
     }
 

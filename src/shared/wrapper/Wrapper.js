@@ -6,7 +6,7 @@ import NavBar from "./NavBar";
 
 const Wrapper = () => {
 
-    return <div className="flex flex-1 flex-col md:flex-row  bg-red-400">
+    return <div className="flex flex-1 flex-col md:flex-row ">
         <SideBar />
         <Container />
         <NavBar />

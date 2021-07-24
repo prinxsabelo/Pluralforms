@@ -4,7 +4,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationIcon } from "@heroicons/react/outline";
 import { Context } from "../contexts/context";
 
-export default function EditModal(props) {
+export default function DeleteModal(props) {
   const {
     closeDeleteModal,
     deleteOpen
@@ -75,7 +75,7 @@ export default function EditModal(props) {
                       <p className="text-base text-gray-800 font-medium">
                         {props.message && <>{props.message} </>}
                       </p>
-                      <p className="text-sm text-gray-700">Once you Edit, it cannot be undone.</p>
+                      <p className="text-sm text-gray-700">Once you Delete, it cannot be undone.</p>
                     </div>
                   </div>
                 </div>

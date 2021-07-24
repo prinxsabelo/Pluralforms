@@ -1,18 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
     CheckIcon
 } from "@heroicons/react/outline";
 import Button from "../../../shared/collection/Button";
 
-const Choice = ({ allow_multiple_selection, answer, q_id, a_id, choices, fillReply }) => {
-    console.log(answer);
+const Choice = ({ allow_multiple_selection, answer, q_id, a_id, choices, fillReply, index, length, submitForm }) => {
+    // console.log(answer);
     const [arr, setArr] = useState([]);
     const [loading, setLoading] = useState(true);
     if (allow_multiple_selection) {
         if (loading) {
             if (answer) {
                 //Confirm here if we have an array as response..
-                if (answer && answer.includes(`${"["}`) && answer.length != 0) {
+                if (answer && answer.includes(`${"["}`) && answer.length !== 0) {
                     setArr(JSON.parse(answer));
                 }
 
@@ -34,13 +34,15 @@ const Choice = ({ allow_multiple_selection, answer, q_id, a_id, choices, fillRep
 
     }
     const submitChoices = () => {
-        console.log(arr);
-        fillReply(JSON.stringify(arr), q_id, a_id)
+        fillReply(JSON.stringify(arr), q_id, a_id);
+        if (index + 1 === length) {
+            submitForm();
+        }
     }
-    useEffect(() => {
-        console.log(arr);
+    const handleSubmit = () => {
+        submitForm();
+    }
 
-    }, [arr, answer])
     return (
         <div className="w-11/12 md:max-w-md">
             {/* Confirm if multiple selection first then.. */}
@@ -83,8 +85,9 @@ const Choice = ({ allow_multiple_selection, answer, q_id, a_id, choices, fillRep
 
                     )}
                     <div>
-                        <Button className="bg-gray-900 p-2 mt-1 md:mt-2 w-full text-lg md:text-xl" onClick={() => submitChoices()}>
-                            Continue
+
+                        <Button className="bg-gray-900 p-2 mt-4 w-full text-lg md:text-xl" onClick={() => submitChoices()}>
+                            {index + 1 === length ? <>Submit Form</> : <>Continue</>}
                         </Button>
 
                     </div>
@@ -124,9 +127,26 @@ const Choice = ({ allow_multiple_selection, answer, q_id, a_id, choices, fillRep
                         </div>
 
                     )}
+
+                    {/* If last question.. submit form.. */}
+                    {index + 1 === length &&
+                        <Button className="bg-gray-900 p-2 mt-4 w-full text-lg md:text-xl" onClick={() => handleSubmit()}>
+                            Submit Form
+                        </Button>
+                    }
                 </>
             }
-
+            {choices.length === 0 &&
+                <div className="flex flex-col space-y-2 p-2">
+                    <div className="text-lg">
+                        Just continue nothing for you to fill..
+                    </div>
+                    <Button className="bg-gray-900 p-2 mt-2 text-lg md:text-xl"
+                        onClick={() => submitChoices()}>
+                        Continue
+                    </Button>
+                </div>
+            }
         </div>
     )
 }

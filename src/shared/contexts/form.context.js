@@ -2,6 +2,7 @@ import { useState, createContext, useContext } from "react";
 import { Context } from "./context";
 import { useHttpClient } from "../hooks/http-hook";
 import { useHistory } from 'react-router-dom';
+import { ViewportContext } from "./viewport-context";
 export const FormContext = createContext();
 const FormContextProvider = (props) => {
     const history = useHistory();
@@ -10,45 +11,28 @@ const FormContextProvider = (props) => {
     const { showDialog, setDialogContent } = useContext(Context);
     const [forms, setForms] = useState([]);
     const [closedForms, setClosedForms] = useState([]);
-
+    const [upForm, setUpForm] = useState();
     const [title, setTitle] = useState("");
-    const submitForm = async (form) => {
-        console.log(form);
-        console.log({ isLoading });
-        if (form.form_id) {
-            //UPDATE EXISTING FORM
-            try {
-                const { title, begin_desc, begin_header, end_desc, end_header, form_id } = form;
-                const response = await sendRequest(`http://localhost:8000/api/user/forms/update`, 'PUT',
-                    JSON.stringify({ title, form_id, begin_desc, begin_header, end_desc, end_header }));
-                if (response) {
-                    let index = forms.findIndex(form => form_id === form.form_id);
-                    let newForms = [...forms];
-                    newForms[index] = response;
-                    setForms(newForms);
-                }
-            } catch { }
-            showDialog(false);
+    const [landingOpen, setLandingOpen] = useState(false);
+    const [landingContent, setLandingContent] = useState();
+    const [recieveForm, sendForm] = useState(
+
+    );
+    const { width } = useContext(ViewportContext)
+    const breakpoint = 768;
+    const fixForm = async (form, { fix }) => {
+        // console.log(form, fix);
+        if (fix === "update") {
+            let index = forms.findIndex(f => f.form_id === form.form_id);
+            let newForms = [...forms];
+            newForms[index] = form;
+            setForms(newForms);
+            setUpForm({ form, fix });
         } else {
-            //CREATE NEW FORM..
-            try {
-                const { title } = form;
-                const response = await sendRequest(`http://localhost:8000/api/user/forms`, 'POST', JSON.stringify({ title }));
-                if (response) {
-                    // alert('continue');
-                    console.log(response);
-                    console.log(forms);
-                    setForms([...forms, response]);
-                }
-                showDialog(false);
-                //REDIRECT TO FORM..
-                const { form_id } = response;
-                history.push(`/user/form/${form_id}/build`);
-            } catch {
-                showDialog(false);
-            }
+            setForms([...forms, form]);
+            setUpForm({ form, fix });
         }
-        console.log(isLoading);
+        showDialog(false);
     };
     const addForm = () => {
         // Dialog is being opened right here..
@@ -62,61 +46,91 @@ const FormContextProvider = (props) => {
     };
     const editForm = (form) => {
         // Dialog is being opened right here..
-        const { title, form_id } = form;
-        setDialogContent({
-            header: "Edit Form",
-            placeholder: "form name.",
-            type: "form",
-            form: { title, form_id },
-        });
-        showDialog(true);
+        // const { title, form_id } = form;
+        // setDialogContent({
+        //     header: "Edit Form",
+        //     placeholder: "form name.",
+        //     type: "form",
+        //     form: { title, form_id },
+        // });
+        // showDialog(true);
     };
     const renameForm = async (title, form_id) => {
-        const response = await sendRequest(`http://localhost:8000/api/user/forms/update`, 'PUT', JSON.stringify({ title, form_id }));
-        if (response) {
+        const data = await sendRequest(`http://localhost:8000/api/user/forms/update`, 'PUT', JSON.stringify({ title, form_id }));
+        if (data) {
             let index = forms.findIndex(form => form_id === form.form_id);
             let newForms = [...forms];
-            newForms[index] = response;
+            newForms[index] = data;
             setForms(newForms);
         }
     };
     const deleteForm = async (form_id) => {
-        const response = await sendRequest(`http://localhost:8000/api/user/forms/delete`, 'DELETE', JSON.stringify({ form_id }));
-        if (response) {
+        const data = await sendRequest(`http://localhost:8000/api/user/forms/delete`, 'DELETE', JSON.stringify({ form_id }));
+        if (data) {
             const newClosedForms = closedForms.filter(f => f.form_id !== form_id);
             setClosedForms(newClosedForms);
         }
     };
     const closeForm = async (form_id) => {
-        const response = await sendRequest(`http://localhost:8000/api/user/forms/close`, 'PUT', JSON.stringify({ form_id }));
-        if (response) {
-            const newActiveForms = forms.filter(f => f.form_id !== response.form_id);
+        const data = await sendRequest(`http://localhost:8000/api/user/forms/close`, 'PUT', JSON.stringify({ form_id }));
+        if (data) {
+            const newActiveForms = forms.filter(f => f.form_id !== data.form_id);
             setForms(newActiveForms);
-            setClosedForms([...closedForms, response]);
+            setClosedForms([...closedForms, data]);
         }
     }
     const restoreForm = async (form_id) => {
-        const response = await sendRequest(`http://localhost:8000/api/user/forms/restore`, 'PUT', JSON.stringify({ form_id }));
-        if (response) {
-            const newClosedForms = closedForms.filter(f => f.form_id !== response.form_id);
+        const data = await sendRequest(`http://localhost:8000/api/user/forms/restore`, 'PUT', JSON.stringify({ form_id }));
+        if (data) {
+            const newClosedForms = closedForms.filter(f => f.form_id !== data.form_id);
             setClosedForms(newClosedForms);
-            setForms([...forms, response]);
+            setForms([...forms, data]);
         }
+    }
+    const resetUpForm = ({ form, fix }) => {
+        setUpForm();
+        if (fix === "new") {
+            const { form_id } = form;
+            if (width > breakpoint) {
+                history.push(`/user/form/${form_id}/build`);
+            } else {
+                history.push(`/user/form/${form_id}/questions`);
+            }
+
+            return;
+        }
+
+
     }
     const getForms = async () => {
         //Fetch forms here.. If there's any error set forms to empty..
+        console.log({ isLoading });
         try {
-            const response = await sendRequest(`http://localhost:8000/api/user/forms`);
-            let activeForms = response.filter(f => f.status === "active");
+            const data = await sendRequest(`http://localhost:8000/api/user/forms`);
+            let activeForms = data.filter(f => f.status === "ACTIVE");
+            // console.log(activeForms);
             setForms(activeForms);
-            let closedForms = response.filter(c => c.status !== "active");
+            let closedForms = data.filter(c => c.status !== "ACTIVE");
             setClosedForms(closedForms);
         } catch {
             setForms([]);
             setClosedForms([]);
         }
-
+        console.log({ isLoading });
+        // console.log({ isLoading });
     }
+
+
+    const closeLandingModal = () => {
+
+        setLandingOpen(false);
+    }
+    const openLandingModal = (landing_type, form) => {
+        form.landing_type = landing_type;
+        setLandingContent(form);
+        setLandingOpen(true);
+    }
+
 
     return (
         <FormContext.Provider
@@ -127,12 +141,22 @@ const FormContextProvider = (props) => {
                 forms,
                 title,
                 setTitle,
-                submitForm,
+                fixForm,
                 deleteForm,
                 getForms,
                 closedForms,
                 closeForm,
-                restoreForm
+                restoreForm,
+                upForm,
+                setUpForm,
+                resetUpForm,
+                landingOpen,
+                openLandingModal,
+                closeLandingModal,
+                landingContent,
+                setLandingContent,
+                recieveForm,
+                sendForm
             }}
         >
             {props.children}

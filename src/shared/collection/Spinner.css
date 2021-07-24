@@ -1,0 +1,24 @@
+body, 
+html {
+  font-family: 
+    -apple-system, 
+    BlinkMacSystemFont, 
+    "Segoe UI", 
+    Roboto, 
+    Helvetica, 
+    Arial, 
+    sans-serif, 
+    "Apple Color Emoji", 
+    "Segoe UI Emoji", 
+    "Segoe UI Symbol";
+    text-align: center;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+}
+
+@keyframes spinner-animation { 100% { transform: rotate(360deg) } }
