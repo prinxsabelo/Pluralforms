@@ -32,10 +32,10 @@ const ReplyQuestion = ({ moveSection, rq, index, fullpageApi, length, submitForm
                 sendReply({ form_id, answer, q_id, a_id, token });
                 if (rq.feedback[f_index].label) {
                     toast.configure();
-                    const notify = () => toast.info(`${rq.feedback[f_index].label}`, {
+                    const notify = () => toast.warning(`${rq.feedback[f_index].label}`, {
                         transition: Bounce,
                         position: "bottom-center",
-                        autoClose: 4000,
+                        autoClose: 5000,
                         hideProgressBar: true,
                         closeOnClick: true,
                         pauseOnHover: true,
@@ -48,7 +48,7 @@ const ReplyQuestion = ({ moveSection, rq, index, fullpageApi, length, submitForm
                         if (length > index + 1) {
                             moveSection("down", index += 1, fullpageApi)
                         }
-                    }, 4000)
+                    }, 5000)
                 }
                 else {
                     moveSection("down", index += 1, fullpageApi)
@@ -77,9 +77,9 @@ const ReplyQuestion = ({ moveSection, rq, index, fullpageApi, length, submitForm
                             <div className="flex justify-center py-2 rounded-full ">
                                 {index + 1}=
                             </div>
-                            <div className={`flex-col space-y-4 pt-1 w-full `}>
+                            <div className={`flex-col space-y-4 pt-1 w-full tracking-wide`}>
 
-                                <div className="text-2xl md:text-3xl md:pb-2 flex-wrap break-words w-full">
+                                <div className="text-2xl md:text-3xl md:pb-2 flex-wrap break-words w-full tracking-wide">
                                     {rq.title}
                                 </div>
 

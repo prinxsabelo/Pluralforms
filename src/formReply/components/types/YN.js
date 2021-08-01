@@ -10,7 +10,7 @@ const YN = ({ answer, q_id, a_id, fillReply, index, length, submitForm }) => {
         submitForm();
     }
     return (
-        <div className="w-1/2 md:w-1/4 space-y-4">
+        <div className="w-1/2 md:w-1/4 space-y-4 tracking-wide">
             {arr.map((choice, index) =>
                 <div key={index} onClick={() => fillReply(choice.occupy, q_id, a_id)} className={` bg-gray-300 my-2  p-2 min-w-1/4 rounded-xl flex items-center
                 border-2 cursor-pointer 
@@ -35,13 +35,18 @@ const YN = ({ answer, q_id, a_id, fillReply, index, length, submitForm }) => {
             )
             }
 
-            {index + 1 === length &&
-                <div className="mt-4">
-                    <Button className="bg-gray-900 p-2 w-56  text-lg md:text-xl" onClick={() => handleSubmit()}>
+
+            <div className="mt-4 w-full ">
+                {index + 1 === length ?
+                    <Button className="bg-gray-900 p-2  w-full text-lg md:text-xl  tracking-widest" onClick={() => handleSubmit()}>
                         Submit Form
+                    </Button> :
+                    <Button className="bg-gray-900 p-2  w-full  text-lg md:text-xl  tracking-widest" onClick={() => { fillReply(answer, q_id, a_id) }}>
+                        Continue
                     </Button>
-                </div>
-            }
+                }
+            </div>
+
         </div >
     )
 }

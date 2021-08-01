@@ -330,7 +330,7 @@ const FormBuilder = () => {
     if (form && form.questions && form.questions.length > 0) {
         mobileTabs = [
             { id: 1, label: "Questions", link: `questions` },
-            { id: 2, label: "Share", link: `share` },
+            // { id: 2, label: "Share", link: `share` },
             { id: 3, label: "Results", link: `results` },
             // { id: 4, label: "Settings", link: `settings` },
         ];
@@ -368,7 +368,7 @@ const FormBuilder = () => {
                             <header
                                 className={`flex w-full justify-between shadow bg-white z-50 `}
                             >
-                                <div className="w-1/3">
+                                <div className="w-1/2">
                                     <FormLabel form={form} addQuestion={addQuestion} renameForm={renameForm} />
                                 </div>
 
@@ -396,7 +396,9 @@ const FormBuilder = () => {
                                                         className={` bg-gray-900 text-sm my-1
                                                                     uppercase tracking-widest
                                                                     rounded-xl
-                                                                  ${window.location.pathname === `/user/form/${form_id}/build` ? 'visible' : 'invisible'}`}
+                                                                  ${window.location.pathname === `/user/form/${form_id}/build`
+                                                                && form.questions.length > 0
+                                                                ? 'visible' : 'invisible'}`}
 
                                                     >Preview </Button>
                                                 }

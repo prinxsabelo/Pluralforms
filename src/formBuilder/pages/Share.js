@@ -7,9 +7,9 @@ const Share = (props) => {
     const { sendRequest, isLoading } = useHttpClient();
     const [loader, setLoader] = useState(true);
     const form_id = window.location.pathname.match(/\d+/)[0];
-    const [ref_id, setRefId] = useState("");
     const [formUrl, setFormUrl] = useState("");
     const [initLoad, setInitLoad] = useState(true);
+    const [form, setForm] = useState();
     const handleChange = (e) => {
 
     }
@@ -22,7 +22,8 @@ const Share = (props) => {
                 try {
                     const data = await sendRequest(`http://localhost:8000/api/user/form`, 'POST', JSON.stringify({ form_id }));
                     if (data.form) {
-                        setRefId(data.form.ref_id)
+
+                        setForm(data.form);
                         setFormUrl(`https://pluralforms.com/form/${form_id}/${data.form.ref_id}`);
                         setInitLoad(false);
                     } else {
@@ -65,50 +66,68 @@ const Share = (props) => {
     return (
         <div className="flex justify-center">
             {loader ? <div className="h-screen"><LoadingSpinner /></div> :
-                <div className="container max-w-screen-sm p-2 md:p-4 border shadow flex flex-col space-y-6 mt-4">
-                    <div className="text-lg flex flex-col space-y-3 tracking-wider ">
-                        <div>
+                <div className="container max-w-screen-sm p-2 md:p-4 border shadow flex flex-col items-center space-y-6 mt-4">
+                    <div className="w-9/12  flex flex-col space-y-2 p-2">
+                        <div className="text-lg flex flex-col space-y-3 tracking-wider ">
                             Share link for form anyway you want..
                         </div>
-                        <div className="flex -space-x-2 w-full md:w-9/12">
+                        <div className="flex -space-x-2 w-full">
                             <input isreadonly="true" onChange={handleChange}
-                                value={formUrl} className="border-2 text-xs w-8/12 md:text-sm md:w-9/12 px-2" />
-                            <button className="bg-gray-600 text-yellow-100 hover:bg-yellow-600 rounded-0
-                                px-4 tracking-wider py-2"
+                                value={formUrl} className="rounded-l-lg border-2 text-xs w-9/12 md:text-sm md:w-8/12 px-2" />
+                            <button className="bg-gray-700 flex-auto text-yellow-100 hover:bg-yellow-600 rounded-0
+                                                   px-4 tracking-wider py-2"
                                 onClick={() => copyLink()}
                             >Copy Link</button>
                         </div>
-                    </div>
+                        <div className="w-full ">
+                            <a href={formUrl} target="_blank" rel="noopener noreferrer"
+                                className="bg-gray-700 px-4 py-2 flex px-20 text-gray-100 tracking-widest font-black  text-base  block">
+                                Preview Form on a new tab
+                            </a>
 
-                    <div>
-                        <div>
-                            <a href={formUrl} target="_blank" className="underline text-md" rel="noopener noreferrer">Open link in new tab</a>
-                            <p className="text-xs">If you decide to open tab, after filling form you can delete your response under *results.</p>
                         </div>
+                        <div className="flex flex-col space-y-1 w-full ">
+                            <div className="border-2 whatsapp h-12  text-white ">
+                                <WhatsappShareButton url={`https://pluralforms.com/form/${form.form_id}/${form.ref_id}`}
+                                    title={"Please do take your time to fill form.."}
+                                    className="w-full flex h-full items-center space-x-8 block    border-2 border-gray-800  whatsapp"
+                                >
+                                    <span className="wb px-2 h-full flex items-center">
+                                        <WhatsappIcon className="h-8 w-8 rounded-full" />
+                                    </span>
+
+                                    <span className="tracking-widest font-black  text-base"> Share on WhatsApp</span>
+                                </WhatsappShareButton>
+                            </div>
+                            <div className="border-2 facebook h-12  text-white ">
+                                <FacebookShareButton url={`https://pluralforms.com/form/${form.form_id}/${form.ref_id}`}
+                                    title={"Please do take your time to fill form.."}
+                                    className="w-full flex h-full items-center space-x-8 block    border-2 border-gray-800  whatsapp"
+                                >
+                                    <span className="fb px-2 h-full flex items-center">
+                                        <FacebookIcon className="h-8 w-8 rounded-full" />
+                                    </span>
+
+                                    <span className="tracking-widest font-black text-base"> Share on Facebook</span>
+                                </FacebookShareButton>
+                            </div>
+
+                            <div className="border-2 twitter h-12  text-white ">
+                                <TwitterShareButton url={`https://pluralforms.com/form/${form.form_id}/${form.ref_id}`}
+                                    title={"Please do take your time to fill form.."}
+                                    className="w-full flex h-full items-center space-x-8 block    border-2 border-gray-800  whatsapp"
+                                >
+                                    <span className="tb px-2 h-full flex items-center">
+                                        <TwitterIcon className="h-8 w-8 rounded-full" />
+                                    </span>
+
+                                    <span className="tracking-widest font-black text-base"> Share on Twitter</span>
+                                </TwitterShareButton>
+                            </div>
+
+                        </div>
+
                     </div>
-
-                    <div className="flex  justify-start w-full space-x-4 ">
-
-                        <WhatsappShareButton url={`https://pluralforms.com/form/${form_id}/${ref_id}`}
-                            title={"Please do take your time to fill form.."}
-                        >
-                            <WhatsappIcon className="w-full rounded-lg" />
-                        </WhatsappShareButton>
-                        <FacebookShareButton url={`https://pluralforms.com/form/${form_id}/${ref_id}`}
-                            title={"Please do take your time to fill form.."}
-                        >
-                            <FacebookIcon className="w-full rounded-lg" />
-                        </FacebookShareButton>
-                        <TwitterShareButton url={`https://pluralforms.com/form/${form_id}/${ref_id}`}
-                            title={"Please do take your time to fill form.."}
-                        >
-                            <TwitterIcon className="w-full rounded-lg" />
-                        </TwitterShareButton>
-
-
-
-                    </div>
-
                 </div>
             }
         </div>

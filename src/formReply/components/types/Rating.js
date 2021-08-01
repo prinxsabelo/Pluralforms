@@ -20,7 +20,7 @@ const Rating = ({ index, q_id, a_id, shape, answer, fillReply, length, submitFor
         <form className="w-full flex flex-col space-y-12">
 
 
-            <div className="flex justify-evenly md:justify-start md:space-x-2">
+            <div className="flex justify-evenly md:justify-start md:space-x-2  tracking-wide">
                 {Array.from(Array(parseInt(ratings)), (rating, r_index) => {
                     return (
 
@@ -65,28 +65,20 @@ const Rating = ({ index, q_id, a_id, shape, answer, fillReply, length, submitFor
             </div>
 
             {/* If last question.. submit form.. */}
-            {index + 1 === length ?
-                <div className="mt-4">
-                    <Button className="bg-gray-900 p-2 w-56  text-lg md:text-xl" onClick={() => handleSubmit()}>
+
+            <div className="mt-4">
+                {index + 1 === length ?
+                    <Button className="bg-gray-900 p-2  w-48  text-lg md:text-xl  tracking-widest" onClick={() => handleSubmit()}>
                         Submit Form
                     </Button>
-                </div>
+                    :
+                    <Button className="bg-gray-900 p-2   w-48    text-lg md:text-xl  tracking-widest" onClick={() => { fillReply(answer, q_id, a_id) }}>
+                        Continue
+                    </Button>
+                }
+            </div>
 
-                :
-                // Else continue form as usual..
-                <>
-                    {answer &&
-                        <div className="mt-4">
-                            <Button className="bg-gray-900 p-2   text-lg md:text-xl" onClick={() => { fillReply(answer, q_id, a_id) }}>
-                                Continue
-                            </Button>
-                        </div>
-                    }
-
-                </>
-            }
-
-        </form>
+        </form >
     )
 }
 export default Rating;

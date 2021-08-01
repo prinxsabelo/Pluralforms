@@ -66,8 +66,12 @@ const FormLabel = ({ form, renameForm, addQuestion, q_id }) => {
   const shareForm = () => {
     setPop(true);
   }
+  let formUrl = "";
+  if (form) {
+    formUrl = `http://localhost:3000/form/${form.form_id}/${form.ref_id}`;
+  }
   // const formUrl = `https://pluralforms.com/form/${form.form_id}/${form.ref_id}`;
-  const formUrl = `http://localhost:3000/form/${form.form_id}/${form.ref_id}`;
+
   const copyFormLink = () => {
     setPop(false);
 
@@ -108,7 +112,7 @@ const FormLabel = ({ form, renameForm, addQuestion, q_id }) => {
               <ChevronDoubleRightIcon className="w-4" />
             </div>
           </div>
-          <form className=" ">
+          <form className="w-10/12 ">
             {buildCheck ? (
               <input
                 value={title || ''}
@@ -151,24 +155,23 @@ const FormLabel = ({ form, renameForm, addQuestion, q_id }) => {
       <div className="md:hidden">
         <div className="flex  border-b-4 border-gray-300 shadow ">
           <div className="w-full  flex items-center space-x-1 ">
-            <div className="bg-white">
-              <button
-                onClick={() => goto()}
-                className="w-12 flex items-center justify-center p-2 "
-              >
-                <ArrowLeftIcon className="w-6" />
-              </button>
-            </div>
 
-            <div className="flex w-11/12 items-center pr-3 space-x-1">
-
-              <div className="py-2 w-full truncate font-semibold text-lg">
-                {title}
-              </div>
-            </div>
-            <button className="flex justify-center items-center p-2" onClick={() => shareForm()}>
-              <PaperAirplaneIcon className="w-8   transform rotate-90" />
+            <button
+              onClick={() => goto()}
+              className="w-12 flex items-center justify-center p-2 "
+            >
+              <ArrowLeftIcon className="w-6" />
             </button>
+
+            <div className="py-2 tracking-wider w-11/12 truncate font-semibold text-lg tracking-wider">
+              {title}
+            </div>
+            {form.questions.length > 0 &&
+              <button className="flex justify-center items-center p-2" onClick={() => shareForm()}>
+                <PaperAirplaneIcon className="w-8   transform rotate-90" />
+              </button>
+            }
+
           </div>
 
         </div>

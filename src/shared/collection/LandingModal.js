@@ -86,12 +86,12 @@ export default function LandingModal(props) {
 
               className="inline-block align-bottom bg-white rounded-lg text-left 
                 overflow-hidden shadow-xl transform transition-all 
-                  my-2 sm:align-middle
+                  my-1 sm:align-middle 
                  sm:w-1/3 w-full h-3/4 md:h-1/2 "
             >
               {landingContent && landingContent.landing_type === "begin" ? (
                 <>
-                  <div className="bg-white px-4 pt-5">
+                  <div className="bg-white px-4 pt-5 ">
                     <div className="flex flex-col sm:items-start">
                       <div className="mb-6 text-center  w-full my-3">
                         <Dialog.Title as="h3"
@@ -185,7 +185,7 @@ export default function LandingModal(props) {
 
 
               }
-              <div className="flex justify-end space-x-4 px-7 mb-2">
+              <div className="flex justify-end space-x-4 px-7 mb-4">
                 <button type="button"
                   className="text-md underline font-black outline-none focus:outline-none shadow p-3"
                   onClick={closeLandingModal}
@@ -194,7 +194,7 @@ export default function LandingModal(props) {
                   Cancel
                 </button>
 
-                <Button className="bg-gray-900 text-lg  w-48 uppercase"
+                <Button className="bg-gray-900 text-lg  w-48 uppercase mb-2"
                   onClick={sendLanding} >
                   Save
                 </Button>

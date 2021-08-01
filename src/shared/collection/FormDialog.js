@@ -123,10 +123,10 @@ const FormDialog = (props) => {
 
 
                                 {loader ?
-                                    <Button type="submit" className="bg-gray-500 text-lg w-48 uppercase">
+                                    <Button type="submit" className="bg-gray-500 text-lg w-48 uppercase tracking-widest">
                                         Save
                                     </Button> :
-                                    <Button type="submit" onClick={handleSubmit} className="bg-gray-900 text-lg w-48 uppercase">
+                                    <Button type="submit" onClick={handleSubmit} className="bg-gray-900 text-lg w-48 uppercase tracking-widest">
                                         Save
                                     </Button>
 

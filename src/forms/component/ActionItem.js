@@ -31,7 +31,7 @@ const ActionItem = (props) => {
         :
         (
           <button onClick={props.onHandle}
-            className="flex flex-col justify-center items-center bg-gray-800 text-white px-4 py-2 w-14 rounded-lg  hover:bg-yellow-500 hover:shadow-md">
+            className="flex flex-col tracking-wider justify-center items-center bg-gray-800 text-white px-4 py-2 w-14 rounded-lg  hover:bg-yellow-500 hover:shadow-md">
             <span>
               {props.action === "restore" && <EyeIcon className="w-4" />}
               {props.action === "delete" && <TrashIcon className="w-4" />}

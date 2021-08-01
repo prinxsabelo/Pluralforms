@@ -50,55 +50,55 @@ const Pop = props => {
                 }
                 {props.type !== "response" &&
                     <>
-                        <div className="w-11/12">  {props.header && props.header}</div>
+                        <div className="w-11/12 tracking-wide">  {props.header && props.header}</div>
                         <div className="py-2 flex flex-col space-y-1 text-base md:text-lg">
                             {props.rename &&
                                 <button onClick={props.rename} className="border-4 w-full text-left p-2   flex items-center space-x-2">
 
                                     <PencilAltIcon className="w-6" />
-                                    <span className="capitalize"> Rename {props.message}</span>
+                                    <span className="capitalize tracking-wider"> Rename {props.message}</span>
                                 </button>
                             }
                             {props.copy &&
                                 <button onClick={props.copy} className="border-4 capitalize w-full text-left p-2   flex items-center space-x-2">
 
                                     <DuplicateIcon className="w-6" />
-                                    <span className="capitalize"> Copy {props.message}</span>
+                                    <span className="capitalize tracking-wider"> Copy {props.message}</span>
                                 </button>
                             }
                             {props.restore &&
                                 <button onClick={props.restore} className="border-4 w-full text-left p-2   flex items-center space-x-2">
 
                                     <BadgeCheckIcon className="w-6" />
-                                    <span className="capitalize"> Restore {props.message}</span>
+                                    <span className="capitalize tracking-wider"> Restore {props.message}</span>
                                 </button>
                             }
                             {props.del &&
                                 <button onClick={props.del} className="border-4 w-full text-left p-2   flex items-center space-x-2">
 
                                     <TrashIcon className="w-6" />
-                                    <span className="capitalize"> Delete {props.message}</span>
+                                    <span className="capitalize tracking-wider"> Delete {props.message}</span>
                                 </button>
                             }
                             {props.close &&
                                 <button onClick={props.close} className="border-4 w-full text-left p-2   flex items-center space-x-2">
 
                                     <XCircleIcon className="w-6" />
-                                    <span className="capitalize"> Close {props.message}</span>
+                                    <span className="capitalize tracking-wider"> Close {props.message}</span>
                                 </button>
                             }
                             {props.share &&
                                 <button onClick={props.share} className="border-4 w-full text-left p-2   flex items-center space-x-2">
 
                                     <ShareIcon className="w-6" />
-                                    <span className="capitalize"> Share {props.message}</span>
+                                    <span className="capitalize tracking-wider"> Share {props.message}</span>
                                 </button>
                             }
                             {props.settings &&
                                 <button onClick={props.settings} className="border-4 w-full text-left p-2   flex items-center space-x-2">
 
                                     <CogIcon className="w-6" />
-                                    <span className="capitalize"> {props.message} Settings</span>
+                                    <span className="capitalize tracking-wider"> {props.message} Settings</span>
                                 </button>
                             }
 
@@ -107,7 +107,7 @@ const Pop = props => {
                     </>
                 }
                 {
-                    props.type === "share" &&
+                    props.type === "share" && props.form &&
                     <div className="w-full  -mt-4  px-2 mb-2">
                         <h3 className="tracking-wider text-lg text-center my-2">Share form and get those responses..</h3>
                         <div className="flex space-x-2">

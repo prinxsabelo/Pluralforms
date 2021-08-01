@@ -81,7 +81,7 @@ const BuildHeader = (props) => {
                 <div className="px-1 ">
                   <QTypeIcon
                     color="yellow"
-                    className="w-8 text-gray-100"
+                    className="w-8 md:w-6 text-gray-100"
                     type={questionDetail.type}
                     shape={questionDetail.properties.shape}
                   />

@@ -45,7 +45,7 @@ const OwnChoice = (props) => {
     const newChoices = choices
       .filter((c) => c.c_index !== choice.c_index)
       .map((el) => {
-        console.log(el.c_index);
+
         el.c_index = i;
         i++;
         return el;

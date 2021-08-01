@@ -61,7 +61,7 @@ const QuestionItem = (question) => {
     <>
       <div
         className={`hidden md:flex q-item text-sm pr-2 rounded m-1 shadow  whitespace-no-wrap min-h-12 items-center
-                border-2 cursor-pointer justify-between break-words relative
+                border-2 cursor-pointer justify-between break-words relative tracking-wide
                 ${questionDetail && (questionDetail.q_id === q_id) && "bg-gray-200"}
                 `}
       >
@@ -140,7 +140,7 @@ const QuestionItem = (question) => {
               />
 
             </div>
-            <div className=" py-4 flex-auto truncate ">{title}</div>
+            <div className=" py-4 flex-auto truncate tracking-wide">{title}</div>
           </NavLink>
           <div className="bg-yellow-200 text-yellow-900 text-xs p-2">{q_index + 1}</div>
           <div

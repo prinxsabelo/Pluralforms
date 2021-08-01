@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import Backdrop from "../../shared/collection/Backdrop";
 import Pop from "../../shared/collection/Pop";
@@ -12,7 +12,7 @@ import { DotsHorizontalIcon } from "@heroicons/react/outline";
 const FormItem = ({ form, closeForm, renameForm, copyForm }) => {
   const formUrl = `http://localhost:3000/form/${form.form_id}/${form.ref_id}`;
   const [pop, setPop] = useState(false);
-  const history = useHistory();
+
   const [popShare, setPopShare] = useState(false);
   const openPop = () => {
     setPop(true);
@@ -36,9 +36,9 @@ const FormItem = ({ form, closeForm, renameForm, copyForm }) => {
     setPop(true);
     setPopShare(true);
   }
-  const settings = () => {
-    history.push(`user/form/${form_id}/settings`);
-  };
+  // const settings = () => {
+  //   history.push(`user/form/${form_id}/settings`);
+  // };
   const endPop = () => {
     setPop(false);
     setPopShare(false);
@@ -142,7 +142,7 @@ const FormItem = ({ form, closeForm, renameForm, copyForm }) => {
                         "
       >
         {/* Mobile Device Design Here.. */}
-        <div className="md:hidden flex flex-col space-x-1 mx-2 my-1  text-sm shadow border border-gray-400">
+        <div className="md:hidden flex flex-col space-x-1  m-1 tracking-wide text-sm shadow border border-gray-400">
           <div className="flex w-full p-2 ">
             <NavLink
               to={`/user/form/${form_id}/questions`}
@@ -150,10 +150,10 @@ const FormItem = ({ form, closeForm, renameForm, copyForm }) => {
             >
               <div className="flex flex-col w-full">
                 <div className="flex justify-between items-center min-w-max truncate">
-                  <div className="w-10/12  truncate text-lg"> {title}{" "}</div>
-                  <div className="flex-auto text-xs font-medium tracking-wide">{no_views} views</div>
+                  <div className="w-10/12  truncate text-lg tracking-wider"> {title}{" "}</div>
+                  <div className="flex-auto text-xs font-medium ">{no_views} {no_views > 1 ? "views" : "view"}</div>
                 </div>
-                <div className="flex space-x-2 text-sm tracking-wide">
+                <div className="flex space-x-2 text-xs ">
                   <div>{no_questions}  {no_questions > 1 ? "questions" : "question"}</div>
                   <div>{no_responses}  {no_responses > 1 ? "responses" : "response"}</div>
                   <div><Moment format="MMM D, YYYY.">{updated_at}</Moment> </div>
@@ -173,8 +173,8 @@ const FormItem = ({ form, closeForm, renameForm, copyForm }) => {
           >
             <div className="w-11/12 flex space-x-2">
               <div className="w-11/12  ">
-                <h3 className="text-xl truncate pr-8 font-medium flex "> {title}</h3>
-                <div className="flex text-sm space-x-3">
+                <h3 className="text-xl truncate pr-8 font-medium flex tracking-wide"> {title}</h3>
+                <div className="flex text-sm space-x-3 tracking-wider">
                   <p>  <span className="font-bold">{no_questions} </span>{no_questions > 1 ? "questions" : "question"}{" "}</p>
                   <p>  <span className="font-bold">{no_views} </span>{no_views > 1 ? "views" : "view"}{" "}</p>
 
@@ -207,7 +207,7 @@ const FormItem = ({ form, closeForm, renameForm, copyForm }) => {
         copy={() => copy()}
         close={() => close()}
         rename={() => rename()}
-        settings={() => settings()}
+        // settings={() => settings()}
         share={() => share()}
       />
       {popShare &&

@@ -6,7 +6,7 @@ const Tab = ({ tab }) => {
 
     return (
         <li className="nav-item">
-            <NavLink className={`uppercase text-sm md:text-base tracking-wide md:tracking-wider nav-link ${window.location.pathname === url / tab.link ? 'active' : ''}`}
+            <NavLink className={`uppercase text-sm md:text-base tracking-wider  nav-link ${window.location.pathname === url / tab.link ? 'active' : ''}`}
                 to={`${url}/${tab.link}`} >
                 <span className="flex items-center">
                     {tab.label}

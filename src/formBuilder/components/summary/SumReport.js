@@ -34,9 +34,9 @@ const SumReport = (props) => {
                             <Empty className="w-full  h-full" />
 
                         </div>
-                        <div className="flex flex-col space-y-2 items-center ">
-                            <div className="text-lg font-medium">No Summary found for now..</div>
-                            <div>Let people fill your form first </div>
+                        <div className="flex flex-col space-y-2 items-center  tracking-wider">
+                            <div className="text-lg font-medium ">No Summary found for now..</div>
+                            <div className="tracking-widest">Let people fill your form first </div>
                         </div>
                     </div>
 

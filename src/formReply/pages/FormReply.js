@@ -55,6 +55,7 @@ export const FormReply = () => {
         } else {
             fullpageApi.moveSectionUp()
         }
+        //Making sure the form_footer appears..
         let form_footer = document.getElementById("form_footer");
         form_footer.classList.remove("invisible");
     }
@@ -67,7 +68,6 @@ export const FormReply = () => {
                 'POST', JSON.stringify({ token, ref_id, form_id }));
 
             if (data) {
-                console.log(data);
                 setBeginConfirm(false);
                 setEndConfirm(true);
             }
@@ -119,10 +119,17 @@ export const FormReply = () => {
             //Getting existing token for usage here..
             let getCookedReply = JSON.parse(cookedReply);
             const { token } = getCookedReply;
+            //confirm if user is the one previewing his/her form..
+            const userData = cookie.get("userData");
+            let email;
+            if (userData) {
+                const { user } = JSON.parse(userData);
+                email = user.email;
+            }
 
             try {
                 const data = await sendRequest(`http://localhost:8000/api/reply/check`,
-                    'POST', JSON.stringify({ token, ref_id, form_id }));
+                    'POST', JSON.stringify({ token, ref_id, form_id, email }));
                 if (data) {
                     //If token does not exist.. create a new one here..
                     if (data.ok && !data.tokenExist) {

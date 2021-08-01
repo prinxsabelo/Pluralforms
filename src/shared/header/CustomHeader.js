@@ -22,7 +22,7 @@ const CustomHeader = () => {
     return (
 
         <>
-            <div className="md:hidden flex bg-yellow-500 space-x-2 flex-row justify-between items-center px-2 py-1 md:p-8 border-b">
+            <div className="md:hidden flex bg-gradient-to-r from-gray-700 to-gray-900 text-gray-100 space-x-2 flex-row justify-between items-center px-2 py-1 md:p-8 border-b">
                 <div className="w-1/2">
                     <h3 className="text-xl uppercase tracking-wider">PluralForms</h3>
                 </div>
@@ -34,7 +34,7 @@ const CustomHeader = () => {
                                 {Auth.user.name}
                             </div>
                         </div>
-                        <button onClick={logOut} className="bg-red-600 px-2 py-1">
+                        <button onClick={logOut} className="bg-red-600 px-2 py-1  rounded-lg ">
                             LogOut
                         </button>
                     </div>
@@ -58,9 +58,9 @@ const CustomHeader = () => {
                 <div className="flex w-full items-center justify-center space-x-4 tracking-wider text-sm md:text-normal md:mr-16">
                     <span className="text-base text-lg">Form Status:</span>
                     <div className="flex items-center space-x-4 md:space-x-2">
-                        <NavLink className="text-lg px-2 py-1" activeClassName="bg-yellow-400"
+                        <NavLink className="text-lg px-2 py-1  rounded-lg " activeClassName="bg-yellow-400"
                             to="/user/forms">Active </NavLink>
-                        <NavLink className="text-lg px-2 py-1" activeClassName="bg-yellow-400"
+                        <NavLink className="text-lg px-2 py-1  rounded-lg " activeClassName="bg-yellow-400"
                             to="/user/closed_forms">Closed </NavLink>
                     </div>
 

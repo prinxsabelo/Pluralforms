@@ -44,7 +44,7 @@ const Choice = ({ allow_multiple_selection, answer, q_id, a_id, choices, fillRep
     }
 
     return (
-        <div className="w-11/12 md:max-w-md">
+        <div className="w-11/12 md:max-w-md  tracking-wide">
             {/* Confirm if multiple selection first then.. */}
             {allow_multiple_selection ?
                 <>
@@ -86,7 +86,7 @@ const Choice = ({ allow_multiple_selection, answer, q_id, a_id, choices, fillRep
                     )}
                     <div>
 
-                        <Button className="bg-gray-900 p-2 mt-4 w-full text-lg md:text-xl" onClick={() => submitChoices()}>
+                        <Button className="bg-gray-900 p-2 mt-4 w-full text-lg md:text-xl  tracking-widest" onClick={() => submitChoices()}>
                             {index + 1 === length ? <>Submit Form</> : <>Continue</>}
                         </Button>
 
@@ -129,14 +129,17 @@ const Choice = ({ allow_multiple_selection, answer, q_id, a_id, choices, fillRep
                     )}
 
                     {/* If last question.. submit form.. */}
-                    {index + 1 === length &&
-                        <Button className="bg-gray-900 p-2 mt-4 w-full text-lg md:text-xl" onClick={() => handleSubmit()}>
+                    {index + 1 === length ?
+                        <Button className="bg-gray-900 p-2 mt-4 w-full text-lg md:text-lg  tracking-widest" onClick={() => handleSubmit()}>
                             Submit Form
+                        </Button> :
+                        <Button className="bg-gray-900 p-2 mt-4 w-full text-lg md:text-lg  tracking-widest" onClick={() => submitChoices()}>
+                            Continue
                         </Button>
                     }
                 </>
             }
-            {choices.length === 0 &&
+            {choices.length === 0 && index + 1 < length &&
                 <div className="flex flex-col space-y-2 p-2">
                     <div className="text-lg">
                         Just continue nothing for you to fill..

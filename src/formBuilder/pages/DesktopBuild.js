@@ -121,19 +121,15 @@ const DesktopBuild = () => {
 
         </div>
         :
-        <div className="flex w-10/12 justify-center">
-          <div className="flex flex-col -space-y-16 justify-center   w-2/3">
-            <PickQuestion className="w-full" />
-            <div className="flex flex-col space-y-2 w-full items-center justify-center">
-              <div className="text-3xl ">
-                Pick Question
-              </div>
-
-              <div className="text-sm w-full flex justify-center items-center">
-                Let me build question picking from questions showing on the left..
-              </div>
-            </div>
-
+        <div className="hidden md:flex flex-col space-y-2 justify-center items-center build border shadow-lg p-2 m-2 ">
+          <div className="flex h-2/3  items-center ">
+            <PickQuestion className="w-full h-full" />
+          </div>
+          <div className="text-3xl capitalize">
+            Pick Question
+          </div>
+          <div className="text-sm tracking-widest">
+            Lol.. Feel free to build your form..
           </div>
         </div>
       }
@@ -141,5 +137,6 @@ const DesktopBuild = () => {
     </>
   )
 }
+
 
 export default DesktopBuild;

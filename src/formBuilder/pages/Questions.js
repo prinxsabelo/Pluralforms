@@ -18,11 +18,11 @@ const Questions = ({ questions, q_count, begin_header, end_header, addQuestion, 
           {/* Visible for large device.. */}
           <div className="hidden md:flex w-full justify-center pt-3">
             <Button
-              className={` uppercase py-2 text-xs  truncate
+              className={` uppercase py-2 text-xs  truncate rounded-lg 
                             ${begin_header ? 'bg-yellow-500' : 'bg-red-500'}`}
               onClick={() => handleLanding("begin")}> Edit Welcome Page</Button>
             <Button
-              className={` uppercase py-2 text-xs  truncate
+              className={` uppercase py-2 text-xs  truncate rounded-lg 
                          ${end_header ? 'bg-yellow-500' : 'bg-red-600'}`}
               onClick={() => handleLanding("end")}> Edit Thank you Page</Button>
           </div>
@@ -34,17 +34,21 @@ const Questions = ({ questions, q_count, begin_header, end_header, addQuestion, 
           </div>
 
           {/* Only visible for mobile.. */}
-          <div className="fixed md:hidden bottom-0 left-0 right-0 md:relative ">
-            <div className="flex fixed bottom-14 pt-2 bg-white py-1 space-x-1 w-full border-b-2 justify-end px-1">
+          <div className="fixed w-full truncate md:hidden bottom-0 left-0 right-0 md:relative ">
+            <div className="flex truncate fixed bottom-14 pt-2 bg-white py-1 space-x-1 w-full border-b-2 justify-end px-1">
               <div className="md:hidden text-sm flex items-center w-1/4 justify-center">{questions.length} {questions.length > 1 ? 'Questions' : 'Question'} </div>
-              <Button
-                className={` uppercase py-2 text-xs  truncate
+              <div className="truncate w-full">
+                <Button
+                  className={` w-32 uppercase py-2 text-xs  truncate rounded-lg 
                             ${begin_header ? 'bg-yellow-500' : 'bg-red-600'}`}
-                onClick={() => handleLanding("begin")}> Edit Welcome Page</Button>
-              <Button
-                className={` uppercase py-2 text-xs  truncate
+                  onClick={() => handleLanding("begin")}> Edit Welcome..</Button>
+              </div>
+              <div className="truncate w-full">
+                <Button
+                  className={`w-32 uppercase py-2 text-xs  truncate rounded-lg 
                          ${end_header ? 'bg-yellow-500' : 'bg-red-600'}`}
-                onClick={() => handleLanding("end")}> Edit Thank you Page</Button>
+                  onClick={() => handleLanding("end")}> Edit Thank you..</Button>
+              </div>
             </div>
 
             <div className="md:hidden flex fixed bottom-0 left-0 right-0 md:hidden w-full justify-center my-1 mt-3 py-1 bg-gray-50">

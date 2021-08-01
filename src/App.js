@@ -67,10 +67,10 @@ function App() {
   const [token, setToken] = useState(false);
   const [user, setUser] = useState();
   const contextClass = {
-    success: "bg-green-600",
+    success: "bg-green-800",
     error: "bg-red-600",
     info: "bg-gray-600",
-    warning: "bg-orange-400",
+    warning: "bg-yellow-800 font-gray-100",
     default: "bg-indigo-600",
     dark: "bg-white-600 font-gray-300",
   };

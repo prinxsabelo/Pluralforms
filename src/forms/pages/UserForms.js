@@ -289,8 +289,10 @@ const UserForms = () => {
 
           {forms && forms.length > 0 &&
             <div className="flex fixed bottom-0 left-0 right-0 md:hidden w-full justify-center my-1 mt-3 py-1 bg-gray-50">
-              <button className="text-gray-100 bg-gray-900 rounded-lg  tracking-widest
-                               w-full mx-1 p-3  uppercase text-base font-bold"
+              <button className={`text-gray-100 bg-gray-900 rounded-lg  tracking-widest
+                               w-full mx-1 p-3  uppercase text-base font-bold
+                                ${window.location.pathname.search('closed_forms') === -1 ? 'visible' : 'invisible'}
+                              `}
                 onClick={() => addForm()}>Create Form</button>
             </div>
           }
