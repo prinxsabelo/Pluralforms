@@ -11,24 +11,30 @@ const jwt_token = "KVCQFJI7zBWSq8TDIpUD5wzHLkSAJnK0X496Y8aKoCff0Wgemf6eqxpNWb5xY
 const userData = cookie.get("userData");
 if (userData) {
   const { token } = JSON.parse(userData);
-  jwt.verify(token, jwt_token, function (err, decoded) {
+  if (token) {
+    jwt.verify(token, jwt_token, function (err, decoded) {
 
-    if (err) {
-      console.log(err);
-      cookie.remove("userData");
-      alert('Unauthenicatedx..');
-    } else {
+      if (err) {
+        // Error dey here, make i no lie you sha..
+        // console.log(err);
+        // cookie.remove("userData");
+        // window.location.href = "https://pluralforms.com/user/forms";
 
-      if (decoded.iss !== "http://localhost:8000/api/login/google/callback"
-        && decoded.iss !== "http://localhost:8000/api/login/facebook/callback") {
-        cookie.remove("userData");
-        alert('Unauthenicatedy..');
+
+      } else {
+
+        if (decoded.iss !== "http://localhost:8000/api/login/google/callback"
+          && decoded.iss !== "http://localhost:8000/api/login/facebook/callback") {
+          cookie.remove("userData");
+          alert('Unauthenicatedy..');
+        }
       }
-    }
 
-    // console.log(decoded);
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  })
+      // console.log(decoded);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    })
+  }
+
 }
 
 // if (Auth.token) {

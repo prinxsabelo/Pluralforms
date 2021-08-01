@@ -320,20 +320,25 @@ const FormBuilder = () => {
         setQDrawerPosition("right");
         setDrawerIsOpen(true);
     }
+    const previewForm = () => {
+        const formUrl = `http://localhost:3000/form/${form.form_id}/${form.ref_id}`;
+        const win = window.open(formUrl, "_blank");
+        win.focus();
+    }
     let mobileTabs = [];
     let desktopTabs = []
-    if (form && form.questions.length > 0) {
+    if (form && form.questions && form.questions.length > 0) {
         mobileTabs = [
             { id: 1, label: "Questions", link: `questions` },
             { id: 2, label: "Share", link: `share` },
             { id: 3, label: "Results", link: `results` },
-            { id: 4, label: "Settings", link: `settings` },
+            // { id: 4, label: "Settings", link: `settings` },
         ];
         desktopTabs = [
             { id: 1, label: "Build", link: `build` },
             { id: 2, label: "Share", link: `share` },
             { id: 3, label: "Results", link: `results` },
-            { id: 4, label: "Settings", link: `settings` },
+            // { id: 4, label: "Settings", link: `settings` },
         ];
     } else {
         mobileTabs = [
@@ -361,22 +366,45 @@ const FormBuilder = () => {
                         <div className="hidden md:block builder-block hidden overflow-none h-24">
 
                             <header
-                                className={`flex w-full py-1 justify-center shadow bg-white z-50 `}
+                                className={`flex w-full justify-between shadow bg-white z-50 `}
                             >
                                 <div className="w-1/3">
                                     <FormLabel form={form} addQuestion={addQuestion} renameForm={renameForm} />
                                 </div>
 
-                                <div className="w-1/4 flex-grow">
+                                <div className="w-3/5 flex-grow">
                                     <Tabs tabs={desktopTabs} />
                                 </div>
-                                {
-                                    window.location.pathname === `/user/form/${form_id}/build`
-                                    &&
-                                    <div className="flex-auto w-32 bg-yellow-400 flex items-center px-2">
-                                        {loader && <InnerLoader />}
-                                    </div>
-                                }
+                                <div className="w-1/4 px-1  flex justify-end">
+                                    {
+
+                                        <div className="w-full flex justify-between  space-x-1 ">
+                                            <div
+                                                className={`  w-52 flex items-center px-2
+                                                ${window.location.pathname === `/user/form/${form_id}/build` ? 'bg-yellow-400' : ''}`}
+                                            >
+                                                {window.location.pathname === `/user/form/${form_id}/build`
+                                                    && loader &&
+                                                    <InnerLoader />
+                                                }
+
+                                            </div>
+                                            <div>
+                                                {
+                                                    // form.questions.length > 0 &&
+                                                    <Button onClick={() => previewForm()}
+                                                        className={` bg-gray-900 text-sm my-1
+                                                                    uppercase tracking-widest
+                                                                    rounded-xl
+                                                                  ${window.location.pathname === `/user/form/${form_id}/build` ? 'visible' : 'invisible'}`}
+
+                                                    >Preview </Button>
+                                                }
+                                            </div>
+
+                                        </div>
+                                    }
+                                </div>
 
                             </header>
 
@@ -412,13 +440,17 @@ const FormBuilder = () => {
                                         <div className="h-screen w-full flex flex-col space-y-4 items-center ">
                                             <div className="flex flex-col items-center space-y-2">
                                                 <NoQuestion />
-                                                <div className="text-3xl">
+                                                <div className="text-3xl capitalize">
                                                     No question found.
+                                                </div>
+                                                <div className="text-sm tracking-widest">
+                                                    Lol.. Don't be shy to ask those questions..
                                                 </div>
                                             </div>
 
                                             <div>
-                                                <Button onClick={addQuestion} className="bg-gray-900 uppercase tracking-wider">Create Question</Button>
+                                                <Button onClick={addQuestion}
+                                                    className="bg-gray-900 uppercase tracking-widest">Create Question</Button>
                                             </div>
                                         </div>
 
@@ -447,7 +479,7 @@ const FormBuilder = () => {
                                             <FormLabel form={form} addQuestion={addQuestion} renameForm={renameForm} />
                                             <Tabs tabs={mobileTabs} />
                                         </header>
-                                        <main>
+                                        <main className="border-t-2">
 
                                             {window.location.pathname === `/user/form/${form_id}/questions` ? (
                                                 <>

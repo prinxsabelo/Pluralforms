@@ -125,8 +125,8 @@ const QuestionItem = (question) => {
         </div>
       </div>
 
-      <div className="md:hidden w-full   flex justify-center flex-col space-x-1 p-1">
-        <div className=" flex items-center  border-2 shadow  w-full font-medium ">
+      <div className="md:hidden w-full text-base  flex justify-center flex-col space-x-1 p-1">
+        <div className=" flex items-center  border border-gray-400 shadow  w-full font-medium ">
           <NavLink
             onClick={() => showQuestion(question)}
             className="flex items-center w-11/12 truncate px-2 space-x-2"
@@ -138,10 +138,11 @@ const QuestionItem = (question) => {
                 type={type}
                 shape={properties.shape}
               />
+
             </div>
             <div className=" py-4 flex-auto truncate ">{title}</div>
           </NavLink>
-
+          <div className="bg-yellow-200 text-yellow-900 text-xs p-2">{q_index + 1}</div>
           <div
             className="flex-auto w-16 border py-4 relative font-bold font-black
                                     flex items-center justify-center"

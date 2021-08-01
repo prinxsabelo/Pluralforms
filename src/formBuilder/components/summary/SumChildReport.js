@@ -4,23 +4,27 @@ import DoughnutChart from "./chart/DoughnutChart";
 import TextReport from "./TextReport";
 
 const SumChildReport = (props) => {
-    const { title, type, index, content, data, shape, summary } = props;
+    const { title, type, index, content, data, shape, summary, allow_multiple_selection } = props;
     return (
         <>
             <div className="shadow-lg border-2 bg-white  mt-4">
-                <div className="flex items-center shadow w-full space-x-3 md:space-x-6 ">
-                    <div className="flex items-center justify-center  p-3 w-18 space-x-2 md:space-x-3 bg-yellow-600 text-white">
+                <div className="flex items-center shadow w-full truncate space-x-3 md:space-x-6 ">
+                    <div className="flex items-center justify-center  p-3 w-18 space-x-2 md:space-x-3 bg-yellow-600 text-white truncate">
 
                         <QTypeIcon color="" type={type} shape={shape} className="w-5 h-5 text-gray-100" />
 
                         <span> {index}</span>
                     </div>
-                    <div>
-                        <div className=" text-xl w-10/12 font-semibold truncate">{title}</div>
+                    <div className="flex-auto">
+                        <div className=" text-xl w-10/12 md:w-11/12 font-semibold truncate">{title}</div>
                         {
-                            summary &&
+                            summary && !allow_multiple_selection &&
                             <div className="text-xs font-medium tracking-wider">{summary.submitted} out of {summary.total} people answered this question</div>
 
+                        }
+                        {
+                            summary && allow_multiple_selection &&
+                            <div className="text-xs font-medium tracking-wider">*multiple choice</div>
                         }
 
                     </div>

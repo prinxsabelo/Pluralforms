@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 import LoadingSpinner from "../../shared/collection/LoadingSpinner.";
 
 import { ViewportContext } from "../../shared/contexts/viewport-context";

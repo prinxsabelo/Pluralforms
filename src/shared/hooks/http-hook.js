@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from "react";
-import { useContext } from "react/cjs/react.development";
+import { useContext } from "react";
 import jwt from 'jsonwebtoken';
 
 import axios from "axios";
@@ -7,7 +7,7 @@ import AuthContext from "../contexts/auth.context";
 import { toast, Zoom } from 'react-toastify';
 
 import cookie from 'js-cookie';
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
 
 
 //PICKING JWT FROM API FROM .env IN BACKEND...
@@ -21,7 +21,8 @@ export const useHttpClient = () => {
         jwt.verify(token, jwt_token, function (err, decoded) {
 
             if (err) {
-                cookie.remove("userData");
+                console.log(err);
+                // cookie.remove("userData");
                 // alert('Unauthenicated1..');
                 console.log('removed..');
             } else {
@@ -113,6 +114,7 @@ export const useHttpClient = () => {
                     } else {
                         notifyError(error.response.data.message)
                     }
+                    console.log(error);
                     console.log(error.response.data.message);
                 } else {
                     notifyError('error occured.. check your network.')

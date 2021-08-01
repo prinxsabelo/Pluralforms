@@ -1,15 +1,20 @@
 import { useContext, useEffect, useState } from "react";
 import { NavLink, useHistory, useParams } from "react-router-dom";
+import { toast, Zoom } from 'react-toastify';
 
 import {
   HomeIcon,
   ChevronDoubleRightIcon,
   PlusIcon,
-  CogIcon,
+  // CogIcon,
   ArrowLeftIcon,
+
+  PaperAirplaneIcon,
 } from "@heroicons/react/outline";
 import { ViewportContext } from "../../shared/contexts/viewport-context";
 import { BuildQuestionContext } from "../../shared/contexts/build-question.context";
+import Pop from "../../shared/collection/Pop";
+import Backdrop from "../../shared/collection/Backdrop";
 
 
 const FormLabel = ({ form, renameForm, addQuestion, q_id }) => {
@@ -18,6 +23,7 @@ const FormLabel = ({ form, renameForm, addQuestion, q_id }) => {
   const { setQuestionDetail } = useContext(BuildQuestionContext);
   const breakpoint = 768;
   const [title, setTitle] = useState("");
+  const [pop, setPop] = useState(false);
   useEffect(() => {
     if (form) {
       // console.log(form);
@@ -31,12 +37,11 @@ const FormLabel = ({ form, renameForm, addQuestion, q_id }) => {
     renameForm(title, form_id);
   }
 
-
   const changeHandler = (e) => {
     const { value } = e.target;
-    // console.log(value);
     setTitle(value);
   };
+
   if (window.location.pathname.search("build") !== -1) {
     buildCheck = true;
   } else {
@@ -58,6 +63,35 @@ const FormLabel = ({ form, renameForm, addQuestion, q_id }) => {
     }
 
   }
+  const shareForm = () => {
+    setPop(true);
+  }
+  // const formUrl = `https://pluralforms.com/form/${form.form_id}/${form.ref_id}`;
+  const formUrl = `http://localhost:3000/form/${form.form_id}/${form.ref_id}`;
+  const copyFormLink = () => {
+    setPop(false);
+
+
+    navigator.clipboard.writeText(formUrl);
+    toast.configure();
+    const notify = () => toast.success(`Your link is ready.. 😎`, {
+      transition: Zoom,
+      position: "bottom-center",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: 0,
+
+    })
+    notify();
+  }
+  const previewForm = () => {
+    const win = window.open(formUrl, "_blank");
+    win.focus();
+  }
+
   return (
     <>
       {
@@ -74,7 +108,7 @@ const FormLabel = ({ form, renameForm, addQuestion, q_id }) => {
               <ChevronDoubleRightIcon className="w-4" />
             </div>
           </div>
-          <form className="w-2/3 ">
+          <form className=" ">
             {buildCheck ? (
               <input
                 value={title || ''}
@@ -115,8 +149,8 @@ const FormLabel = ({ form, renameForm, addQuestion, q_id }) => {
 
 
       <div className="md:hidden">
-        <div className="flex items-center border-b-4 border-gray-300 shadow ">
-          <div className="w-10/12 flex items-center space-x-1">
+        <div className="flex  border-b-4 border-gray-300 shadow ">
+          <div className="w-full  flex items-center space-x-1 ">
             <div className="bg-white">
               <button
                 onClick={() => goto()}
@@ -127,21 +161,27 @@ const FormLabel = ({ form, renameForm, addQuestion, q_id }) => {
             </div>
 
             <div className="flex w-11/12 items-center pr-3 space-x-1">
-              {/* <div className="h-12 w-12 border text-xs flex justify-center items-center">
-                xxx
-              </div> */}
+
               <div className="py-2 w-full truncate font-semibold text-lg">
                 {title}
               </div>
             </div>
-          </div>
-          <div className="flex-auto  flex items-center justify-end  py-1 pt-2 pr-1">
-            <button className="w-12 flex items-center justify-center p-2 ">
-              <CogIcon className="w-6" />
+            <button className="flex justify-center items-center p-2" onClick={() => shareForm()}>
+              <PaperAirplaneIcon className="w-8   transform rotate-90" />
             </button>
           </div>
+
         </div>
       </div>
+      <Pop
+        copyFormLink={copyFormLink}
+        previewForm={previewForm}
+        form={form}
+        show={pop}
+        message="share"
+        type="share"
+      />
+      {pop && <Backdrop onClick={() => setPop(false)} />}
     </>
   )
 }

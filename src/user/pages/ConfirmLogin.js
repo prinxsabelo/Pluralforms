@@ -1,16 +1,18 @@
 import React, { useCallback, useContext, useEffect } from "react";
 import cookie from "js-cookie";
-import { useLocation, useHistory } from "react-router-dom";
+import {
+    useLocation,
+} from "react-router-dom";
 import AuthContext from "../../shared/contexts/auth.context";
+
 import { useHttpClient } from "../../shared/hooks/http-hook";
 
 const ConfirmLogin = () => {
-
-
     const { sendRequest } = useHttpClient();
+
     const location = useLocation();
     const Auth = useContext(AuthContext);
-    let history = useHistory();
+
 
     const fetchApi = useCallback(async () => {
         const userData = cookie.get("userData");
@@ -28,15 +30,15 @@ const ConfirmLogin = () => {
                 let user = { email, name, avatar };
 
                 cookie.set("userData", JSON.stringify({ id, token, user }));
-                Auth.setToken(token);
-                Auth.setUser(user);
-
-                history.push("/user/forms");
+                window.location.href = "http://localhost:3000/user/forms";
+                // window.location.href = "https://pluralforms.com/user/forms";
             }
-        }
 
-        // }
-    }, [Auth, history, location.search, sendRequest])
+
+
+        }
+    }, [Auth, location.search, sendRequest]);
+
     useEffect(() => {
         fetchApi()
     }, [fetchApi])
@@ -50,3 +52,6 @@ const ConfirmLogin = () => {
     );
 };
 export default ConfirmLogin;
+
+
+

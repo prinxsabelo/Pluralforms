@@ -63,10 +63,6 @@ const CustomHeader = () => {
                         <NavLink className="text-lg px-2 py-1" activeClassName="bg-yellow-400"
                             to="/user/closed_forms">Closed </NavLink>
                     </div>
-                    {/* <NavLink className="text-xs md:text-lg" activeClassName="p-1 text-black font-black rounded text-xs md:text-lg mx-1"
-                        to="/user/forms">Active </NavLink>
-                    <NavLink className="text-xs md:text-base" activeClassName="p-1 text-black font-black rounded  text-xs md:text-lg mx-1"
-                        to="/user/closed_forms">Closed </NavLink> */}
 
                 </div>
 

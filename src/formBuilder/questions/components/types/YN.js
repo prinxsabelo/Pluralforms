@@ -78,7 +78,7 @@ const YN = (props) => {
           Give Optional Reponse for question.
         </div>
 
-        <div className="flex flex-col space-y-4 w-11/12 md:w-3/4">
+        <div className="flex flex-col space-y-1 md:space-y-3 w-11/12 md:w-3/4">
           {feedback.map((feedback, index) => (
             <Feedback
               key={index}

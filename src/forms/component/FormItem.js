@@ -5,12 +5,15 @@ import { NavLink, useHistory } from "react-router-dom";
 import Backdrop from "../../shared/collection/Backdrop";
 import Pop from "../../shared/collection/Pop";
 import Moment from 'react-moment';
+import { toast, Zoom } from 'react-toastify';
 
 import ActionItem from "./ActionItem";
 import { DotsHorizontalIcon } from "@heroicons/react/outline";
 const FormItem = ({ form, closeForm, renameForm, copyForm }) => {
+  const formUrl = `http://localhost:3000/form/${form.form_id}/${form.ref_id}`;
   const [pop, setPop] = useState(false);
   const history = useHistory();
+  const [popShare, setPopShare] = useState(false);
   const openPop = () => {
     setPop(true);
   };
@@ -28,10 +31,43 @@ const FormItem = ({ form, closeForm, renameForm, copyForm }) => {
     setPop(false);
 
   };
+  const share = () => {
+    console.log('share..');
+    setPop(true);
+    setPopShare(true);
+  }
   const settings = () => {
     history.push(`user/form/${form_id}/settings`);
   };
+  const endPop = () => {
+    setPop(false);
+    setPopShare(false);
+  }
+  const previewForm = () => {
+    const win = window.open(formUrl, "_blank");
+    win.focus();
+    setPop(false);
+    setPopShare(false);
+  }
+  const copyFormLink = () => {
+    setPop(false);
+    setPopShare(false);
 
+    navigator.clipboard.writeText(formUrl);
+    toast.configure();
+    const notify = () => toast.success(`Your link is ready.. 😎`, {
+      transition: Zoom,
+      position: "bottom-center",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: 0,
+
+    })
+    notify();
+  }
   const handleAction = (checkAction) => {
     console.log(checkAction);
     const { action } = checkAction;
@@ -83,12 +119,12 @@ const FormItem = ({ form, closeForm, renameForm, copyForm }) => {
       name: "Rename",
       link: false,
     },
-    {
-      id: 6,
-      action: "settings",
-      name: "Settings",
-      link: false,
-    },
+    // {
+    //   id: 6,
+    //   action: "settings",
+    //   name: "Settings",
+    //   link: false,
+    // },
   ];
 
   const { form_id, title, no_views, no_questions, no_responses, updated_at } = form;
@@ -102,12 +138,12 @@ const FormItem = ({ form, closeForm, renameForm, copyForm }) => {
     <>
       <div
         className=" md:border-2  md:rounded-lg md:flex-row  md:m-2 hover:shadow-lg
-                                shadow-sm   border   md:flex flex-col w-full mb-1    
+                                shadow-sm    md:flex flex-col w-full mb-1    
                         "
       >
         {/* Mobile Device Design Here.. */}
-        <div className="md:hidden flex flex-col space-x-1 m-1">
-          <div className="flex w-full shadow border border-gray-400 p-2 ">
+        <div className="md:hidden flex flex-col space-x-1 mx-2 my-1  text-sm shadow border border-gray-400">
+          <div className="flex w-full p-2 ">
             <NavLink
               to={`/user/form/${form_id}/questions`}
               className="flex w-10/12 px-1 space-x-2 items-center"
@@ -172,8 +208,19 @@ const FormItem = ({ form, closeForm, renameForm, copyForm }) => {
         close={() => close()}
         rename={() => rename()}
         settings={() => settings()}
+        share={() => share()}
       />
-      {pop && <Backdrop onClick={() => setPop(false)} />}
+      {popShare &&
+        <Pop
+          copyFormLink={copyFormLink}
+          previewForm={previewForm}
+          form={form}
+          show={pop}
+          message="share"
+          type="share"
+        />
+      }
+      {pop && <Backdrop onClick={() => endPop()} />}
     </>
   );
 };

@@ -55,7 +55,8 @@ export const FormReply = () => {
         } else {
             fullpageApi.moveSectionUp()
         }
-
+        let form_footer = document.getElementById("form_footer");
+        form_footer.classList.remove("invisible");
     }
 
     //Submitting form here..

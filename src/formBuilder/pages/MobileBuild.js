@@ -1,6 +1,6 @@
 import { CheckIcon } from "@heroicons/react/outline";
 import { useContext, } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
 import Button from "../../shared/collection/Button";
 import LoadingSpinner from "../../shared/collection/LoadingSpinner.";
 import { BuildQuestionContext } from "../../shared/contexts/build-question.context";
@@ -69,6 +69,7 @@ const MobileBuild = ({ form }) => {
                     placeholder="Type your Question Here.."
                     value={questionDetail.title}
                     onChange={changeHandler}
+                    spellCheck="true"
                   ></textarea>
                 </div>
                 <QuestionType />
@@ -85,9 +86,9 @@ const MobileBuild = ({ form }) => {
           </>
         }
       </main>
-      <footer className="fixed bottom-0 bg-white border-t w-full p-3 tracking-wider uppercase text-sm">
+      {/* <footer className="fixed bottom-0 bg-white border-t w-full p-3 tracking-wider uppercase text-sm">
         pluralforms made of love for you..
-      </footer>
+      </footer> */}
     </>
   )
 }

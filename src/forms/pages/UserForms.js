@@ -230,9 +230,9 @@ const UserForms = () => {
         <CustomHeader />
         <>
           {isLoading &&
-            <div className="flex items-center justify-center h-screen ">
-              <LoadingSpinner asOverlay />
-            </div>
+
+            <LoadingSpinner asOverlay />
+
           }
           {!isLoading && forms &&
             <>
@@ -247,11 +247,16 @@ const UserForms = () => {
                           <NoForm width="100%" height="100%" />
                         </div>
                         <div className="flex flex-col space-y-4 items-center">
-                          <div className="text-3xl">
+                          <div className="text-3xl ">
                             No form found
                           </div>
+                          <div className="text-base  tracking-wider">
+                            Feel free to create a form too..
+                          </div>
                           <div>
-                            <Button onClick={() => addForm()} className="bg-gray-800 tracking-wider w-56 h-10 uppercase">Create Form</Button>
+                            <Button onClick={() => addForm()}
+                              className="bg-gray-900 tracking-wider w-56 h-12
+                                             text-lg uppercase md:text-lg ">Create Form</Button>
                           </div>
                         </div>
                       </div>
@@ -283,9 +288,9 @@ const UserForms = () => {
           }
 
           {forms && forms.length > 0 &&
-            <div className="flex fixed bottom-0 md:hidden w-full justify-center my-1">
-              <button className="text-gray-100 bg-gray-800 rounded-lg
-           tracking-wider w-full mx-1 p-3  uppercase text-base"
+            <div className="flex fixed bottom-0 left-0 right-0 md:hidden w-full justify-center my-1 mt-3 py-1 bg-gray-50">
+              <button className="text-gray-100 bg-gray-900 rounded-lg  tracking-widest
+                               w-full mx-1 p-3  uppercase text-base font-bold"
                 onClick={() => addForm()}>Create Form</button>
             </div>
           }

@@ -9,7 +9,7 @@ import {
 import { FormReply } from "./formReply/pages/FormReply";
 
 
-import { PublicHomePage } from "./PublicHomePage";
+// import { PublicHomePage } from "./PublicHomePage";
 import AuthContext from "./shared/contexts/auth.context";
 import FormReplyContextProvider from "./shared/contexts/form-reply.context";
 import ConfirmLogin from "./user/pages/ConfirmLogin";
@@ -22,10 +22,13 @@ const Routes = ({ authProceed }) => {
 
   return (
     <Switch>
-      {/* <Route exact path="/">
-        {authProceed ? <Redirect to="/user" /> : <PublicHomePage />}
-      </Route> */}
-      <Route exact path="/" component={PublicHomePage} />
+      <Route exact path="/">
+        {/* {authProceed ? <Redirect to="/user" /> : <PublicHomePage />} */}
+        {authProceed ? <Redirect to="/user" /> : <Login />}
+      </Route>
+      {/* <Route exact path="/" component={Login} /> */}
+
+      {/* <Route exact path="/" component={PublicHomePage} /> */}
       <Route path="/login/google" component={ConfirmLogin} />
       <Route path="/login/facebook" component={ConfirmLogin} />
 
@@ -76,6 +79,7 @@ function App() {
 
     const readCookie = () => {
       const userData = cookie.get("userData");
+      // console.log(userData);
       if (userData) {
         const { token, user } = JSON.parse(userData);
 
@@ -108,7 +112,7 @@ function App() {
 
       <AuthContext.Provider value={{ token, setToken, user, setUser, authProceed }}>
         <FormReplyContextProvider>
-          <Router>
+          <Router >
             <Routes authProceed={authProceed} />
           </Router>
         </FormReplyContextProvider>

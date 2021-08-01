@@ -1,13 +1,16 @@
 import './Pop.css';
 import ReactDOM from 'react-dom';
 import { useRef } from 'react';
+import { WhatsappIcon, WhatsappShareButton, FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon } from 'react-share';
 
 import { CSSTransition } from 'react-transition-group';
-import { BadgeCheckIcon, CogIcon, DuplicateIcon, PencilAltIcon, TrashIcon, XCircleIcon, } from '@heroicons/react/outline';
+import { BadgeCheckIcon, CogIcon, DuplicateIcon, PencilAltIcon, ShareIcon, TrashIcon, XCircleIcon, } from '@heroicons/react/outline';
+import Button from './Button';
 
 const Pop = props => {
-    const nodeRef = useRef(null);
 
+
+    const nodeRef = useRef(null);
 
     let content = (
         <CSSTransition
@@ -48,7 +51,7 @@ const Pop = props => {
                 {props.type !== "response" &&
                     <>
                         <div className="w-11/12">  {props.header && props.header}</div>
-                        <div className="py-2 flex flex-col space-y-1 text-lg">
+                        <div className="py-2 flex flex-col space-y-1 text-base md:text-lg">
                             {props.rename &&
                                 <button onClick={props.rename} className="border-4 w-full text-left p-2   flex items-center space-x-2">
 
@@ -84,7 +87,13 @@ const Pop = props => {
                                     <span className="capitalize"> Close {props.message}</span>
                                 </button>
                             }
+                            {props.share &&
+                                <button onClick={props.share} className="border-4 w-full text-left p-2   flex items-center space-x-2">
 
+                                    <ShareIcon className="w-6" />
+                                    <span className="capitalize"> Share {props.message}</span>
+                                </button>
+                            }
                             {props.settings &&
                                 <button onClick={props.settings} className="border-4 w-full text-left p-2   flex items-center space-x-2">
 
@@ -97,7 +106,64 @@ const Pop = props => {
                         </div>
                     </>
                 }
+                {
+                    props.type === "share" &&
+                    <div className="w-full  -mt-4  px-2 mb-2">
+                        <h3 className="tracking-wider text-lg text-center my-2">Share form and get those responses..</h3>
+                        <div className="flex space-x-2">
+                            <Button
+                                onClick={props.previewForm}
+                                className="p-2 bg-gray-800 text-base tracking-widest w-1/2 mb-2 border-2 border-gray-800 rounded-lg">
+                                Preview Form
+                            </Button>
+                            <Button
+                                onClick={props.copyFormLink}
+                                className="p-2 bg-gray-800 text-base tracking-widest p-2 w-1/2 mb-2 border-2 border-gray-800 rounded-lg">
+                                Copy Link
+                            </Button>
+                        </div>
+                        <div className="flex flex-col space-y-1 ">
+                            <div className="border-2 whatsapp h-12 rounded-lg text-white ">
+                                <WhatsappShareButton url={`https://pluralforms.com/form/${props.form.form_id}/${props.form.ref_id}`}
+                                    title={"Please do take your time to fill form.."}
+                                    className="w-full flex h-full items-center space-x-8 block  border-2 border-gray-800 rounded-lg whatsapp"
+                                >
+                                    <span className="wb px-2 h-full flex items-center">
+                                        <WhatsappIcon className="h-8 w-8 rounded-full" />
+                                    </span>
 
+                                    <span className="tracking-widest font-black  text-base"> Share on WhatsApp</span>
+                                </WhatsappShareButton>
+                            </div>
+                            <div className="border-2 facebook h-12 rounded-lg text-white ">
+                                <FacebookShareButton url={`https://pluralforms.com/form/${props.form.form_id}/${props.form.ref_id}`}
+                                    title={"Please do take your time to fill form.."}
+                                    className="w-full flex h-full items-center space-x-8 block  border-2 border-gray-800 rounded-lg whatsapp"
+                                >
+                                    <span className="fb px-2 h-full flex items-center">
+                                        <FacebookIcon className="h-8 w-8 rounded-full" />
+                                    </span>
+
+                                    <span className="tracking-widest font-black text-base"> Share on Facebook</span>
+                                </FacebookShareButton>
+                            </div>
+
+                            <div className="border-2 twitter h-12 rounded-lg text-white ">
+                                <TwitterShareButton url={`https://pluralforms.com/form/${props.form.form_id}/${props.form.ref_id}`}
+                                    title={"Please do take your time to fill form.."}
+                                    className="w-full flex h-full items-center space-x-8 block  border-2 border-gray-800 rounded-lg whatsapp"
+                                >
+                                    <span className="tb px-2 h-full flex items-center">
+                                        <TwitterIcon className="h-8 w-8 rounded-full" />
+                                    </span>
+
+                                    <span className="tracking-widest font-black text-base"> Share on Twitter</span>
+                                </TwitterShareButton>
+                            </div>
+
+                        </div>
+                    </div>
+                }
 
             </aside>
 

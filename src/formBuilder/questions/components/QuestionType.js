@@ -1,4 +1,4 @@
-import { useContext } from "react/cjs/react.development";
+import { useContext } from "react";
 import { BuildQuestionContext } from "../../../shared/contexts/build-question.context";
 import NoChoice from "./types/NoChoice";
 import OwnChoice from "./types/OwnChoice";

@@ -88,6 +88,7 @@ body.Dialog-active {
 .form-list {
   max-height: 75vh;
   overflow-y: auto;
+ padding-bottom: 20px;
 }
 
 .build {
@@ -336,4 +337,28 @@ animation: decrease 2s 0.5s infinite;
 @keyframes fadeOut {
   0% { opacity: 1; }
   100% { opacity: 0; }
+}
+
+
+.whatsapp{
+ background-color: #075E54;
+}
+.wb{
+  background-color:   #25D366;
+}
+
+.facebook{
+  background-color: #445c8f;
+}
+
+.fb{
+  background-color:  #3b5998; 
+}
+
+
+.tb{
+  background-color: #00acee;
+}
+.twitter{
+  background-color: #008abe
 }

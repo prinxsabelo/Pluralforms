@@ -319,12 +319,13 @@ const Responses = () => {
                       </div>
                     </div>
                   </div> :
-                  <div className="flex flex-col w-full flex justify-center space-y-32">
-                    <div className="w-10/12 flex mx-2">
-                      <Empty />
+                  <div className="w-full h-4/6 space-y-4 flex flex-col  md:mt-24 items-center">
+                    <div className="flex items-center w-1/2 md:mt-10 items-center">
+                      <Empty className="w-full  h-full" />
+
                     </div>
                     <div className="flex flex-col space-y-2 items-center ">
-                      <div className="text-lg font-medium">No Response found for now..</div>
+                      <div className="text-xl font-medium">No Response found for now..</div>
                       <div>Let people fill your form first </div>
                     </div>
                   </div>
