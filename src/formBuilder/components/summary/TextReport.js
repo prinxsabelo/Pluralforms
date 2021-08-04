@@ -13,7 +13,7 @@ const TextReport = ({ data }) => {
                             <Menu.Button className="inline-flex justify-center w-full rounded-md 
                                 border border-gray-300 shadow-sm px-4 py-2  text-sm
                                  font-medium text-gray-100 focus:outline-none 
-                                 
+                                z-10
                                  bg-purple-500
                                ">
                                 Let's see what they have to say
@@ -36,7 +36,8 @@ const TextReport = ({ data }) => {
                         >
                             <Menu.Items
                                 static
-                                className=" absolute top-12   rounded-md shadow-lg bg-purple-200 ring-1 ring-black ring-opacity-5 focus:outline-none "
+                                className=" absolute top-12  left-4 right-0 rounded-md shadow-lg 
+                                            bg-purple-300 font-semibold ring-1 ring-black ring-opacity-5 focus:outline-none "
                             >
                                 {textData && textData.length > 0 &&
                                     <>
@@ -44,12 +45,11 @@ const TextReport = ({ data }) => {
                                             <div key={index}>
                                                 <Menu.Item>
                                                     {({ active }) => (
-                                                        <a
-                                                            href="/#"
-                                                            className="block px-4 py-2 text-sm tracking-wider border-t-2 border-gray-200"
+                                                        <div
+                                                            className="block w-full px-4 py-2 text-sm tracking-wider border-t-2 border-gray-200"
                                                         >
                                                             {d.answer}
-                                                        </a>
+                                                        </div>
                                                     )}
                                                 </Menu.Item>
                                             </div>

@@ -321,7 +321,7 @@ const FormBuilder = () => {
         setDrawerIsOpen(true);
     }
     const previewForm = () => {
-        const formUrl = `http://localhost:3000/form/${form.form_id}/${form.ref_id}`;
+        const formUrl = `https://pluralforms.com/form/${form.form_id}/${form.ref_id}`;
         const win = window.open(formUrl, "_blank");
         win.focus();
     }

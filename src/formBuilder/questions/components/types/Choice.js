@@ -25,11 +25,11 @@ const Choice = (props) => {
         <>
 
             <div className=" flex space-x-1 items-center">
-                <input autoFocus={props.c_index === 0 || props.c_index + 1 === props.choicesLength}
-
+                <input autoFocus={(props.title !== '') && (props.c_index === 0 || props.c_index + 1 === props.choicesLength)}
+                    spellCheck="true"
                     autoComplete="off"
                     placeholder={`Enter Choice ${props.c_index + 1} here..`}
-                    className="border-2 border-gray-300 w-full p-3  outline-none rounded focus:border-gray-700"
+                    className="border-2 border-gray-300 w-full p-3 tracking-wide outline-none rounded focus:border-gray-700"
                     onChange={(event) => handleChoice(event, props.c_index)}
                     onKeyDown={handleKeyDown}
                     c_index={props.c_index}

@@ -45,28 +45,28 @@ const BuildHeader = (props) => {
 
     <div className="flex  justify-between items-center justify-end  p-1 bg-gray-100 w-full md:w-3/4 text-right">
       <div className="md:hidden flex w-44 items-center">
-        <Button className="text-gray-800 w-16 h-10 bg-white flex items-center justify-center">
-
-          {questionDetail.q_index > 0 ? (
-
-            <ChevronDoubleLeftIcon
-              className="w-6"
-              onClick={() => goto("backward", questionDetail.q_id)}
-            />
-          ) : (
-            <span className="w-5">.</span>
-          )}
-
+        <Button className={`text-gray-800 w-16 h-10 bg-white flex items-center justify-center
+                            ${questionDetail.q_index > 0
+            ? 'visible'
+            : 'invisible'
+          }
+        
+        `}>
+          <ChevronDoubleLeftIcon
+            className="w-6"
+            onClick={() => goto("backward", questionDetail.q_id)}
+          />
         </Button>
-        <Button className="text-gray-800 w-16 h-10  bg-white flex items-center justify-center">
-          {questionDetail.q_index + 1 < questionDetail.q_count ? (
-            <ChevronDoubleRightIcon
-              className="w-6"
-              onClick={() => goto("forward", questionDetail.q_id)}
-            />
-          ) : (
-            <span className="w-5">.</span>
-          )}
+        <Button className={`  text-gray-800 w-16 h-10  bg-white flex items-center justify-center
+                          ${questionDetail.q_index + 1 < questionDetail.q_count
+            ? 'visible'
+            : 'invisible'
+          }
+        `}>
+          <ChevronDoubleRightIcon
+            className="w-6"
+            onClick={() => goto("forward", questionDetail.q_id)}
+          />
         </Button>
 
       </div>
@@ -76,7 +76,7 @@ const BuildHeader = (props) => {
         <div>
           {qType &&
 
-            <Button className="bg-gray-900 uppercase md:text-sm" onClick={openDrawer}>
+            <Button className="bg-gray-900 uppercase md:text-sm truncate" onClick={openDrawer}>
               <span className="flex items-center">
                 <div className="px-1 ">
                   <QTypeIcon

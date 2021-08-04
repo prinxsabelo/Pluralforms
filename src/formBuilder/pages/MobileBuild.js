@@ -64,12 +64,15 @@ const MobileBuild = ({ form }) => {
                   <textarea
                     autoFocus={true}
                     className="p-2 border w-full text-base rounded-md question-textarea border-2 border-red-400
-                                    focus:outline-none focus:shadow-md hover:shadow-md "
+                                    focus:outline-none focus:shadow-md hover:shadow-md 
+                                    h-20
+                                    tracking-wider"
                     name="title"
                     placeholder="Type your Question Here.."
                     value={questionDetail.title}
                     onChange={changeHandler}
                     spellCheck="true"
+
                   ></textarea>
                 </div>
                 <QuestionType />

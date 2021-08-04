@@ -95,9 +95,9 @@ const RespondentDetail = () => {
                                                         :
 
                                                         <div className="flex space-x-1">
-                                                            {answer.value &&
+                                                            {answer.answer &&
                                                                 <>
-                                                                    {Array.from(Array(parseInt(answer.value)), (rating, index) => {
+                                                                    {Array.from(Array(parseInt(answer.answer)), (rating, index) => {
                                                                         return (
 
                                                                             <QTypeIcon key={index} color="red" className="w-8 text-gray-800"

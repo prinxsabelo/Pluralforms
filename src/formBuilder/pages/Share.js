@@ -71,23 +71,23 @@ const Share = (props) => {
                         <div className="text-lg flex flex-col space-y-3 tracking-wider ">
                             Share link for form anyway you want..
                         </div>
-                        <div className="flex -space-x-2 w-full">
+                        <div className="flex -space-x-2 w-full  rounded-lg ">
                             <input isreadonly="true" onChange={handleChange}
                                 value={formUrl} className="rounded-l-lg border-2 text-xs w-9/12 md:text-sm md:w-8/12 px-2" />
                             <button className="bg-gray-700 flex-auto text-yellow-100 hover:bg-yellow-600 rounded-0
-                                                   px-4 tracking-wider py-2"
+                                                   px-4 tracking-wider py-2  rounded-r-lg "
                                 onClick={() => copyLink()}
                             >Copy Link</button>
                         </div>
                         <div className="w-full ">
                             <a href={formUrl} target="_blank" rel="noopener noreferrer"
-                                className="bg-gray-700 px-4 py-2 flex px-20 text-gray-100 tracking-widest font-black  text-base  block">
+                                className="bg-gray-700 px-4 py-2 flex px-20 rounded-lg   tracking-widest font-black text-white  text-base  block">
                                 Preview Form on a new tab
                             </a>
 
                         </div>
                         <div className="flex flex-col space-y-1 w-full ">
-                            <div className="border-2 whatsapp h-12  text-white ">
+                            <div className="border-2 border-gray-300 shadow h-12 rounded-lg  ">
                                 <WhatsappShareButton url={`https://pluralforms.com/form/${form.form_id}/${form.ref_id}`}
                                     title={"Please do take your time to fill form.."}
                                     className="w-full flex h-full items-center space-x-8 block    border-2 border-gray-800  whatsapp"
@@ -99,7 +99,7 @@ const Share = (props) => {
                                     <span className="tracking-widest font-black  text-base"> Share on WhatsApp</span>
                                 </WhatsappShareButton>
                             </div>
-                            <div className="border-2 facebook h-12  text-white ">
+                            <div className="border-2 border-gray-300 shadow h-12 rounded-lg ">
                                 <FacebookShareButton url={`https://pluralforms.com/form/${form.form_id}/${form.ref_id}`}
                                     title={"Please do take your time to fill form.."}
                                     className="w-full flex h-full items-center space-x-8 block    border-2 border-gray-800  whatsapp"
@@ -112,7 +112,7 @@ const Share = (props) => {
                                 </FacebookShareButton>
                             </div>
 
-                            <div className="border-2 twitter h-12  text-white ">
+                            <div className="border-2 border-gray-300 shadow h-12 rounded-lg  ">
                                 <TwitterShareButton url={`https://pluralforms.com/form/${form.form_id}/${form.ref_id}`}
                                     title={"Please do take your time to fill form.."}
                                     className="w-full flex h-full items-center space-x-8 block    border-2 border-gray-800  whatsapp"

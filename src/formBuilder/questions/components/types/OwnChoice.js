@@ -63,6 +63,7 @@ const OwnChoice = (props) => {
       <div className="w-full h-full  flex flex-col space-y-2 h-4/5 choice-auto mb-2">
         {choices.map((choice, c_index) => (
           <Choice
+            title={questionDetail.title}
             key={c_index}
             c_index={c_index}
             name={`c${c_index}`}

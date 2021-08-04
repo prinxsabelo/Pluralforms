@@ -54,33 +54,31 @@ const DesktopBuild = () => {
 
           <BuildHeader >
             <div className="flex space-x-2">
+              <Button
+                onClick={() => goto("backward", question.q_id)}
+                className={` 
+                            ${questionDetail.q_index > 0
+                    ? 'text-gray-500 visible bg-white flex items-center justify-center'
+                    : 'cursor-not-allowed invisible text-gray-500 opacity:0 flex items-center justify-center'
+                  }
+                `}
+              >
+                <ChevronDoubleLeftIcon className="w-6" />
+              </Button>
 
-              {questionDetail.q_index > 0 ?
-                <Button
-                  onClick={() => goto("backward", question.q_id)}
-                  className=" text-gray-500 bg-white flex items-center justify-center"
-                >
-                  <ChevronDoubleLeftIcon className="w-6" />
-                </Button> :
-                <Button className="cursor-not-allowed  text-gray-500 bg-white flex items-center justify-center">
-                  <span className="w-5">.</span>
-                </Button>
-              }
-              {questionDetail.q_index + 1 < questionDetail.q_count ?
-                <Button
-                  onClick={() => goto("forward", question.q_id)}
-                  className=" text-gray-500 bg-white flex items-center justify-center"
-                >
-                  <ChevronDoubleRightIcon className="w-6" />
-                </Button>
-                :
-                <Button
-                  onClick={() => goto("forward", question.q_id)}
-                  className="cursor-not-allowed  text-gray-500 bg-white flex items-center justify-center"
-                >
-                  <span className="w-5">.</span>
-                </Button>
-              }
+              <Button
+                onClick={() => goto("forward", question.q_id)}
+                className={`
+                    ${questionDetail.q_index + 1 < questionDetail.q_count
+                    ? 'text-gray-500 bg-white visible flex items-center justify-center'
+                    : 'cursor-not-allowed invisible text-gray-500 opacity:0 flex items-center justify-center'
+                  }
+
+                  `}
+              >
+                <ChevronDoubleRightIcon className="w-6" />
+              </Button>
+
 
             </div>
             {/* <div>
@@ -92,12 +90,13 @@ const DesktopBuild = () => {
             <div>
               <textarea
                 ref={inputElement}
+                autoFocus={true}
                 className="px-4 py-2 border w-full text-xl rounded-md question-textarea border-gray-600
                                     focus:outline-none focus:border-red-400 hover:shadow-md"
                 name="title"
                 onChange={changeHandler}
-
                 placeholder="Type your Question Here.."
+              
                 value={question.title}
               ></textarea>
             </div>

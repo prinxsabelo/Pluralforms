@@ -74,7 +74,7 @@ const ClosedFormItem = ({ form, checkDelete, restoreForm }) => {
                                 <div>
                                     {title}{" "}
                                 </div>
-                                <div className="flex space-x-3 text-sm tracking-wide">
+                                <div className="flex space-x-3 text-xs tracking-wide">
                                     <div>{no_questions} questions</div>
                                     <div>{no_responses} responses</div>
                                     <div><Moment format="MMM D, YYYY.">{updated_at}</Moment> </div>

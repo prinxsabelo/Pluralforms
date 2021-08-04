@@ -137,8 +137,9 @@ const UserForms = () => {
     const { form_id } = form;
     const data = await sendRequest(`http://localhost:8000/api/user/forms/close`, 'PUT', JSON.stringify({ form_id }));
     if (data) {
-      const newActiveForms = forms.filter(f => f.form_id !== data.form_id);
+      const newActiveForms = forms.filter(f => f.form_id !== form_id);
       setForms(newActiveForms);
+      // console.log(newActiveForms);
       setClosedForms([...closedForms, data]);
       NotifySuccess('Form closed successfully..')
 

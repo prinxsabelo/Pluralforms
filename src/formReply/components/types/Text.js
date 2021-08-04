@@ -29,7 +29,7 @@ const Text = ({ answer, q_id, a_id, fillReply, index, length, submitForm }) => {
                 autoFocus value={questionAnswer} onChange={handleChange} onFocus={() => handleFocus()}
             />
 
-            <Button className="bg-gray-900 p-2  w-48    text-lg md:text-xl tracking-widest" onClick={() => handleSubmit()}>
+            <Button className="bg-gray-900 p-2  w-52    text-lg md:text-xl tracking-widest" onClick={() => handleSubmit()}>
                 {index + 1 === length ? <>Submit Form</> : <>Continue</>}
             </Button>
         </div>

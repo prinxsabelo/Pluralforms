@@ -129,14 +129,20 @@ const Choice = ({ allow_multiple_selection, answer, q_id, a_id, choices, fillRep
                     )}
 
                     {/* If last question.. submit form.. */}
-                    {index + 1 === length ?
-                        <Button className="bg-gray-900 p-2 mt-4 w-full text-lg md:text-lg  tracking-widest" onClick={() => handleSubmit()}>
-                            Submit Form
-                        </Button> :
-                        <Button className="bg-gray-900 p-2 mt-4 w-full text-lg md:text-lg  tracking-widest" onClick={() => submitChoices()}>
-                            Continue
-                        </Button>
+                    {choices.length > 0 &&
+                        <>
+                            {index + 1 === length ?
+                                <Button className="bg-gray-900 p-2 mt-4 w-full text-lg md:text-lg  tracking-widest" onClick={() => handleSubmit()}>
+                                    Submit Form
+                                </Button> :
+                                <Button className="bg-gray-900 p-2 mt-4 w-full text-lg md:text-lg  tracking-widest" onClick={() => submitChoices()}>
+                                    Continue
+                                </Button>
+                            }
+                        </>
+
                     }
+
                 </>
             }
             {choices.length === 0 && index + 1 < length &&

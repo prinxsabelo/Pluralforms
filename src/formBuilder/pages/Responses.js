@@ -187,7 +187,7 @@ const Responses = () => {
                 respondents.length > 0 ?
                   <div className="flex w-full px-8   main-container">
                     <div className="w-full flex flex-col shadow-lg p-1 m-1">
-                      <div className="bg-yellow-500 w-full h-6"></div>
+                      <div className="bg-yellow-500 w-full h-2"></div>
                       <div className="w-full cont overflow-x-auto">
                         <table className=" w-full border text-base">
                           <thead className="border-b-2 text-sm uppercase tracking-wider p-2">

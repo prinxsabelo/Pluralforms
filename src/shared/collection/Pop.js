@@ -113,32 +113,32 @@ const Pop = props => {
                         <div className="flex space-x-2">
                             <Button
                                 onClick={props.previewForm}
-                                className="p-2 bg-gray-800 text-base tracking-widest w-1/2 mb-2 border-2 border-gray-800 rounded-lg">
+                                className="p-2  text-gray-900 text-base tracking-widest p-2 w-1/2 mb-2 border border-gray-800 rounded-lg">
                                 Preview Form
                             </Button>
                             <Button
                                 onClick={props.copyFormLink}
-                                className="p-2 bg-gray-800 text-base tracking-widest p-2 w-1/2 mb-2 border-2 border-gray-800 rounded-lg">
+                                className="p-2  text-gray-900 text-base tracking-widest p-2 w-1/2 mb-2 border border-gray-800 rounded-lg">
                                 Copy Link
                             </Button>
                         </div>
-                        <div className="flex flex-col space-y-1 ">
-                            <div className="border-2 whatsapp h-12 rounded-lg text-white ">
+                        <div className="flex flex-col space-y-2 ">
+                            <div className="border shadow-lg border-gray-900 shadow h-12 rounded-lg ">
                                 <WhatsappShareButton url={`https://pluralforms.com/form/${props.form.form_id}/${props.form.ref_id}`}
                                     title={"Please do take your time to fill form.."}
-                                    className="w-full flex h-full items-center space-x-8 block  border-2 border-gray-800 rounded-lg whatsapp"
+                                    className="w-full flex h-full items-center space-x-3 block  border-2 border-gray-800 rounded-lg whatsapp"
                                 >
                                     <span className="wb px-2 h-full flex items-center">
                                         <WhatsappIcon className="h-8 w-8 rounded-full" />
                                     </span>
 
-                                    <span className="tracking-widest font-black  text-base"> Share on WhatsApp</span>
+                                    <span className="tracking-widest font-black text-gray-900  text-base"> Share on WhatsApp</span>
                                 </WhatsappShareButton>
                             </div>
-                            <div className="border-2 facebook h-12 rounded-lg text-white ">
+                            <div className="border  shadow-lg border-gray-900 shadow h-12 rounded-lg ">
                                 <FacebookShareButton url={`https://pluralforms.com/form/${props.form.form_id}/${props.form.ref_id}`}
                                     title={"Please do take your time to fill form.."}
-                                    className="w-full flex h-full items-center space-x-8 block  border-2 border-gray-800 rounded-lg whatsapp"
+                                    className="w-full flex h-full items-center space-x-3 block  border-2 border-gray-800 rounded-lg whatsapp"
                                 >
                                     <span className="fb px-2 h-full flex items-center">
                                         <FacebookIcon className="h-8 w-8 rounded-full" />
@@ -148,10 +148,10 @@ const Pop = props => {
                                 </FacebookShareButton>
                             </div>
 
-                            <div className="border-2 twitter h-12 rounded-lg text-white ">
+                            <div className="border shadow-lg border-gray-900 shadow h-12 rounded-lg  ">
                                 <TwitterShareButton url={`https://pluralforms.com/form/${props.form.form_id}/${props.form.ref_id}`}
                                     title={"Please do take your time to fill form.."}
-                                    className="w-full flex h-full items-center space-x-8 block  border-2 border-gray-800 rounded-lg whatsapp"
+                                    className="w-full flex h-full items-center space-x-3 block  border-2 border-gray-800 rounded-lg whatsapp"
                                 >
                                     <span className="tb px-2 h-full flex items-center">
                                         <TwitterIcon className="h-8 w-8 rounded-full" />

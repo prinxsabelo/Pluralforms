@@ -68,11 +68,11 @@ const Rating = ({ index, q_id, a_id, shape, answer, fillReply, length, submitFor
 
             <div className="mt-4">
                 {index + 1 === length ?
-                    <Button className="bg-gray-900 p-2  w-48  text-lg md:text-xl  tracking-widest" onClick={() => handleSubmit()}>
+                    <Button className="bg-gray-900 p-2 w-52  text-lg md:text-xl  tracking-widest" onClick={() => handleSubmit()}>
                         Submit Form
                     </Button>
                     :
-                    <Button className="bg-gray-900 p-2   w-48    text-lg md:text-xl  tracking-widest" onClick={() => { fillReply(answer, q_id, a_id) }}>
+                    <Button className="bg-gray-900 p-2   w-52  text-lg md:text-xl  tracking-widest" onClick={() => { fillReply(answer, q_id, a_id) }}>
                         Continue
                     </Button>
                 }

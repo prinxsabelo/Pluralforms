@@ -68,9 +68,9 @@ const FormLabel = ({ form, renameForm, addQuestion, q_id }) => {
   }
   let formUrl = "";
   if (form) {
-    formUrl = `http://localhost:3000/form/${form.form_id}/${form.ref_id}`;
+    formUrl = `https://pluralforms.com/form/${form.form_id}/${form.ref_id}`;
   }
-  // const formUrl = `https://pluralforms.com/form/${form.form_id}/${form.ref_id}`;
+
 
   const copyFormLink = () => {
     setPop(false);
@@ -166,7 +166,9 @@ const FormLabel = ({ form, renameForm, addQuestion, q_id }) => {
             <div className="py-2 tracking-wider w-11/12 truncate font-semibold text-lg tracking-wider">
               {title}
             </div>
-            {form.questions.length > 0 &&
+            {form && form.questions && form.questions.length > 0 &&
+              (window.location.pathname.search("results") === -1) &&
+
               <button className="flex justify-center items-center p-2" onClick={() => shareForm()}>
                 <PaperAirplaneIcon className="w-8   transform rotate-90" />
               </button>

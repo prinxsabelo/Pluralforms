@@ -7,7 +7,7 @@ const SumReport = (props) => {
     return (
         <>
             <div className="md:px-8 h-full md:py-4 p-2">
-                <div className="md:p-0 pt-2">
+                <div className="md:p-0">
                     <h3 className="text-lg md:text-2xl pt-1 md:pt-3">Response Summary</h3>
 
                 </div>

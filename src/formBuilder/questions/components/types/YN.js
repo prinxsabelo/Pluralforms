@@ -1,3 +1,4 @@
+import { CheckIcon, XIcon } from "@heroicons/react/outline";
 import { useContext, useEffect, useState } from "react";
 import Button from "../../../../shared/collection/Button";
 
@@ -28,60 +29,32 @@ const YN = (props) => {
     developQuestion({ title, q_id, form_id, properties, type, fix: "update", q_index, q_count });
   };
   return (
-    <div className="w-full space-y-2 pl-2 p-5 items-center border">
-      <div className="md:pl-2 w-10/12 md:w-1/3 flex">
-        <Button className="bg-yellow-500">
-          <div className="flex justify-evenly space-x-2 items-center px-2 md:text-lg">
-            <span>
-              <svg
-                className="w-8"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-            </span>
-            <span>Yes</span>
+    <div className="w-full space-y-2  items-center border">
+      <div className="md:pl-2 w-full md:w-1/3 flex">
+        <Button className="bg-yellow-500 w-24">
+          <div className="flex justify-evenly space-x-2 items-center px-2 text-lg">
+            <CheckIcon className="w-6" />
+            <span className="tracking-widest">Yes</span>
           </div>
         </Button>
-        <Button className="bg-yellow-500">
-          <div className="flex justify-evenly space-x-2 items-center px-2  md:text-lg">
-            <span>
-              <svg
-                className="w-8"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </span>
-            <span>No</span>
+        <Button className="bg-yellow-500 w-24">
+          <div className="flex justify-evenly space-x-2 items-center px-2 text-lg">
+            <XIcon className="w-6" />
+
+            <span className="tracking-widest">No</span>
           </div>
         </Button>
       </div>
-      <div className="md:p-2 flex flex-col">
-        <div className="text-lg p-2 pl-0">
+      <div className="md:p-2 pt-2 flex flex-col">
+        <div className="text-lg  pl-0">
           Give Optional Reponse for question.
         </div>
 
-        <div className="flex flex-col space-y-1 md:space-y-3 w-11/12 md:w-3/4">
+        <div className="flex flex-col space-y-1 md:space-y-2 w-11/12 md:w-3/4">
           {feedback.map((feedback, index) => (
             <Feedback
               key={index}
+              title={questionDetail.title}
               index={index}
               label={feedback.label}
               {...feedback}

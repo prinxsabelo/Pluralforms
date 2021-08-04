@@ -40,7 +40,7 @@ const SumChildReport = (props) => {
                                 <div className=" w-full h-full md:w-1/2 border-gray-200 flex flex-auto flex-col 
                                  font-medium  tracking-wider text-xs border">
 
-                                    <div className="flex flex-col  ">
+                                    <div className="flex flex-col  pb-2">
                                         {content.map((con, index) =>
                                             <div key={index} className="w-full flex h-full items-center border-b  font-medium tracking-widest">
                                                 <div className="h-full w-2/3 flex items-center space-x-2">
