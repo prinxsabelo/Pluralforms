@@ -9,14 +9,16 @@ const SumChildReport = (props) => {
         <>
             <div className="shadow-lg border-2 bg-white  mt-4 w-full">
                 <div className="flex items-center shadow w-full truncate space-x-3 md:space-x-6 ">
-                    <div className="flex items-center justify-center  p-3 w-18 space-x-2 md:space-x-3 bg-yellow-600 text-white truncate">
+                    <div className="flex items-center justify-center  p-3 w-18 space-x-2 md:space-x-3 bg-yellow-600 text-white">
 
                         <QTypeIcon color="" type={type} shape={shape} className="w-5 h-5 text-gray-100" />
 
                         <span> {index}</span>
                     </div>
                     <div className="flex-auto truncate">
-                        <div className=" text-xl w-10/12 md:w-11/12 font-semibold tracking-wider truncate">{title}</div>
+                        <div className=" text-xl w-10/12 md:w-11/12 font-semibold tracking-wider truncate">
+                            {title}
+                        </div>
                         {
                             summary && !allow_multiple_selection &&
                             <div className="text-xs font-medium tracking-widest">{summary.submitted} out of {summary.total} people answered this question</div>
@@ -43,8 +45,8 @@ const SumChildReport = (props) => {
                                     <div className="flex flex-col  pb-2">
                                         {content.map((con, index) =>
                                             <div key={index} className="w-full flex h-full items-center border-b  font-medium tracking-widest">
-                                                <div className="h-full w-2/3 flex items-center space-x-2">
-                                                    <div className={` w-2 h-8 ${`index${index}`}`} ></div>
+                                                <div className="h-full w-2/3 flex items-center ">
+                                                    <div className={` w-2 h-8 ${`index${index}`} mr-2`} ></div>
                                                     <div>
                                                         {type === "RATING" ?
                                                             <div >{con.label} Rating</div>

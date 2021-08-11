@@ -22,12 +22,12 @@ if (userData) {
 
 
       } else {
-
-        if (decoded.iss !== "http://localhost:8000/api/login/google/callback"
-          && decoded.iss !== "http://localhost:8000/api/login/facebook/callback") {
-          cookie.remove("userData");
-          alert('Unauthenicatedy..');
-        }
+        // Coming to back to fill in this too
+        // if (decoded.iss !== "http://localhost:8000/api/login/google/callback"
+        //   && decoded.iss !== "http://localhost:8000/api/login/facebook/callback") {
+        //   cookie.remove("userData");
+        //   alert('Unauthenicatedy..');
+        // }
       }
 
       // console.log(decoded);

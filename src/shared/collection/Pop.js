@@ -123,10 +123,10 @@ const Pop = props => {
                             </Button>
                         </div>
                         <div className="flex flex-col space-y-2 ">
-                            <div className="border shadow-lg border-gray-900 shadow h-12 rounded-lg ">
+                            <div className="border shadow-lg border-gray-900 shadow h-12 ">
                                 <WhatsappShareButton url={`https://pluralforms.com/form/${props.form.form_id}/${props.form.ref_id}`}
                                     title={"Please do take your time to fill form.."}
-                                    className="w-full flex h-full items-center space-x-3 block  border-2 border-gray-800 rounded-lg whatsapp"
+                                    className="w-full flex h-full items-center space-x-3 block  border-2 border-gray-800  whatsapp"
                                 >
                                     <span className="wb px-2 h-full flex items-center">
                                         <WhatsappIcon className="h-8 w-8 rounded-full" />
@@ -135,10 +135,10 @@ const Pop = props => {
                                     <span className="tracking-widest font-black text-gray-900  text-base"> Share on WhatsApp</span>
                                 </WhatsappShareButton>
                             </div>
-                            <div className="border  shadow-lg border-gray-900 shadow h-12 rounded-lg ">
+                            <div className="border  shadow-lg border-gray-900 shadow h-12  ">
                                 <FacebookShareButton url={`https://pluralforms.com/form/${props.form.form_id}/${props.form.ref_id}`}
                                     title={"Please do take your time to fill form.."}
-                                    className="w-full flex h-full items-center space-x-3 block  border-2 border-gray-800 rounded-lg whatsapp"
+                                    className="w-full flex h-full items-center space-x-3 block  border-2 border-gray-800 whatsapp"
                                 >
                                     <span className="fb px-2 h-full flex items-center">
                                         <FacebookIcon className="h-8 w-8 rounded-full" />
@@ -148,10 +148,10 @@ const Pop = props => {
                                 </FacebookShareButton>
                             </div>
 
-                            <div className="border shadow-lg border-gray-900 shadow h-12 rounded-lg  ">
+                            <div className="border shadow-lg border-gray-900 shadow h-12  ">
                                 <TwitterShareButton url={`https://pluralforms.com/form/${props.form.form_id}/${props.form.ref_id}`}
                                     title={"Please do take your time to fill form.."}
-                                    className="w-full flex h-full items-center space-x-3 block  border-2 border-gray-800 rounded-lg whatsapp"
+                                    className="w-full flex h-full items-center space-x-3 block  border-2 border-gray-800  whatsapp"
                                 >
                                     <span className="tb px-2 h-full flex items-center">
                                         <TwitterIcon className="h-8 w-8 rounded-full" />

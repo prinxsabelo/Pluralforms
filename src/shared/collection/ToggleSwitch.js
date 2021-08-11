@@ -24,7 +24,7 @@ const ToggleSwitch = (props) => {
   return (
     <Switch.Group>
       <div className="flex items-center ">
-        <Switch.Label className="mr-1 text-sm md:text-xl">{label}</Switch.Label>
+        <Switch.Label className="mr-1 text-sm md:text-xl truncate">{label}</Switch.Label>
         <Switch
           checked={enabled}
           onChange={(event) => handleChange(event)}

@@ -25,7 +25,7 @@ const ClosedFormItem = ({ form, checkDelete, restoreForm }) => {
     };
 
     const handleAction = (checkAction) => {
-        console.log(checkAction);
+
         const { action } = checkAction;
         if (action === "restore") {
             restore();

@@ -87,7 +87,7 @@ const Share = (props) => {
 
                         </div>
                         <div className="flex flex-col space-y-1 w-full ">
-                            <div className="border-2 border-gray-300 shadow h-12 rounded-lg  ">
+                            <div className="border-2 border-gray-300 shadow h-12  ">
                                 <WhatsappShareButton url={`https://pluralforms.com/form/${form.form_id}/${form.ref_id}`}
                                     title={"Please do take your time to fill form.."}
                                     className="w-full flex h-full items-center space-x-8 block    border-2 border-gray-800  whatsapp"
@@ -99,7 +99,7 @@ const Share = (props) => {
                                     <span className="tracking-widest font-black  text-base"> Share on WhatsApp</span>
                                 </WhatsappShareButton>
                             </div>
-                            <div className="border-2 border-gray-300 shadow h-12 rounded-lg ">
+                            <div className="border-2 border-gray-300 shadow h-12">
                                 <FacebookShareButton url={`https://pluralforms.com/form/${form.form_id}/${form.ref_id}`}
                                     title={"Please do take your time to fill form.."}
                                     className="w-full flex h-full items-center space-x-8 block    border-2 border-gray-800  whatsapp"
@@ -112,7 +112,7 @@ const Share = (props) => {
                                 </FacebookShareButton>
                             </div>
 
-                            <div className="border-2 border-gray-300 shadow h-12 rounded-lg  ">
+                            <div className="border-2 border-gray-300 shadow h-12">
                                 <TwitterShareButton url={`https://pluralforms.com/form/${form.form_id}/${form.ref_id}`}
                                     title={"Please do take your time to fill form.."}
                                     className="w-full flex h-full items-center space-x-8 block    border-2 border-gray-800  whatsapp"

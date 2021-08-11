@@ -34,6 +34,7 @@ export const FormReply = () => {
 
     const [sectionIndex, setSectionIndex] = useState(0);
 
+    const [loadingMessage, setLoadingMessage] = useState("Getting questions ready for you to fill..");
 
     const cookedReply = cookie.get("cookedReply");
 
@@ -62,6 +63,8 @@ export const FormReply = () => {
 
     //Submitting form here..
     const submitForm = async () => {
+        setLoader(true);
+        setLoadingMessage("");
         //Calling to submit and also confirming if thankYou message exists.. If it does it appears.
         try {
             const data = await sendRequest(`http://localhost:8000/api/reply/submit`,
@@ -176,7 +179,7 @@ export const FormReply = () => {
             {loader ?
                 <>
                     <LoadingSpinner asOverLay>
-                        Getting questions ready for you to fill..
+                        {loadingMessage}
                     </LoadingSpinner>
                 </> :
                 <>

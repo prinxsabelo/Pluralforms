@@ -53,6 +53,8 @@ const ReplyQuestion = ({ moveSection, rq, index, fullpageApi, length, submitForm
                 else {
                     moveSection("down", index += 1, fullpageApi)
                 }
+            } else {
+                sender();
             }
         } else {
             sender();

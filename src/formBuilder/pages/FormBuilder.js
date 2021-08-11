@@ -22,6 +22,7 @@ import { toast, Zoom } from 'react-toastify';
 import { ReactComponent as NoQuestion } from '../../assets/no-question.svg';
 
 import 'react-toastify/dist/ReactToastify.css';
+import ToggleSwitch from "../../shared/collection/ToggleSwitch";
 
 const FormBuilder = () => {
     //Deounce hook works partly for large device for now..
@@ -46,6 +47,40 @@ const FormBuilder = () => {
     const { width } = useContext(ViewportContext);
     const [loadForm, setLoadForm] = useState(false);
     const [loadForms, setLoadForms] = useState(false);
+    const [notifyLoader, setNotifyLoader] = useState(false);
+    const [notifyMe, setNotifyMe] = useState(false);
+    const onToggleChange = async (index, e) => {
+        console.log(form.form_id);
+        console.log(index, e);
+        setLoader(true);
+        setNotifyLoader(true);
+        const notify_me = e;
+        const data = await sendRequest(`http://localhost:8000/api/user/forms/update`, 'PUT',
+            JSON.stringify({ form_id, notify_me }));
+        if (data) {
+            setNotifyMe(data.notify_me);
+            if (data.notify_me) {
+
+                toast.configure();
+                const notify = () => toast.success(`You'll get mail when form is filled.. `, {
+                    transition: Zoom,
+                    position: "bottom-center",
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: 0,
+
+                })
+                notify();
+            }
+
+            setTimeout(() => {
+                setNotifyLoader(false);
+            }, 1000);
+        }
+    }
 
     //After form is been submitted and there's a need for form refresh mainly for mobile..
     const initForm = useCallback(async () => {
@@ -375,12 +410,19 @@ const FormBuilder = () => {
                                 <div className="w-3/5 flex-grow">
                                     <Tabs tabs={desktopTabs} />
                                 </div>
-                                <div className="w-1/4 px-1  flex justify-end">
+                                <div className="w-1/2 px-1  flex justify-end">
                                     {
 
-                                        <div className="w-full flex justify-between  space-x-1 ">
+                                        <div className="w-full flex justify-between items-center  space-x-1 ">
+                                            <div className="w-36 text-sm">
+                                                {!notifyLoader &&
+                                                    <ToggleSwitch className="label-md" label="Notify Me" value={notifyMe} index={0} onToggleChange={onToggleChange} />
+
+                                                }
+
+                                            </div>
                                             <div
-                                                className={`  w-52 flex items-center px-2
+                                                className={`h-full  w-52 flex items-center px-2
                                                 ${window.location.pathname === `/user/form/${form_id}/build` ? 'bg-yellow-400' : ''}`}
                                             >
                                                 {window.location.pathname === `/user/form/${form_id}/build`
@@ -389,18 +431,24 @@ const FormBuilder = () => {
                                                 }
 
                                             </div>
-                                            <div>
+                                            <div className="flex ">
                                                 {
-                                                    // form.questions.length > 0 &&
-                                                    <Button onClick={() => previewForm()}
-                                                        className={` bg-gray-900 text-sm my-1
+                                                    <>
+
+                                                        {form.questions.length > 0 &&
+                                                            <Button onClick={() => previewForm()}
+                                                                className={` bg-gray-900 text-sm my-1 mx-3
                                                                     uppercase tracking-widest
                                                                     rounded-xl
                                                                   ${window.location.pathname === `/user/form/${form_id}/build`
-                                                                && form.questions.length > 0
-                                                                ? 'visible' : 'invisible'}`}
+                                                                        && form.questions.length > 0
+                                                                        ? 'visible' : 'invisible'}`}
 
-                                                    >Preview </Button>
+                                                            >Preview </Button>
+                                                        }
+
+
+                                                    </>
                                                 }
                                             </div>
 

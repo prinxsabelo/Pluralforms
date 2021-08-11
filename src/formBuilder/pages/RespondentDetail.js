@@ -15,6 +15,7 @@ const RespondentDetail = () => {
     const [index, setIndex] = useState(0);
     const [loadResponses, setLoadResponses] = useState(false);
     const [form, setForm] = useState();
+
     useEffect(() => {
 
         const fetchResponses = async () => {
