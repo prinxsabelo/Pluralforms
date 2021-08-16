@@ -106,7 +106,7 @@ const FormLabel = ({ form, renameForm, addQuestion }) => {
     // console.log(index, e);
     setLoader(true);
     const notify_me = e;
-    const data = await sendRequest(`http://localhost:8000/api/user/forms/update`, 'PUT',
+    const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms/update`, 'PUT',
       JSON.stringify({ form_id, notify_me }));
     if (data) {
       setNotifyMe(data.notify_me);

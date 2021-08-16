@@ -20,9 +20,9 @@ const ConfirmLogin = () => {
             // if (!Auth.email && !Auth.token) {
             let response;
             if (window.location.pathname.search("google") !== -1) {
-                response = await sendRequest(`http://localhost:8000/api/login/google/callback${location.search}`);
+                response = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/login/google/callback${location.search}`);
             } else {
-                response = await sendRequest(`http://localhost:8000/api/login/facebook/callback${location.search}`);
+                response = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/login/facebook/callback${location.search}`);
             }
             if (response) {
                 const { id, email, name, avatar } = response.user;

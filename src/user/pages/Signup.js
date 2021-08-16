@@ -15,7 +15,7 @@ const Signup = () => {
         console.log(inputs);
         const { email, name, password } = inputs;
         try {
-            const response = await sendRequest('http://localhost:8000/api/signup', 'POST', JSON.stringify({ email, name, password }));
+            const response = await sendRequest('https://pluralforms.com/pluralforms-api/public/api/signup', 'POST', JSON.stringify({ email, name, password }));
             if (response.ok) {
                 const { id, email } = response.user;
                 const { token } = response;

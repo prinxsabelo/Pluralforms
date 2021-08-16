@@ -54,7 +54,7 @@ const BuildQuestionProvider = (props) => {
     setForm({});
     //Fetch forms here.. If there's any error set forms to empty..
     try {
-      const response = await sendRequest(`http://localhost:8000/api/user/form`, 'POST', JSON.stringify({ form_id }));
+      const response = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/form`, 'POST', JSON.stringify({ form_id }));
       if (response) {
         setForm(response.form);
       }
@@ -99,7 +99,7 @@ const BuildQuestionProvider = (props) => {
   const addQuestion = async (type) => {
     const { form_id } = form;
     try {
-      const qn = await sendRequest(`http://localhost:8000/api/user/form/build`, 'POST', JSON.stringify({ type, form_id }));
+      const qn = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/form/build`, 'POST', JSON.stringify({ type, form_id }));
       if (qn) {
         form.questions = [...form.questions, qn];
         showQuestion(qn.q_id, type);
@@ -121,7 +121,7 @@ const BuildQuestionProvider = (props) => {
 
   const deleteQuestion = async ({ q_id, form_id }) => {
     // const { form_id } = form;
-    const qn = await sendRequest(`http://localhost:8000/api/user/form/build/delete`, 'DELETE', JSON.stringify({ q_id, form_id }));
+    const qn = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/form/build/delete`, 'DELETE', JSON.stringify({ q_id, form_id }));
     if (qn) {
       if (form.questions.length > 0) {
         const questions = form.questions.filter(q => q.q_id !== q_id);

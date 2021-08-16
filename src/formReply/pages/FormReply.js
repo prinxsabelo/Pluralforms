@@ -67,7 +67,7 @@ export const FormReply = () => {
         setLoadingMessage("");
         //Calling to submit and also confirming if thankYou message exists.. If it does it appears.
         try {
-            const data = await sendRequest(`http://localhost:8000/api/reply/submit`,
+            const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/reply/submit`,
                 'POST', JSON.stringify({ token, ref_id, form_id }));
 
             if (data) {
@@ -82,7 +82,7 @@ export const FormReply = () => {
     //Getting reply for audience here..
     const getReply = useCallback(async () => {
         try {
-            const data = await sendRequest(`http://localhost:8000/api/reply`,
+            const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/reply`,
                 'POST', JSON.stringify({ token, ref_id, form_id }));
             if (data) {
                 setBeginConfirm(true);
@@ -103,7 +103,7 @@ export const FormReply = () => {
         const addToken = async () => {
             let token = Math.random().toString(36).substring(7);
             try {
-                const data = await sendRequest(`http://localhost:8000/api/reply/token`,
+                const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/reply/token`,
                     'POST', JSON.stringify({ token, ref_id, form_id }));
                 if (data) {
                     // console.log(data);
@@ -131,7 +131,7 @@ export const FormReply = () => {
             }
 
             try {
-                const data = await sendRequest(`http://localhost:8000/api/reply/check`,
+                const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/reply/check`,
                     'POST', JSON.stringify({ token, ref_id, form_id, email }));
                 if (data) {
                     //If token does not exist.. create a new one here..

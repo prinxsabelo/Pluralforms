@@ -41,7 +41,7 @@ const UserForms = () => {
 
     const fetchForms = async () => {
       try {
-        const data = await sendRequest(`http://localhost:8000/api/user/forms`);
+        const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms`);
         if (data) {
           let activeForms = data.filter(f => f.status === "ACTIVE");
           // console.log(activeForms);
@@ -91,7 +91,7 @@ const UserForms = () => {
     closeDeleteModal();
     try {
       let form_id = formId;
-      const data = await sendRequest(`http://localhost:8000/api/user/forms/delete`, 'DELETE', JSON.stringify({ form_id }));
+      const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms/delete`, 'DELETE', JSON.stringify({ form_id }));
       if (data) {
         const newClosedForms = closedForms.filter(f => f.form_id !== form_id);
         setClosedForms(newClosedForms);
@@ -135,7 +135,7 @@ const UserForms = () => {
   }
   const closeForm = async (form) => {
     const { form_id } = form;
-    const data = await sendRequest(`http://localhost:8000/api/user/forms/close`, 'PUT', JSON.stringify({ form_id }));
+    const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms/close`, 'PUT', JSON.stringify({ form_id }));
     if (data) {
       const newActiveForms = forms.filter(f => f.form_id !== form_id);
       setForms(newActiveForms);
@@ -147,7 +147,7 @@ const UserForms = () => {
   }
   const restoreForm = async (form) => {
     const { form_id } = form;
-    const data = await sendRequest(`http://localhost:8000/api/user/forms/restore`, 'PUT', JSON.stringify({ form_id }));
+    const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms/restore`, 'PUT', JSON.stringify({ form_id }));
     if (data) {
       const newClosedForms = closedForms.filter(f => f.form_id !== data.form_id);
       setClosedForms(newClosedForms);
@@ -190,7 +190,7 @@ const UserForms = () => {
     const { form_id } = form;
     console.log(title, form.form_id);
     try {
-      const data = await sendRequest(`http://localhost:8000/api/user/forms/copy`, 'POST',
+      const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms/copy`, 'POST',
         JSON.stringify({ title, form_id }));
       if (data) {
         // console.log(data);

@@ -111,7 +111,7 @@ const Responses = () => {
     //Deleting here..
     console.log(arr);
     try {
-      const data = await sendRequest(`http://localhost:8000/api/user/forms/response`, 'DELETE',
+      const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms/response`, 'DELETE',
         JSON.stringify({ arr }));
       if (data) {
         const resps = respondents.filter(({ token }) => !arr.includes(token));
@@ -139,7 +139,7 @@ const Responses = () => {
     let checkAllBox = document.getElementById("checkAllBox");
     const fetchResponses = async () => {
       try {
-        const data = await sendRequest(`http://localhost:8000/api/user/forms/response`, 'POST', JSON.stringify({ form_id }));
+        const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms/response`, 'POST', JSON.stringify({ form_id }));
         if (data) {
           setQuestions(data.form.questions);
           setRespondents(data.form.respondents);

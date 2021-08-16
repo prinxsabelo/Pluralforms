@@ -26,7 +26,7 @@ const useDebounceForQuestionUpdate = () => {
                 try {
                     // console.log("updating question here..");
 
-                    const response = await sendRequest(`http://localhost:8000/api/user/form/build/update`, 'PUT', JSON.stringify(qn));
+                    const response = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/form/build/update`, 'PUT', JSON.stringify(qn));
                     if (response) {
 
                         // console.log(response);

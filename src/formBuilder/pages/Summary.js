@@ -22,7 +22,7 @@ const Summary = (props) => {
 
     const fetchReport = async () => {
       try {
-        const data = await sendRequest(`http://localhost:8000/api/user/forms/report`, 'POST', JSON.stringify({ form_id }));
+        const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms/report`, 'POST', JSON.stringify({ form_id }));
         if (data) {
           setReport(data.boxes);
           setSum(data.summary)

@@ -23,8 +23,8 @@ if (userData) {
 
       } else {
         // Coming to back to fill in this too
-        // if (decoded.iss !== "http://localhost:8000/api/login/google/callback"
-        //   && decoded.iss !== "http://localhost:8000/api/login/facebook/callback") {
+        // if (decoded.iss !== "https://pluralforms.com/pluralforms-api/public/api/login/google/callback"
+        //   && decoded.iss !== "https://pluralforms.com/pluralforms-api/public/api/login/facebook/callback") {
         //   cookie.remove("userData");
         //   alert('Unauthenicatedy..');
         // }

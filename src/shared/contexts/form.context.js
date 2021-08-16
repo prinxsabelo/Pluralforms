@@ -56,7 +56,7 @@ const FormContextProvider = (props) => {
         // showDialog(true);
     };
     const renameForm = async (title, form_id) => {
-        const data = await sendRequest(`http://localhost:8000/api/user/forms/update`, 'PUT', JSON.stringify({ title, form_id }));
+        const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms/update`, 'PUT', JSON.stringify({ title, form_id }));
         if (data) {
             let index = forms.findIndex(form => form_id === form.form_id);
             let newForms = [...forms];
@@ -65,14 +65,14 @@ const FormContextProvider = (props) => {
         }
     };
     const deleteForm = async (form_id) => {
-        const data = await sendRequest(`http://localhost:8000/api/user/forms/delete`, 'DELETE', JSON.stringify({ form_id }));
+        const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms/delete`, 'DELETE', JSON.stringify({ form_id }));
         if (data) {
             const newClosedForms = closedForms.filter(f => f.form_id !== form_id);
             setClosedForms(newClosedForms);
         }
     };
     const closeForm = async (form_id) => {
-        const data = await sendRequest(`http://localhost:8000/api/user/forms/close`, 'PUT', JSON.stringify({ form_id }));
+        const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms/close`, 'PUT', JSON.stringify({ form_id }));
         if (data) {
             const newActiveForms = forms.filter(f => f.form_id !== data.form_id);
             setForms(newActiveForms);
@@ -80,7 +80,7 @@ const FormContextProvider = (props) => {
         }
     }
     const restoreForm = async (form_id) => {
-        const data = await sendRequest(`http://localhost:8000/api/user/forms/restore`, 'PUT', JSON.stringify({ form_id }));
+        const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms/restore`, 'PUT', JSON.stringify({ form_id }));
         if (data) {
             const newClosedForms = closedForms.filter(f => f.form_id !== data.form_id);
             setClosedForms(newClosedForms);
@@ -106,7 +106,7 @@ const FormContextProvider = (props) => {
         //Fetch forms here.. If there's any error set forms to empty..
         console.log({ isLoading });
         try {
-            const data = await sendRequest(`http://localhost:8000/api/user/forms`);
+            const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms`);
             let activeForms = data.filter(f => f.status === "ACTIVE");
             // console.log(activeForms);
             setForms(activeForms);

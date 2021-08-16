@@ -20,7 +20,7 @@ const RespondentDetail = () => {
 
         const fetchResponses = async () => {
             try {
-                const data = await sendRequest(`http://localhost:8000/api/user/forms/response`, 'POST', JSON.stringify({ form_id }));
+                const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms/response`, 'POST', JSON.stringify({ form_id }));
                 if (data) {
                     if (data.form && data.form.respondents) {
                         const { respondents } = data.form;

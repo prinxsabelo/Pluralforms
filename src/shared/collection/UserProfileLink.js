@@ -17,7 +17,7 @@ const UserProfileLink = () => {
         // console.log(user);
     }, [Auth])
     const logOut = async () => {
-        await sendRequest(`http://localhost:8000/api/logout`);
+        await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/logout`);
         Cookies.remove("userData");
         Auth.setUser(null);
         Auth.setToken(null);
