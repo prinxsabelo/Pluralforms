@@ -8,7 +8,7 @@ const FormReplyContextProvider = props => {
 
         try {
 
-            const response = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/reply`,
+            const response = await sendRequest(`http://localhost:8000/api/reply`,
                 'POST', JSON.stringify({ token, ref_id, form_id }));
 
             if (response) {
@@ -23,7 +23,7 @@ const FormReplyContextProvider = props => {
     }
     const sendReply = async ({ token, answer, form_id, a_id, q_id }) => {
         try {
-            const response = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/reply/build`,
+            const response = await sendRequest(`http://localhost:8000/api/reply/build`,
                 'POST',
                 JSON.stringify({ a_id, q_id, answer, form_id, token }));
             if (response) {

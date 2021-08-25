@@ -16,7 +16,7 @@ const Login = () => {
         if (!Auth.token) {
             const fetchForGoogle = async () => {
                 const googleUrl = await sendRequest(
-                    'https://pluralforms.com/pluralforms-api/public/api/login/google',
+                    'http://localhost:8000/api/login/google',
                 );
                 if (googleUrl) {
                     // console.log(googleUrl);
@@ -27,7 +27,7 @@ const Login = () => {
             }
             // const fetchForFacebook = async () => {
             //     const facebookUrl = await sendRequest(
-            //         'https://pluralforms.com/pluralforms-api/public/api/login/facebook',
+            //         'http://localhost:8000/api/login/facebook',
             //     )
             //     if (facebookUrl) {
             //         // console.log(facebookUrl);

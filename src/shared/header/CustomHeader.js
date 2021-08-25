@@ -11,7 +11,7 @@ const CustomHeader = () => {
     const { sendRequest } = useHttpClient();
     const Auth = useContext(AuthContext);
     const logOut = async () => {
-        await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/logout`);
+        await sendRequest(`http://localhost:8000/api/logout`);
 
         Cookies.remove("userData");
         Auth.setUser(null);

@@ -20,7 +20,7 @@ const Share = (props) => {
             setLoader(true);
             if (form_id) {
                 try {
-                    const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/form`, 'POST', JSON.stringify({ form_id }));
+                    const data = await sendRequest(`http://localhost:8000/api/user/form`, 'POST', JSON.stringify({ form_id }));
                     if (data.form) {
 
                         setForm(data.form);

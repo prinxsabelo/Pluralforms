@@ -55,7 +55,7 @@ const FormBuilder = () => {
         setLoader(true);
         setNotifyLoader(true);
         const notify_me = e;
-        const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms/update`, 'PUT',
+        const data = await sendRequest(`http://localhost:8000/api/user/forms/update`, 'PUT',
             JSON.stringify({ form_id, notify_me }));
         if (data) {
             setNotifyMe(data.notify_me);
@@ -87,7 +87,7 @@ const FormBuilder = () => {
         setLoader(true);
         if (form_id) {
             try {
-                const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/form`, 'POST', JSON.stringify({ form_id }));
+                const data = await sendRequest(`http://localhost:8000/api/user/form`, 'POST', JSON.stringify({ form_id }));
                 if (data.form) {
                     setForm(data.form);
                     if (data.form.questions.length === 0) {
@@ -110,7 +110,7 @@ const FormBuilder = () => {
             setLoader(true);
             if (form_id) {
                 try {
-                    const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/form`, 'POST', JSON.stringify({ form_id }));
+                    const data = await sendRequest(`http://localhost:8000/api/user/form`, 'POST', JSON.stringify({ form_id }));
                     if (data.form) {
                         setForm(data.form);
                         if (data.form.questions.length === 0) {
@@ -131,7 +131,7 @@ const FormBuilder = () => {
 
         const fetchForms = async () => {
             try {
-                const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms`);
+                const data = await sendRequest(`http://localhost:8000/api/user/forms`);
 
                 let activeForms = data.filter(f => f.status === "ACTIVE");
                 // console.log(activeForms);
@@ -232,7 +232,7 @@ const FormBuilder = () => {
             //Form will be submitted here.. Specifically saving the landing page.. *Welcome/ThankYou Message..
             // console.log(recieveForm);
             const { begin_header, begin_desc, end_header, end_desc } = recieveForm;
-            const data = sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms/update`, 'PUT', JSON.stringify({ begin_header, begin_desc, end_header, end_desc, form_id }));
+            const data = sendRequest(`http://localhost:8000/api/user/forms/update`, 'PUT', JSON.stringify({ begin_header, begin_desc, end_header, end_desc, form_id }));
             if (data) {
                 let f_index = forms.findIndex(form => form.form_id === form_id);
                 let newForms = [...forms];
@@ -256,7 +256,7 @@ const FormBuilder = () => {
 
     const renameForm = async (title, form_id) => {
         console.log(title, form_id);
-        const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms/update`, 'PUT', JSON.stringify({ title, form_id }));
+        const data = await sendRequest(`http://localhost:8000/api/user/forms/update`, 'PUT', JSON.stringify({ title, form_id }));
         if (data) {
             let f_index = forms.findIndex(form => form.form_id === form_id);
             let newForms = [...forms];
@@ -274,7 +274,7 @@ const FormBuilder = () => {
     const progressQuestion = async (type) => {
         setLoader(true);
         try {
-            const qn = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/form/build`, 'POST', JSON.stringify({ type, form_id }));
+            const qn = await sendRequest(`http://localhost:8000/api/user/form/build`, 'POST', JSON.stringify({ type, form_id }));
             if (qn) {
                 qn.q_index = form.questions.length;
                 qn.q_count = form.questions.length + 1;
@@ -289,7 +289,7 @@ const FormBuilder = () => {
 
     const handleQuestionDelete = async ({ q_id, form_id }) => {
         setLoader(true);
-        const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/form/build/delete`, 'DELETE', JSON.stringify({ q_id, form_id }));
+        const data = await sendRequest(`http://localhost:8000/api/user/form/build/delete`, 'DELETE', JSON.stringify({ q_id, form_id }));
         if (data && form.questions && form.questions.length > 0) {
 
             const questions = form.questions.filter(q => q.q_id !== q_id);
@@ -313,7 +313,7 @@ const FormBuilder = () => {
 
     const copyQuestion = async ({ q_id, form_id }) => {
         // console.log(q_id, form_id);
-        const qn = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/form/build/copy`, 'POST', JSON.stringify({ q_id, form_id }));
+        const qn = await sendRequest(`http://localhost:8000/api/user/form/build/copy`, 'POST', JSON.stringify({ q_id, form_id }));
         if (qn && form.questions && form.questions.length > 0) {
             qn.q_index = form.questions.length;
             qn.q_count = form.questions.length + 1;

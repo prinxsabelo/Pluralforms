@@ -57,7 +57,7 @@ const FormDialog = (props) => {
             if (form.form_id) {
                 try {
                     const { title, begin_desc, begin_header, end_desc, end_header, form_id } = form;
-                    const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms/update`, 'PUT',
+                    const data = await sendRequest(`http://localhost:8000/api/user/forms/update`, 'PUT',
                         JSON.stringify({ title, form_id, begin_desc, begin_header, end_desc, end_header }));
                     if (data) {
                         fixForm(data, { fix: "update" });
@@ -71,7 +71,7 @@ const FormDialog = (props) => {
                 if (form.title) {
 
                     const { title } = form;
-                    const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms`, 'POST', JSON.stringify({ title }));
+                    const data = await sendRequest(`http://localhost:8000/api/user/forms`, 'POST', JSON.stringify({ title }));
 
                     setTimeout(() => {
                         if (data && data.form_id) {

@@ -27,8 +27,8 @@ export const useHttpClient = () => {
                 console.log('removed..');
             } else {
 
-                if (decoded.iss !== "https://pluralforms.com/pluralforms-api/public/api/login/google/callback"
-                    && decoded.iss !== "https://pluralforms.com/pluralforms-api/public/api/login/facebook/callback") {
+                if (decoded.iss !== "http://localhost:8000/api/login/google/callback" &&
+                    decoded.iss !== "http://localhost:8000/api/login/facebook/callback") {
                     cookie.remove("userData");
                     alert('Unauthenicated2..');
                 }
@@ -86,8 +86,7 @@ export const useHttpClient = () => {
                         setTimeout(() => {
                             setIsLoading(false);
                         }, 500)
-                    }
-                    else {
+                    } else {
                         setTimeout(() => {
                             setIsLoading(false);
                         }, 1000)
@@ -153,8 +152,7 @@ export const useHttpClient = () => {
 
 
             }
-        }
-        , [history]);
+        }, [history]);
     const clearError = () => {
         setError(null);
     };

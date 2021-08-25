@@ -20,7 +20,7 @@ const RespondentDetail = () => {
 
         const fetchResponses = async () => {
             try {
-                const data = await sendRequest(`https://pluralforms.com/pluralforms-api/public/api/user/forms/response`, 'POST', JSON.stringify({ form_id }));
+                const data = await sendRequest(`http://localhost:8000/api/user/forms/response`, 'POST', JSON.stringify({ form_id }));
                 if (data) {
                     if (data.form && data.form.respondents) {
                         const { respondents } = data.form;
@@ -46,6 +46,7 @@ const RespondentDetail = () => {
             {respondent ?
                 <>
                     <header>
+
                         <FormLabel form={form} />
                         <div className="pl-4 pr-6 py-3 shadow-lg border-b flex items-center justify-between">
                             <div className="">
@@ -57,7 +58,7 @@ const RespondentDetail = () => {
                             </div>
                         </div>
                     </header>
-                    <main className="ra-list">
+                    <main className="ra-list mb-4">
                         {respondent.answers && respondent.answers.length > 0 ?
                             <>
                                 {respondent.answers.map((answer, index) =>
