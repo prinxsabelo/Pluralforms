@@ -5,7 +5,7 @@ import { useHttpClient } from '../hooks/http-hook';
 import { useContext } from "react";
 import AuthContext from '../contexts/auth.context';
 import Cookies from "js-cookie";
-
+import logo from '../plural.png'
 
 const CustomHeader = () => {
     const { sendRequest } = useHttpClient();
@@ -23,8 +23,9 @@ const CustomHeader = () => {
 
         <>
             <div className="md:hidden flex bg-gradient-to-r from-gray-700 to-gray-900 text-gray-100 space-x-2 flex-row justify-between items-center px-2 py-1 md:p-8 border-b">
-                <div className="w-1/2">
-                    <h3 className="text-xl uppercase tracking-wider">PluralForms</h3>
+                <div className="w-1/2 flex items-center">
+                    <img className="w-6 h-6" src={logo} alt="P" />
+                    <h3 className="text-xl  tracking-wider">PluralForms</h3>
                 </div>
                 {Auth && Auth.user &&
                     <div className=" w-1/2 flex items-center justify-end">

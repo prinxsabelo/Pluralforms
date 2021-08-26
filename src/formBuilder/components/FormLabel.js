@@ -34,6 +34,7 @@ const FormLabel = ({ form, renameForm, addQuestion }) => {
             // console.log(form);
             setTitle(form.title);
             setNotifyMe(form.notify_me);
+            // alert(form.notify_me);
             if (form.notify_me === "0" || form.notify_me === 0 || form.notify_me === false) {
                 setNotifyMe(false);
             } else {

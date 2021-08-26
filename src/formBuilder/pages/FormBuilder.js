@@ -113,6 +113,12 @@ const FormBuilder = () => {
                     const data = await sendRequest(`http://localhost:8000/api/user/form`, 'POST', JSON.stringify({ form_id }));
                     if (data.form) {
                         setForm(data.form);
+                        setNotifyMe(data.form.notify_me);
+                        if (data.form.notify_me === "0" || data.form.notify_me === 0 || data.form.notify_me === false) {
+                            setNotifyMe(false);
+                        } else {
+                            setNotifyMe(true)
+                        }
                         if (data.form.questions.length === 0) {
                             setQuestionDetail();
                         }
@@ -193,6 +199,7 @@ const FormBuilder = () => {
                     delete questionDetail.fix;
                     const questions = form.questions.map((q) => (q.q_id === questionDetail.q_id ? questionDetail : q));
                     setForm({ ...form, questions });
+
                     //FetchLoader is retrieved from debounce on question input..
                     if (!fetchLoader && loader) {
                         setTimeout(() => {

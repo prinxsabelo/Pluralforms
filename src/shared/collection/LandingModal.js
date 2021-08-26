@@ -124,7 +124,7 @@ export default function LandingModal(props) {
                             name="begin_desc"
                             className="appearance-none block w-full bg-gray-200 text-gray-900 border border-red-500
                               rounded p-3 mb-3 leading-tight focus:outline-none focus:bg-white blur-none" id="begin_desc"
-                            type="text" placeholder="Jane"
+                            type="text" placeholder="Enter Welcome message here.."
                             value={beginDesc}
                             autoComplete="off"
                           />
@@ -156,7 +156,7 @@ export default function LandingModal(props) {
                               name="end_header"
                               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500
                                rounded p-3 mb-3 leading-tight focus:outline-none focus:bg-white" id="end_header"
-                              type="text" placeholder="Jane"
+                              type="text" placeholder="Thank You Message Header here.."
                               value={endHeader} />
 
                           </div>
@@ -170,7 +170,7 @@ export default function LandingModal(props) {
                               name="end_desc"
                               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500
                             rounded p-3 mb-3 leading-tight focus:outline-none focus:bg-white  h-18" id="end_desc"
-                              type="text" placeholder="Jane"
+                              type="text" placeholder="Type your Thank You message here.."
                               value={endDesc}
                             />
 

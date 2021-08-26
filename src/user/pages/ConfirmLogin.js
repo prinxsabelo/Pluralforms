@@ -30,8 +30,8 @@ const ConfirmLogin = () => {
                 let user = { email, name, avatar };
 
                 cookie.set("userData", JSON.stringify({ id, token, user }));
-                window.location.href = "https://pluralforms.com/user/forms";
-                // window.location.href = "http://localhost:3000/user/forms";
+                // window.location.href = "https://pluralforms.com/user/forms";
+                window.location.href = "http://localhost:3000/user/forms";
 
             }
         }
@@ -44,7 +44,7 @@ const ConfirmLogin = () => {
     return (
         <>
             <div className="w-full h-screen flex items-center justify-center">
-                PLURALFORMS GETTING READY..
+                PluralForms getting ready..
             </div>
         </>
     );

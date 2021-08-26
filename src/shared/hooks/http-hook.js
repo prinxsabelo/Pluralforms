@@ -21,7 +21,11 @@ export const useHttpClient = () => {
         jwt.verify(token, jwt_token, function (err, decoded) {
 
             if (err) {
-                console.log(err);
+                console.log(err.name);
+                if (err.name === "TokenExpiredError") {
+                    cookie.remove("userData");
+                    history.push('/login');
+                }
                 // cookie.remove("userData");
                 // alert('Unauthenicated1..');
                 console.log('removed..');
